@@ -1,0 +1,79 @@
+﻿<ContentDialog
+    x:Class="ytdl.Views.DownloadedDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Loaded="ContentDialog_Loaded" Template="{StaticResource NoMargin}"
+    mc:Ignorable="d" RequestedTheme="Dark" BorderBrush="#111" Background="#222">
+    <ContentControl.Resources>
+        <Style TargetType="SymbolIcon">
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Margin" Value="8 0"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="0 4"/>
+        </Style>
+    </ContentControl.Resources>
+    <ScrollViewer>
+        <StackPanel VerticalAlignment="Center">
+            <!--<controls:ImageEx 
+                x:Name="Img" 
+                  IsCacheEnabled="True"
+                  Stretch="UniformToFill"
+                  PlaceholderStretch="UniformToFill"
+                  HorizontalAlignment="Stretch"
+                  VerticalAlignment="Top"/>-->
+            <StackPanel Visibility="Collapsed">
+            <TextBlock x:Name="oTitle" FontWeight="Light" Margin="12 4 12 0"
+                       TextWrapping="Wrap" FontSize="22"/>
+            <TextBlock x:Name="Duration" FontSize="16" Margin="12 0" Foreground="LightGray"/>
+            <TextBlock x:Name="View" FontSize="16" Margin="12 0" Foreground="LightGray"/>
+            <TextBlock Text="لینک کپی شد" FontSize="16" Margin="16" FontFamily="{StaticResource Mitra}" 
+                       Foreground="#FFEB3B" x:Name="copiedText" Opacity="0"
+                       HorizontalAlignment="Center"/>
+                
+            </StackPanel>
+
+            <ListView HorizontalAlignment="Stretch" 
+                                  x:Name="xlist"
+                                  SelectionMode="Single"
+                                  ItemClick="xlist_ItemClick"
+                                  IsItemClickEnabled="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Button Content="{Binding quality}" IsHitTestVisible="False" 
+                                MinWidth="220"
+                                HorizontalContentAlignment="Center"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
+            </ListView>
+
+            <TextBlock Text="لینک کپی شد" FontSize="16" Margin="16" FontFamily="{StaticResource Mitra}" 
+                       Foreground="#FFEB3B" x:Name="copiedText2" Opacity="0"
+                       HorizontalAlignment="Center"/>
+
+            <Grid Margin="0 8">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="52"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="52"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="1" HorizontalAlignment="Stretch" Background="#7F000000"  Click="Button_Click" Content="Close" VerticalAlignment="Stretch"/>
+                <Button HorizontalAlignment="Stretch" Background="{StaticResource MyRed}"
+                        VerticalAlignment="Stretch" Click="OpenYT_Click" >
+                    <FontIcon Glyph="&#xE29B;"  Height="36"/>
+                </Button>
+                <Button HorizontalAlignment="Stretch" Background="Gray" Grid.Column="2" 
+                        VerticalAlignment="Stretch" Click="rm_Click" >
+                    <FontIcon Glyph="&#xE107;"  Height="36"/>
+                </Button>
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
+</ContentDialog>
