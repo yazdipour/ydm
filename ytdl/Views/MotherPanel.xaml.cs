@@ -30,8 +30,8 @@ namespace ytdl.Views
 			PRing.Visibility = Visibility.Visible;
 			//TODO :Remove BackStack LoginPage if exist
 			string account = LocalSettingManager.ReadSetting("Account");
-			App.Usr = Newtonsoft.Json.JsonConvert.DeserializeObject<Models.User>(account);
-			string get = Newtonsoft.Json.JsonConvert.SerializeObject(new string[] { App.Usr.Id.ToString(), App.Usr.Email });
+			App.Usr = JsonConvert.DeserializeObject<User>(account);
+			string get = JsonConvert.SerializeObject(new string[] { App.Usr.Id.ToString(), App.Usr.Email });
 			get = CloseHelp.Base64Encode(CloseHelp.Reverse(CloseHelp.Base64Encode(get)));
 			string url = "http://shahriar.in/app/ytdlr/dl/getdate.php?i=" + get;
 			try
@@ -56,15 +56,17 @@ namespace ytdl.Views
 
 		private void insideFrame_Navigated(object sender, Windows.UI.Xaml.Navigation.NavigationEventArgs e)
 		{
-			if (insideFrame.CurrentSourcePageType != typeof(Home))
+			if (insideFrame.CurrentSourcePageType == typeof(Home))
 			{
-				SystemNavigationManager.GetForCurrentView().BackRequested += CurrentView_BackRequested;
-				SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
+				TopMenu.Visibility = Visibility.Visible;
+				SystemNavigationManager.GetForCurrentView().BackRequested -= CurrentView_BackRequested;
+				SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
 			}
 			else
 			{
-				SystemNavigationManager.GetForCurrentView().BackRequested -= CurrentView_BackRequested;
-				SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
+				SystemNavigationManager.GetForCurrentView().BackRequested += CurrentView_BackRequested;
+				SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
+				TopMenu.Visibility = Visibility.Collapsed;
 			}
 		}
 		private void CurrentView_BackRequested(object sender, BackRequestedEventArgs e)
@@ -123,7 +125,7 @@ namespace ytdl.Views
 
 		private void Batch_Click(object sender, RoutedEventArgs e)
 		{
-
+			//var x= Clipboard.GetContent().GetTextAsync();
 		}
 	}
 }
