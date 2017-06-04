@@ -253,6 +253,12 @@
       <Name>Windows Mobile Extensions for the UWP</Name>
     </SDKReference>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\MaterialUwp\MaterialDesignInXamlToolkit\MaterialDesignThemes.Uwp\MaterialDesignThemes.Uwp.csproj">
+      <Project>{e4686a3f-cc25-4eef-9a24-7cd4a22da233}</Project>
+      <Name>MaterialDesignThemes.Uwp</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

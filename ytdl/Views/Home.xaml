@@ -9,6 +9,8 @@
     xmlns:data="using:ytdl.Models"
     Loaded="Page_Loaded"
     NavigationCacheMode="Enabled"
+    FontFamily="ms-appx:///MaterialDesignThemes.Uwp/Assets/Roboto/Roboto-Regular.ttf#Roboto"
+    xmlns:uwp="using:MaterialDesignThemes.Uwp"
     mc:Ignorable="d">
     <Page.Resources>
         <DataTemplate x:Key="EmailsItemTemplate" x:DataType="data:DownloadedItems">
@@ -50,6 +52,7 @@
                 </controls:SlidableListItem>
             </controls:DropShadowPanel>
         </DataTemplate>
+        
     </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -70,8 +73,10 @@
                         </TextBox>
                         <SymbolIcon Symbol="Copy" Width="42" Height="32" HorizontalAlignment="Right" VerticalAlignment="Center" Tapped="SymbolIcon_Tapped" />
                     </Grid>
-                    <Button Content="Get the Video" Margin="0 12 0 0" Click="GetInfo_Click" HorizontalAlignment="Stretch"
+                    <Button Content="GET IT" Margin="0 12 0 0" Click="GetInfo_Click" 
+                            HorizontalAlignment="Stretch" Style="{StaticResource MaterialDesignRaisedDarkButton}"
                             Foreground="White" Background="#E62118"/>
+
                 </StackPanel>
             </controls:DropShadowPanel>
         </Border>

@@ -16,8 +16,8 @@
         </Grid.RowDefinitions>
         <controls:DropShadowPanel BlurRadius="7.0" ShadowOpacity="0.5" OffsetX="0" OffsetY="2" Color="Black">
             <Grid Height="52"  VerticalAlignment="Top" Background="#FFE33419" RequestedTheme="Dark">
-                <TextBlock Text="یوتیوب دانلودر"
-                           FontFamily="{StaticResource Mitra}"
+                <!--FontFamily="{StaticResource Mitra}"-->
+                <TextBlock Text="YDM"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center" FontSize="22"/>
                 <AppBarButton x:Name="LeftDayText" Icon="Contact" HorizontalAlignment="Right" Click="UserDash_Click" Margin="0,-4,0,0"/>
