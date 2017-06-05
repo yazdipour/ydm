@@ -5,6 +5,7 @@ using Windows.ApplicationModel.DataTransfer;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
 using ytdl.Classes;
 using ytdl.Models;
 
@@ -25,6 +26,7 @@ namespace ytdl.Views
 
 		private async void Page_Loading(FrameworkElement sender, object args)
 		{
+
 			insideFrame.Navigate(typeof(Home));
 			StaticRing = PRing;
 			PRing.Visibility = Visibility.Visible;
@@ -36,13 +38,13 @@ namespace ytdl.Views
 			string url = "http://shahriar.in/app/ytdlr/dl/getdate.php?i=" + get;
 			try
 			{
-				url = await CloseHelp.DownloadPages(new System.Threading.CancellationToken(), url);
-				if (url.Substring(0, 3).Equals("Err"))
-					throw new System.Exception();
-				var arr = url.Split('|');
-				App.Usr.leftDay = System.Convert.ToInt32(arr[1]);
-				if (App.Usr.leftDay < 0) App.Usr.leftDay = -1;
-				App.Today = System.Convert.ToInt32(arr[0]);
+				//url = await CloseHelp.DownloadPages(new System.Threading.CancellationToken(), url);
+				//if (url.Substring(0, 3).Equals("Err"))
+				//	throw new System.Exception();
+				//var arr = url.Split('|');
+				//App.Usr.leftDay = System.Convert.ToInt32(arr[1]);
+				//if (App.Usr.leftDay < 0) App.Usr.leftDay = -1;
+				//App.Today = System.Convert.ToInt32(arr[0]);
 				PRing.Visibility = Visibility.Collapsed;
 				LeftDayText.Label = (1 + App.Usr.leftDay) + " روز";
 			}
