@@ -1,5 +1,6 @@
-ytdl\AppPackages\
-ytdl\bin\
-ytdl\obj\
+/ytdl/AppPackages/
+/ytdl/bin/
+/ytdl/obj/
 /ytdl/obj/x86/Debug
 /ytdl/bin/x86/Debug
+.suo
