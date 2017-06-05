@@ -10,13 +10,12 @@
     Loaded="Page_Loaded"
     NavigationCacheMode="Enabled"
     FontFamily="ms-appx:///MaterialDesignThemes.Uwp/Assets/Roboto/Roboto-Regular.ttf#Roboto"
-    xmlns:uwp="using:MaterialDesignThemes.Uwp"
     mc:Ignorable="d">
     <Page.Resources>
         <DataTemplate x:Key="EmailsItemTemplate" x:DataType="data:DownloadedItems">
             <controls:DropShadowPanel BlurRadius="8.0" ShadowOpacity="0.3" OffsetX="0" OffsetY="1" Color="Black">
                 <controls:SlidableListItem 
-                    Background="{StaticResource FgCard}"
+                    Background="#000"
                     HorizontalAlignment="Stretch"
                     Margin="0,4"
                     IsLeftCommandEnabled="False"
@@ -27,24 +26,22 @@
                     RightCommandRequested="SlidableListItem_RightCommandRequested"
                     ActivationWidth="100"
                     IsOffsetLimited="True"
+                    Height="180"
                     MouseSlidingEnabled="True"
                     IsPointerReleasedOnSwipingHandled="True">
-                    <Grid Height="82" HorizontalAlignment="Stretch">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Image Height="82" Stretch="Uniform" Source="{x:Bind Img}" Margin="0,0,10,0"/>
-                        <StackPanel VerticalAlignment="Center" Grid.Column="1">
-                            <RichTextBlock HorizontalAlignment="Left"
-                                           VerticalAlignment="Center"
+                    <Grid Height="180" HorizontalAlignment="Stretch">
+                        <Image Stretch="UniformToFill" Source="{x:Bind Img}" Margin="0,-50,0,0" 
+                               Opacity=".5" />
+                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" RequestedTheme="Dark">
+                            <RichTextBlock HorizontalAlignment="Center"
+                                           VerticalAlignment="Center" TextAlignment="Center"
                                            IsTextSelectionEnabled="False" MaxHeight="82">
                                 <Paragraph>
-                                    <Run Text="{x:Bind Title}" FontWeight="Light" FontSize="14"/>
+                                    <Run Text="{x:Bind Title}" FontWeight="Bold" FontSize="14"/>
                                 </Paragraph>
                                 <Paragraph>
-                                    <Run Text="Duration :" FontSize="12" Foreground="DimGray"/>
-                                    <Run Text="{x:Bind Duration}" FontSize="12" Foreground="DimGray"/>
+                                    <Run Text="Duration :" FontSize="12" />
+                                    <Run Text="{x:Bind Duration}" FontSize="12" />
                                 </Paragraph>
                             </RichTextBlock>
                         </StackPanel>
@@ -52,7 +49,7 @@
                 </controls:SlidableListItem>
             </controls:DropShadowPanel>
         </DataTemplate>
-        
+
     </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -76,24 +73,18 @@
                     <Button Content="GET IT" Margin="0 12 0 0" Click="GetInfo_Click" 
                             HorizontalAlignment="Stretch" Style="{StaticResource MaterialDesignRaisedDarkButton}"
                             Foreground="White" Background="#E62118"/>
-
                 </StackPanel>
             </controls:DropShadowPanel>
         </Border>
-        <ListView Name="xlist"
+        <controls:AdaptiveGridView Name="xlist"
+                                   ItemHeight="180"
+                                   DesiredWidth="360"
                       ScrollViewer.VerticalScrollBarVisibility="Hidden"
                       Grid.Row="1"
                       VerticalAlignment="Stretch"
                       SelectionMode="None"
                       IsItemClickEnabled="True"
                       ItemClick="xlist_ItemClick"
-                      ItemTemplate="{StaticResource EmailsItemTemplate}">
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                    <Setter Property="Margin" Value="0"/>
-                </Style>
-            </ListView.ItemContainerStyle>
-        </ListView>
+                      ItemTemplate="{StaticResource EmailsItemTemplate}"/>
     </Grid>
 </Page>

@@ -19,8 +19,10 @@ namespace ytdl.Views
 		ObservableCollection<DownloadedItems> clist = new ObservableCollection<DownloadedItems>();
 		private async void xlist_ItemClick(object sender, ItemClickEventArgs e)
 		{
-			var dialog = new DownloadedDialog();
-			dialog.Dl = e.ClickedItem as DownloadedItems;
+			var dialog = new DownloadedDialog()
+			{
+				Dl = e.ClickedItem as DownloadedItems
+			};
 			var t = dialog.ShowAsync();
 			await t;
 			if (t.Status == Windows.Foundation.AsyncStatus.Completed)

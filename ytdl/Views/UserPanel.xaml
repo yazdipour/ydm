@@ -11,27 +11,25 @@
         <Style TargetType="TextBlock">
             <Setter Property="HorizontalAlignment" Value="Center"/>
         </Style>
-        <Style TargetType="Button">
+        <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedDarkButton}">
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="Width" Value="200"/>
             <Setter Property="Margin" Value="2"/>
             <Setter Property="FontFamily" Value="{StaticResource Mitra}"/>
         </Style>
     </Page.Resources>
-    <StackPanel HorizontalAlignment="Center"
+    <StackPanel HorizontalAlignment="Center" Margin="0 50 0 0"
                 Width="300">
         <controls:DropShadowPanel BlurRadius="8.0" ShadowOpacity="0.3" OffsetX="0" OffsetY="1" Color="Black">
             <StackPanel Background="White"
                         Padding="2 8">
-                <controls:ImageEx x:Name="ImageExControl1"
-                          IsCacheEnabled="True"
-                          Source="{x:Bind Img,Mode=OneWay}"
-                          Stretch="UniformToFill"
-                          PlaceholderStretch="UniformToFill"
-                          HorizontalAlignment="Center"
-                                  Width="92"
-                          VerticalAlignment="Center"/>
-                <TextBlock Text="{x:Bind mailTxt}"/>
+                <Ellipse Width="92" Height="92" Margin="0,-46,0,0">
+                    <Ellipse.Fill>
+                        <ImageBrush x:Name="ImageExControl1" Stretch="Fill" 
+                                    ImageSource="{x:Bind Img,Mode=OneWay}"/>
+                    </Ellipse.Fill>
+                </Ellipse>
+                <TextBlock Text="sh.yazdipour@hotmail.com"/>
                 <Grid>
                     <AppBarButton Icon="Refresh" 
                                   VerticalAlignment="Bottom"
@@ -43,11 +41,10 @@
                 </Grid>
                 <TextBlock Text="روز" FontFamily="{StaticResource Mitra}" 
                                Margin="0 0 0 4" VerticalAlignment="Bottom"/>
-                <Button Content="شارژ اکانت" Background="#FF8BC34A"
-                        Click="Charge_Click" 
-                        Height="45" Margin="2 6"/>
-                <Button Content="بررسی مشکل شارژ" Click="Err1_Click" />
-                <Button Content="بررسی مشکل برنامه"  Click="Err2_Click" />
+                <Button Content="شارژ اکانت" Background="#EC2828"
+                        Click="Charge_Click" Height="45" Margin="2 6" />
+                <Button Content="بررسی مشکل شارژ" Click="Err1_Click" Background="#434C55"/>
+                <Button Content="بررسی مشکل برنامه"  Click="Err2_Click" Background="#434C55"/>
                 <!--<Button Content="خروج از این حساب"  Click="Logout_Click" />-->
             </StackPanel>
         </controls:DropShadowPanel>
