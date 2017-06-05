@@ -9,6 +9,7 @@
     Background="{StaticResource BgCard}"
     mc:Ignorable="d"
     Loading="Page_Loading">
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
