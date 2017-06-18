@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     Loaded="ContentDialog_Loaded" Template="{StaticResource NoMargin}"
     mc:Ignorable="d" RequestedTheme="Dark" BorderBrush="#111" Background="#222">
     <ContentControl.Resources>
@@ -17,14 +18,14 @@
     </ContentControl.Resources>
     <ScrollViewer>
         <StackPanel VerticalAlignment="Center">
-            <!--<controls:ImageEx 
+            <controls:ImageEx 
                 x:Name="Img" 
                   IsCacheEnabled="True"
                   Stretch="UniformToFill"
                   PlaceholderStretch="UniformToFill"
                   HorizontalAlignment="Stretch"
-                  VerticalAlignment="Top"/>-->
-            <StackPanel Visibility="Collapsed">
+                  VerticalAlignment="Top"/>
+            <StackPanel >
             <TextBlock x:Name="oTitle" FontWeight="Light" Margin="12 4 12 0"
                        TextWrapping="Wrap" FontSize="22"/>
             <TextBlock x:Name="Duration" FontSize="16" Margin="12 0" Foreground="LightGray"/>

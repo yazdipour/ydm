@@ -79,6 +79,7 @@
         <controls:AdaptiveGridView Name="xlist"
                                    ItemHeight="180"
                                    DesiredWidth="360"
+                                   Margin="4 0 0 0"
                       ScrollViewer.VerticalScrollBarVisibility="Hidden"
                       Grid.Row="1"
                       VerticalAlignment="Stretch"

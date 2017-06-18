@@ -56,7 +56,7 @@ namespace ytdl.Views
 			oTitle.Text = dl.Title;
 			Duration.Text = "Duration : " + dl.Duration;
 			View.Text = dl.Views + " Views";
-			//Img.Source = dl.Img;
+			Img.Source = dl.Img;
 			var save = LocalSettingManager.ReadSetting("LI" + dl.Id);
 			try
 			{
