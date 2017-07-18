@@ -56,7 +56,8 @@ namespace ytdl.Views
 			oTitle.Text = dl.Title;
 			Duration.Text = "Duration : " + dl.Duration;
 			View.Text = dl.Views + " Views";
-			Img.Source = dl.Img;
+			//Img.Source = dl.Img;
+			Img.ImageSource = new Windows.UI.Xaml.Media.Imaging.BitmapImage(new Uri(dl.Img, UriKind.Absolute));
 			var save = LocalSettingManager.ReadSetting("LI" + dl.Id);
 			try
 			{
