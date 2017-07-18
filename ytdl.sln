@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.6
+VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ytdl", "ytdl\ytdl.csproj", "{78083C1C-5500-4051-8FF9-439D1A814B8D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialDesignThemes.Uwp", "..\MaterialUwp\MaterialDesignInXamlToolkit\MaterialDesignThemes.Uwp\MaterialDesignThemes.Uwp.csproj", "{E4686A3F-CC25-4EEF-9A24-7CD4A22DA233}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialDesignThemes.Uwp", "MaterialLib\MaterialDesignThemes.Uwp\MaterialDesignThemes.Uwp.csproj", "{E4686A3F-CC25-4EEF-9A24-7CD4A22DA233}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

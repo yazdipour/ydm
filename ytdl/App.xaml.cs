@@ -39,9 +39,9 @@ namespace ytdl {
             {
                 if (rootFrame.Content == null)
                 {
-                    if(Classes.LocalSettingManager.ExistsSetting("Account"))
-                        rootFrame.Navigate(typeof(Views.MotherPanel),e.Arguments);
-                    else
+                    //if(Classes.LocalSettingManager.ExistsSetting("Account"))
+                    //    rootFrame.Navigate(typeof(Views.MotherPanel),e.Arguments);
+                    //else
                         rootFrame.Navigate(typeof(Views.WelcomePage), e.Arguments);
                     try {
                         var hlp = new Classes.Helper();

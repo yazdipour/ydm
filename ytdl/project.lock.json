@@ -2,6 +2,41 @@
   "version": 2,
   "targets": {
     "UAP,Version=v10.0": {
+      "akavache/5.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Akavache.SQLite3": "[5.0.0]"
+        }
+      },
+      "akavache.core/5.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "6.0.3",
+          "Rx-Main": "2.2.5",
+          "Rx-WinRT": "2.2.5",
+          "Rx-Xaml": "2.2.5",
+          "Splat": "1.6.0"
+        },
+        "compile": {
+          "lib/Portable-Win81+Wpa81/Akavache.dll": {}
+        },
+        "runtime": {
+          "lib/Portable-Win81+Wpa81/Akavache.dll": {}
+        }
+      },
+      "akavache.sqlite3/5.0.0": {
+        "type": "package",
+        "dependencies": {
+          "SQLitePCLRaw.bundle_e_sqlite3": "1.1.0",
+          "akavache.core": "5.0.0"
+        },
+        "compile": {
+          "lib/Portable-Net45+Win8+WP8+Wpa81/Akavache.Sqlite3.dll": {}
+        },
+        "runtime": {
+          "lib/Portable-Net45+Win8+WP8+Wpa81/Akavache.Sqlite3.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -29,33 +64,33 @@
           "lib/netcore50/Microsoft.CSharp.dll": {}
         }
       },
-      "Microsoft.Net.Native.Compiler/1.6.1": {
+      "Microsoft.Net.Native.Compiler/1.6.2": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Net.Native.SharedLibrary-arm": "1.6.0",
-          "Microsoft.Net.Native.SharedLibrary-x64": "1.6.0",
-          "Microsoft.Net.Native.SharedLibrary-x86": "1.6.0"
+          "Microsoft.Net.Native.SharedLibrary-arm": "1.6.1",
+          "Microsoft.Net.Native.SharedLibrary-x64": "1.6.1",
+          "Microsoft.Net.Native.SharedLibrary-x86": "1.6.1"
         },
         "build": {
           "build/Microsoft.Net.Native.Compiler.props": {},
           "build/Microsoft.Net.Native.Compiler.targets": {}
         }
       },
-      "Microsoft.Net.Native.SharedLibrary-arm/1.6.0": {
+      "Microsoft.Net.Native.SharedLibrary-arm/1.6.1": {
         "type": "package",
         "build": {
           "build/Microsoft.Net.Native.SharedLibrary-arm.props": {},
           "build/Microsoft.Net.Native.SharedLibrary-arm.targets": {}
         }
       },
-      "Microsoft.Net.Native.SharedLibrary-x64/1.6.0": {
+      "Microsoft.Net.Native.SharedLibrary-x64/1.6.1": {
         "type": "package",
         "build": {
           "build/Microsoft.Net.Native.SharedLibrary-x64.props": {},
           "build/Microsoft.Net.Native.SharedLibrary-x64.targets": {}
         }
       },
-      "Microsoft.Net.Native.SharedLibrary-x86/1.6.0": {
+      "Microsoft.Net.Native.SharedLibrary-x86/1.6.1": {
         "type": "package",
         "build": {
           "build/Microsoft.Net.Native.SharedLibrary-x86.props": {},
@@ -239,14 +274,14 @@
           "lib/netstandard1.0/_._": {}
         }
       },
-      "Microsoft.NETCore.UniversalWindowsPlatform/5.3.2": {
+      "Microsoft.NETCore.UniversalWindowsPlatform/5.3.3": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore": "5.0.2",
           "Microsoft.NETCore.Portable.Compatibility": "1.0.2",
           "Microsoft.NETCore.Runtime.CoreCLR": "1.0.3",
           "Microsoft.NETCore.Targets": "1.0.2",
-          "Microsoft.Net.Native.Compiler": "1.6.1",
+          "Microsoft.Net.Native.Compiler": "1.6.2",
           "Microsoft.Win32.Primitives": "4.0.1",
           "System.Collections.NonGeneric": "4.0.1",
           "System.Collections.Specialized": "4.0.1",
@@ -284,7 +319,7 @@
       "Microsoft.NETCore.Windows.ApiSets/1.0.1": {
         "type": "package"
       },
-      "Microsoft.Toolkit.Uwp/1.4.1": {
+      "Microsoft.Toolkit.Uwp/1.5.0": {
         "type": "package",
         "dependencies": {
           "Newtonsoft.Json": "9.0.1"
@@ -296,10 +331,10 @@
           "lib/uap10.0/Microsoft.Toolkit.Uwp.dll": {}
         }
       },
-      "Microsoft.Toolkit.Uwp.UI/1.4.1": {
+      "Microsoft.Toolkit.Uwp.UI/1.5.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Toolkit.Uwp": "1.4.1"
+          "Microsoft.Toolkit.Uwp": "1.5.0"
         },
         "compile": {
           "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.dll": {}
@@ -308,11 +343,11 @@
           "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.dll": {}
         }
       },
-      "Microsoft.Toolkit.Uwp.UI.Animations/1.4.1": {
+      "Microsoft.Toolkit.Uwp.UI.Animations/1.5.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Toolkit.Uwp": "1.4.1",
-          "Microsoft.Toolkit.Uwp.UI": "1.4.1",
+          "Microsoft.Toolkit.Uwp": "1.5.0",
+          "Microsoft.Toolkit.Uwp.UI": "1.5.0",
           "Microsoft.Xaml.Behaviors.Uwp.Managed": "1.1.0",
           "Win2D.uwp": "1.19.0"
         },
@@ -323,12 +358,12 @@
           "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.Animations.dll": {}
         }
       },
-      "Microsoft.Toolkit.Uwp.UI.Controls/1.4.1": {
+      "Microsoft.Toolkit.Uwp.UI.Controls/1.5.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Toolkit.Uwp": "1.4.1",
-          "Microsoft.Toolkit.Uwp.UI": "1.4.1",
-          "Microsoft.Toolkit.Uwp.UI.Animations": "1.4.1",
+          "Microsoft.Toolkit.Uwp": "1.5.0",
+          "Microsoft.Toolkit.Uwp.UI": "1.5.0",
+          "Microsoft.Toolkit.Uwp.UI.Animations": "1.5.0",
           "Robmikh.CompositionSurfaceFactory": "0.7.1"
         },
         "compile": {
@@ -436,7 +471,7 @@
           "System.Xml.XDocument": "4.3.0"
         }
       },
-      "Newtonsoft.Json/10.0.2": {
+      "Newtonsoft.Json/10.0.3": {
         "type": "package",
         "dependencies": {
           "Microsoft.CSharp": "4.3.0",
@@ -613,6 +648,156 @@
             "assetType": "native",
             "rid": "ubuntu.16.10-x64"
           }
+        }
+      },
+      "Rx-Core/2.2.5": {
+        "type": "package",
+        "dependencies": {
+          "Rx-Interfaces": "2.2.5"
+        },
+        "compile": {
+          "lib/windows8/System.Reactive.Core.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.Core.dll": {}
+        }
+      },
+      "Rx-Interfaces/2.2.5": {
+        "type": "package",
+        "compile": {
+          "lib/windows8/System.Reactive.Interfaces.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.Interfaces.dll": {}
+        }
+      },
+      "Rx-Linq/2.2.5": {
+        "type": "package",
+        "dependencies": {
+          "Rx-Core": "2.2.5",
+          "Rx-Interfaces": "2.2.5"
+        },
+        "compile": {
+          "lib/windows8/System.Reactive.Linq.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.Linq.dll": {}
+        }
+      },
+      "Rx-Main/2.2.5": {
+        "type": "package",
+        "dependencies": {
+          "Rx-Core": "2.2.5",
+          "Rx-Interfaces": "2.2.5",
+          "Rx-Linq": "2.2.5",
+          "Rx-PlatformServices": "2.2.5"
+        }
+      },
+      "Rx-PlatformServices/2.2.5": {
+        "type": "package",
+        "dependencies": {
+          "Rx-Core": "2.2.5",
+          "Rx-Interfaces": "2.2.5"
+        },
+        "compile": {
+          "lib/windows8/System.Reactive.PlatformServices.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.PlatformServices.dll": {}
+        }
+      },
+      "Rx-WinRT/2.2.5": {
+        "type": "package",
+        "dependencies": {
+          "Rx-Main": "2.2.5"
+        },
+        "compile": {
+          "lib/windows8/System.Reactive.WindowsRuntime.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.WindowsRuntime.dll": {}
+        }
+      },
+      "Rx-XAML/2.2.5": {
+        "type": "package",
+        "dependencies": {
+          "Rx-Main": "2.2.5"
+        },
+        "compile": {
+          "lib/windows8/System.Reactive.Windows.Threading.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.Windows.Threading.dll": {}
+        }
+      },
+      "Splat/1.6.0": {
+        "type": "package",
+        "compile": {
+          "lib/NetCore45/Splat.dll": {}
+        },
+        "runtime": {
+          "lib/NetCore45/Splat.dll": {}
+        }
+      },
+      "SQLitePCLRaw.bundle_e_sqlite3/1.1.0": {
+        "type": "package",
+        "dependencies": {
+          "SQLitePCLRaw.core": "1.1.0",
+          "SQLitePCLRaw.lib.e_sqlite3.v140": "1.1.0",
+          "SQLitePCLRaw.provider.e_sqlite3.uwp10": "1.1.0"
+        },
+        "compile": {
+          "lib/uap10.0/SQLitePCLRaw.batteries_e_sqlite3.dll": {},
+          "lib/uap10.0/SQLitePCLRaw.batteries_v2.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/SQLitePCLRaw.batteries_e_sqlite3.dll": {},
+          "lib/uap10.0/SQLitePCLRaw.batteries_v2.dll": {}
+        }
+      },
+      "SQLitePCLRaw.core/1.1.0": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.0"
+        },
+        "compile": {
+          "lib/uap10.0/SQLitePCLRaw.core.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/SQLitePCLRaw.core.dll": {}
+        }
+      },
+      "SQLitePCLRaw.lib.e_sqlite3.v140/1.1.0": {
+        "type": "package",
+        "build": {
+          "build/SQLitePCLRaw.lib.e_sqlite3.v140.targets": {}
+        },
+        "runtimeTargets": {
+          "runtimes/win10-arm/native/e_sqlite3.dll": {
+            "assetType": "native",
+            "rid": "win10-arm"
+          },
+          "runtimes/win10-x64/native/e_sqlite3.dll": {
+            "assetType": "native",
+            "rid": "win10-x64"
+          },
+          "runtimes/win10-x86/native/e_sqlite3.dll": {
+            "assetType": "native",
+            "rid": "win10-x86"
+          }
+        }
+      },
+      "SQLitePCLRaw.provider.e_sqlite3.uwp10/1.1.0": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.0",
+          "SQLitePCLRaw.core": "1.1.0"
+        },
+        "compile": {
+          "lib/uap10.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
         }
       },
       "System.AppContext/4.3.0": {
@@ -2595,6 +2780,41 @@
       }
     },
     "UAP,Version=v10.0/win10-arm": {
+      "akavache/5.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Akavache.SQLite3": "[5.0.0]"
+        }
+      },
+      "akavache.core/5.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "6.0.3",
+          "Rx-Main": "2.2.5",
+          "Rx-WinRT": "2.2.5",
+          "Rx-Xaml": "2.2.5",
+          "Splat": "1.6.0"
+        },
+        "compile": {
+          "lib/Portable-Win81+Wpa81/Akavache.dll": {}
+        },
+        "runtime": {
+          "lib/Portable-Win81+Wpa81/Akavache.dll": {}
+        }
+      },
+      "akavache.sqlite3/5.0.0": {
+        "type": "package",
+        "dependencies": {
+          "SQLitePCLRaw.bundle_e_sqlite3": "1.1.0",
+          "akavache.core": "5.0.0"
+        },
+        "compile": {
+          "lib/Portable-Net45+Win8+WP8+Wpa81/Akavache.Sqlite3.dll": {}
+        },
+        "runtime": {
+          "lib/Portable-Net45+Win8+WP8+Wpa81/Akavache.Sqlite3.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -2622,33 +2842,33 @@
           "lib/netcore50/Microsoft.CSharp.dll": {}
         }
       },
-      "Microsoft.Net.Native.Compiler/1.6.1": {
+      "Microsoft.Net.Native.Compiler/1.6.2": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Net.Native.SharedLibrary-arm": "1.6.0",
-          "Microsoft.Net.Native.SharedLibrary-x64": "1.6.0",
-          "Microsoft.Net.Native.SharedLibrary-x86": "1.6.0"
+          "Microsoft.Net.Native.SharedLibrary-arm": "1.6.1",
+          "Microsoft.Net.Native.SharedLibrary-x64": "1.6.1",
+          "Microsoft.Net.Native.SharedLibrary-x86": "1.6.1"
         },
         "build": {
           "build/Microsoft.Net.Native.Compiler.props": {},
           "build/Microsoft.Net.Native.Compiler.targets": {}
         }
       },
-      "Microsoft.Net.Native.SharedLibrary-arm/1.6.0": {
+      "Microsoft.Net.Native.SharedLibrary-arm/1.6.1": {
         "type": "package",
         "build": {
           "build/Microsoft.Net.Native.SharedLibrary-arm.props": {},
           "build/Microsoft.Net.Native.SharedLibrary-arm.targets": {}
         }
       },
-      "Microsoft.Net.Native.SharedLibrary-x64/1.6.0": {
+      "Microsoft.Net.Native.SharedLibrary-x64/1.6.1": {
         "type": "package",
         "build": {
           "build/Microsoft.Net.Native.SharedLibrary-x64.props": {},
           "build/Microsoft.Net.Native.SharedLibrary-x64.targets": {}
         }
       },
-      "Microsoft.Net.Native.SharedLibrary-x86/1.6.0": {
+      "Microsoft.Net.Native.SharedLibrary-x86/1.6.1": {
         "type": "package",
         "build": {
           "build/Microsoft.Net.Native.SharedLibrary-x86.props": {},
@@ -2779,14 +2999,14 @@
           "lib/netstandard1.0/_._": {}
         }
       },
-      "Microsoft.NETCore.UniversalWindowsPlatform/5.3.2": {
+      "Microsoft.NETCore.UniversalWindowsPlatform/5.3.3": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore": "5.0.2",
           "Microsoft.NETCore.Portable.Compatibility": "1.0.2",
           "Microsoft.NETCore.Runtime.CoreCLR": "1.0.3",
           "Microsoft.NETCore.Targets": "1.0.2",
-          "Microsoft.Net.Native.Compiler": "1.6.1",
+          "Microsoft.Net.Native.Compiler": "1.6.2",
           "Microsoft.Win32.Primitives": "4.0.1",
           "System.Collections.NonGeneric": "4.0.1",
           "System.Collections.Specialized": "4.0.1",
@@ -2824,7 +3044,7 @@
       "Microsoft.NETCore.Windows.ApiSets/1.0.1": {
         "type": "package"
       },
-      "Microsoft.Toolkit.Uwp/1.4.1": {
+      "Microsoft.Toolkit.Uwp/1.5.0": {
         "type": "package",
         "dependencies": {
           "Newtonsoft.Json": "9.0.1"
@@ -2836,10 +3056,10 @@
           "lib/uap10.0/Microsoft.Toolkit.Uwp.dll": {}
         }
       },
-      "Microsoft.Toolkit.Uwp.UI/1.4.1": {
+      "Microsoft.Toolkit.Uwp.UI/1.5.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Toolkit.Uwp": "1.4.1"
+          "Microsoft.Toolkit.Uwp": "1.5.0"
         },
         "compile": {
           "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.dll": {}
@@ -2848,11 +3068,11 @@
           "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.dll": {}
         }
       },
-      "Microsoft.Toolkit.Uwp.UI.Animations/1.4.1": {
+      "Microsoft.Toolkit.Uwp.UI.Animations/1.5.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Toolkit.Uwp": "1.4.1",
-          "Microsoft.Toolkit.Uwp.UI": "1.4.1",
+          "Microsoft.Toolkit.Uwp": "1.5.0",
+          "Microsoft.Toolkit.Uwp.UI": "1.5.0",
           "Microsoft.Xaml.Behaviors.Uwp.Managed": "1.1.0",
           "Win2D.uwp": "1.19.0"
         },
@@ -2863,12 +3083,12 @@
           "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.Animations.dll": {}
         }
       },
-      "Microsoft.Toolkit.Uwp.UI.Controls/1.4.1": {
+      "Microsoft.Toolkit.Uwp.UI.Controls/1.5.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Toolkit.Uwp": "1.4.1",
-          "Microsoft.Toolkit.Uwp.UI": "1.4.1",
-          "Microsoft.Toolkit.Uwp.UI.Animations": "1.4.1",
+          "Microsoft.Toolkit.Uwp": "1.5.0",
+          "Microsoft.Toolkit.Uwp.UI": "1.5.0",
+          "Microsoft.Toolkit.Uwp.UI.Animations": "1.5.0",
           "Robmikh.CompositionSurfaceFactory": "0.7.1"
         },
         "compile": {
@@ -2977,7 +3197,7 @@
           "System.Xml.XDocument": "4.3.0"
         }
       },
-      "Newtonsoft.Json/10.0.2": {
+      "Newtonsoft.Json/10.0.3": {
         "type": "package",
         "dependencies": {
           "Microsoft.CSharp": "4.3.0",
@@ -3398,6 +3618,145 @@
         "type": "package",
         "native": {
           "runtimes/win8-arm/native/clrcompression.dll": {}
+        }
+      },
+      "Rx-Core/2.2.5": {
+        "type": "package",
+        "dependencies": {
+          "Rx-Interfaces": "2.2.5"
+        },
+        "compile": {
+          "lib/windows8/System.Reactive.Core.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.Core.dll": {}
+        }
+      },
+      "Rx-Interfaces/2.2.5": {
+        "type": "package",
+        "compile": {
+          "lib/windows8/System.Reactive.Interfaces.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.Interfaces.dll": {}
+        }
+      },
+      "Rx-Linq/2.2.5": {
+        "type": "package",
+        "dependencies": {
+          "Rx-Core": "2.2.5",
+          "Rx-Interfaces": "2.2.5"
+        },
+        "compile": {
+          "lib/windows8/System.Reactive.Linq.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.Linq.dll": {}
+        }
+      },
+      "Rx-Main/2.2.5": {
+        "type": "package",
+        "dependencies": {
+          "Rx-Core": "2.2.5",
+          "Rx-Interfaces": "2.2.5",
+          "Rx-Linq": "2.2.5",
+          "Rx-PlatformServices": "2.2.5"
+        }
+      },
+      "Rx-PlatformServices/2.2.5": {
+        "type": "package",
+        "dependencies": {
+          "Rx-Core": "2.2.5",
+          "Rx-Interfaces": "2.2.5"
+        },
+        "compile": {
+          "lib/windows8/System.Reactive.PlatformServices.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.PlatformServices.dll": {}
+        }
+      },
+      "Rx-WinRT/2.2.5": {
+        "type": "package",
+        "dependencies": {
+          "Rx-Main": "2.2.5"
+        },
+        "compile": {
+          "lib/windows8/System.Reactive.WindowsRuntime.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.WindowsRuntime.dll": {}
+        }
+      },
+      "Rx-XAML/2.2.5": {
+        "type": "package",
+        "dependencies": {
+          "Rx-Main": "2.2.5"
+        },
+        "compile": {
+          "lib/windows8/System.Reactive.Windows.Threading.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.Windows.Threading.dll": {}
+        }
+      },
+      "Splat/1.6.0": {
+        "type": "package",
+        "compile": {
+          "lib/NetCore45/Splat.dll": {}
+        },
+        "runtime": {
+          "lib/NetCore45/Splat.dll": {}
+        }
+      },
+      "SQLitePCLRaw.bundle_e_sqlite3/1.1.0": {
+        "type": "package",
+        "dependencies": {
+          "SQLitePCLRaw.core": "1.1.0",
+          "SQLitePCLRaw.lib.e_sqlite3.v140": "1.1.0",
+          "SQLitePCLRaw.provider.e_sqlite3.uwp10": "1.1.0"
+        },
+        "compile": {
+          "lib/uap10.0/SQLitePCLRaw.batteries_e_sqlite3.dll": {},
+          "lib/uap10.0/SQLitePCLRaw.batteries_v2.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/SQLitePCLRaw.batteries_e_sqlite3.dll": {},
+          "lib/uap10.0/SQLitePCLRaw.batteries_v2.dll": {}
+        }
+      },
+      "SQLitePCLRaw.core/1.1.0": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.0"
+        },
+        "compile": {
+          "lib/uap10.0/SQLitePCLRaw.core.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/SQLitePCLRaw.core.dll": {}
+        }
+      },
+      "SQLitePCLRaw.lib.e_sqlite3.v140/1.1.0": {
+        "type": "package",
+        "native": {
+          "runtimes/win10-arm/native/e_sqlite3.dll": {}
+        },
+        "build": {
+          "build/SQLitePCLRaw.lib.e_sqlite3.v140.targets": {}
+        }
+      },
+      "SQLitePCLRaw.provider.e_sqlite3.uwp10/1.1.0": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.0",
+          "SQLitePCLRaw.core": "1.1.0"
+        },
+        "compile": {
+          "lib/uap10.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
         }
       },
       "System.AppContext/4.3.0": {
@@ -5185,6 +5544,41 @@
       }
     },
     "UAP,Version=v10.0/win10-arm-aot": {
+      "akavache/5.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Akavache.SQLite3": "[5.0.0]"
+        }
+      },
+      "akavache.core/5.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "6.0.3",
+          "Rx-Main": "2.2.5",
+          "Rx-WinRT": "2.2.5",
+          "Rx-Xaml": "2.2.5",
+          "Splat": "1.6.0"
+        },
+        "compile": {
+          "lib/Portable-Win81+Wpa81/Akavache.dll": {}
+        },
+        "runtime": {
+          "lib/Portable-Win81+Wpa81/Akavache.dll": {}
+        }
+      },
+      "akavache.sqlite3/5.0.0": {
+        "type": "package",
+        "dependencies": {
+          "SQLitePCLRaw.bundle_e_sqlite3": "1.1.0",
+          "akavache.core": "5.0.0"
+        },
+        "compile": {
+          "lib/Portable-Net45+Win8+WP8+Wpa81/Akavache.Sqlite3.dll": {}
+        },
+        "runtime": {
+          "lib/Portable-Net45+Win8+WP8+Wpa81/Akavache.Sqlite3.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -5212,33 +5606,33 @@
           "lib/netcore50/Microsoft.CSharp.dll": {}
         }
       },
-      "Microsoft.Net.Native.Compiler/1.6.1": {
+      "Microsoft.Net.Native.Compiler/1.6.2": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Net.Native.SharedLibrary-arm": "1.6.0",
-          "Microsoft.Net.Native.SharedLibrary-x64": "1.6.0",
-          "Microsoft.Net.Native.SharedLibrary-x86": "1.6.0"
+          "Microsoft.Net.Native.SharedLibrary-arm": "1.6.1",
+          "Microsoft.Net.Native.SharedLibrary-x64": "1.6.1",
+          "Microsoft.Net.Native.SharedLibrary-x86": "1.6.1"
         },
         "build": {
           "build/Microsoft.Net.Native.Compiler.props": {},
           "build/Microsoft.Net.Native.Compiler.targets": {}
         }
       },
-      "Microsoft.Net.Native.SharedLibrary-arm/1.6.0": {
+      "Microsoft.Net.Native.SharedLibrary-arm/1.6.1": {
         "type": "package",
         "build": {
           "build/Microsoft.Net.Native.SharedLibrary-arm.props": {},
           "build/Microsoft.Net.Native.SharedLibrary-arm.targets": {}
         }
       },
-      "Microsoft.Net.Native.SharedLibrary-x64/1.6.0": {
+      "Microsoft.Net.Native.SharedLibrary-x64/1.6.1": {
         "type": "package",
         "build": {
           "build/Microsoft.Net.Native.SharedLibrary-x64.props": {},
           "build/Microsoft.Net.Native.SharedLibrary-x64.targets": {}
         }
       },
-      "Microsoft.Net.Native.SharedLibrary-x86/1.6.0": {
+      "Microsoft.Net.Native.SharedLibrary-x86/1.6.1": {
         "type": "package",
         "build": {
           "build/Microsoft.Net.Native.SharedLibrary-x86.props": {},
@@ -5370,14 +5764,14 @@
           "lib/netstandard1.0/_._": {}
         }
       },
-      "Microsoft.NETCore.UniversalWindowsPlatform/5.3.2": {
+      "Microsoft.NETCore.UniversalWindowsPlatform/5.3.3": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore": "5.0.2",
           "Microsoft.NETCore.Portable.Compatibility": "1.0.2",
           "Microsoft.NETCore.Runtime.CoreCLR": "1.0.3",
           "Microsoft.NETCore.Targets": "1.0.2",
-          "Microsoft.Net.Native.Compiler": "1.6.1",
+          "Microsoft.Net.Native.Compiler": "1.6.2",
           "Microsoft.Win32.Primitives": "4.0.1",
           "System.Collections.NonGeneric": "4.0.1",
           "System.Collections.Specialized": "4.0.1",
@@ -5415,7 +5809,7 @@
       "Microsoft.NETCore.Windows.ApiSets/1.0.1": {
         "type": "package"
       },
-      "Microsoft.Toolkit.Uwp/1.4.1": {
+      "Microsoft.Toolkit.Uwp/1.5.0": {
         "type": "package",
         "dependencies": {
           "Newtonsoft.Json": "9.0.1"
@@ -5427,10 +5821,10 @@
           "lib/uap10.0/Microsoft.Toolkit.Uwp.dll": {}
         }
       },
-      "Microsoft.Toolkit.Uwp.UI/1.4.1": {
+      "Microsoft.Toolkit.Uwp.UI/1.5.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Toolkit.Uwp": "1.4.1"
+          "Microsoft.Toolkit.Uwp": "1.5.0"
         },
         "compile": {
           "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.dll": {}
@@ -5439,11 +5833,11 @@
           "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.dll": {}
         }
       },
-      "Microsoft.Toolkit.Uwp.UI.Animations/1.4.1": {
+      "Microsoft.Toolkit.Uwp.UI.Animations/1.5.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Toolkit.Uwp": "1.4.1",
-          "Microsoft.Toolkit.Uwp.UI": "1.4.1",
+          "Microsoft.Toolkit.Uwp": "1.5.0",
+          "Microsoft.Toolkit.Uwp.UI": "1.5.0",
           "Microsoft.Xaml.Behaviors.Uwp.Managed": "1.1.0",
           "Win2D.uwp": "1.19.0"
         },
@@ -5454,12 +5848,12 @@
           "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.Animations.dll": {}
         }
       },
-      "Microsoft.Toolkit.Uwp.UI.Controls/1.4.1": {
+      "Microsoft.Toolkit.Uwp.UI.Controls/1.5.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Toolkit.Uwp": "1.4.1",
-          "Microsoft.Toolkit.Uwp.UI": "1.4.1",
-          "Microsoft.Toolkit.Uwp.UI.Animations": "1.4.1",
+          "Microsoft.Toolkit.Uwp": "1.5.0",
+          "Microsoft.Toolkit.Uwp.UI": "1.5.0",
+          "Microsoft.Toolkit.Uwp.UI.Animations": "1.5.0",
           "Robmikh.CompositionSurfaceFactory": "0.7.1"
         },
         "compile": {
@@ -5568,7 +5962,7 @@
           "System.Xml.XDocument": "4.3.0"
         }
       },
-      "Newtonsoft.Json/10.0.2": {
+      "Newtonsoft.Json/10.0.3": {
         "type": "package",
         "dependencies": {
           "Microsoft.CSharp": "4.3.0",
@@ -6027,6 +6421,145 @@
         },
         "native": {
           "runtimes/win8-arm-aot/native/_._": {}
+        }
+      },
+      "Rx-Core/2.2.5": {
+        "type": "package",
+        "dependencies": {
+          "Rx-Interfaces": "2.2.5"
+        },
+        "compile": {
+          "lib/windows8/System.Reactive.Core.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.Core.dll": {}
+        }
+      },
+      "Rx-Interfaces/2.2.5": {
+        "type": "package",
+        "compile": {
+          "lib/windows8/System.Reactive.Interfaces.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.Interfaces.dll": {}
+        }
+      },
+      "Rx-Linq/2.2.5": {
+        "type": "package",
+        "dependencies": {
+          "Rx-Core": "2.2.5",
+          "Rx-Interfaces": "2.2.5"
+        },
+        "compile": {
+          "lib/windows8/System.Reactive.Linq.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.Linq.dll": {}
+        }
+      },
+      "Rx-Main/2.2.5": {
+        "type": "package",
+        "dependencies": {
+          "Rx-Core": "2.2.5",
+          "Rx-Interfaces": "2.2.5",
+          "Rx-Linq": "2.2.5",
+          "Rx-PlatformServices": "2.2.5"
+        }
+      },
+      "Rx-PlatformServices/2.2.5": {
+        "type": "package",
+        "dependencies": {
+          "Rx-Core": "2.2.5",
+          "Rx-Interfaces": "2.2.5"
+        },
+        "compile": {
+          "lib/windows8/System.Reactive.PlatformServices.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.PlatformServices.dll": {}
+        }
+      },
+      "Rx-WinRT/2.2.5": {
+        "type": "package",
+        "dependencies": {
+          "Rx-Main": "2.2.5"
+        },
+        "compile": {
+          "lib/windows8/System.Reactive.WindowsRuntime.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.WindowsRuntime.dll": {}
+        }
+      },
+      "Rx-XAML/2.2.5": {
+        "type": "package",
+        "dependencies": {
+          "Rx-Main": "2.2.5"
+        },
+        "compile": {
+          "lib/windows8/System.Reactive.Windows.Threading.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.Windows.Threading.dll": {}
+        }
+      },
+      "Splat/1.6.0": {
+        "type": "package",
+        "compile": {
+          "lib/NetCore45/Splat.dll": {}
+        },
+        "runtime": {
+          "lib/NetCore45/Splat.dll": {}
+        }
+      },
+      "SQLitePCLRaw.bundle_e_sqlite3/1.1.0": {
+        "type": "package",
+        "dependencies": {
+          "SQLitePCLRaw.core": "1.1.0",
+          "SQLitePCLRaw.lib.e_sqlite3.v140": "1.1.0",
+          "SQLitePCLRaw.provider.e_sqlite3.uwp10": "1.1.0"
+        },
+        "compile": {
+          "lib/uap10.0/SQLitePCLRaw.batteries_e_sqlite3.dll": {},
+          "lib/uap10.0/SQLitePCLRaw.batteries_v2.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/SQLitePCLRaw.batteries_e_sqlite3.dll": {},
+          "lib/uap10.0/SQLitePCLRaw.batteries_v2.dll": {}
+        }
+      },
+      "SQLitePCLRaw.core/1.1.0": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.0"
+        },
+        "compile": {
+          "lib/uap10.0/SQLitePCLRaw.core.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/SQLitePCLRaw.core.dll": {}
+        }
+      },
+      "SQLitePCLRaw.lib.e_sqlite3.v140/1.1.0": {
+        "type": "package",
+        "native": {
+          "runtimes/win10-arm/native/e_sqlite3.dll": {}
+        },
+        "build": {
+          "build/SQLitePCLRaw.lib.e_sqlite3.v140.targets": {}
+        }
+      },
+      "SQLitePCLRaw.provider.e_sqlite3.uwp10/1.1.0": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.0",
+          "SQLitePCLRaw.core": "1.1.0"
+        },
+        "compile": {
+          "lib/uap10.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
         }
       },
       "System.AppContext/4.3.0": {
@@ -7814,6 +8347,41 @@
       }
     },
     "UAP,Version=v10.0/win10-x64": {
+      "akavache/5.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Akavache.SQLite3": "[5.0.0]"
+        }
+      },
+      "akavache.core/5.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "6.0.3",
+          "Rx-Main": "2.2.5",
+          "Rx-WinRT": "2.2.5",
+          "Rx-Xaml": "2.2.5",
+          "Splat": "1.6.0"
+        },
+        "compile": {
+          "lib/Portable-Win81+Wpa81/Akavache.dll": {}
+        },
+        "runtime": {
+          "lib/Portable-Win81+Wpa81/Akavache.dll": {}
+        }
+      },
+      "akavache.sqlite3/5.0.0": {
+        "type": "package",
+        "dependencies": {
+          "SQLitePCLRaw.bundle_e_sqlite3": "1.1.0",
+          "akavache.core": "5.0.0"
+        },
+        "compile": {
+          "lib/Portable-Net45+Win8+WP8+Wpa81/Akavache.Sqlite3.dll": {}
+        },
+        "runtime": {
+          "lib/Portable-Net45+Win8+WP8+Wpa81/Akavache.Sqlite3.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -7841,33 +8409,33 @@
           "lib/netcore50/Microsoft.CSharp.dll": {}
         }
       },
-      "Microsoft.Net.Native.Compiler/1.6.1": {
+      "Microsoft.Net.Native.Compiler/1.6.2": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Net.Native.SharedLibrary-arm": "1.6.0",
-          "Microsoft.Net.Native.SharedLibrary-x64": "1.6.0",
-          "Microsoft.Net.Native.SharedLibrary-x86": "1.6.0"
+          "Microsoft.Net.Native.SharedLibrary-arm": "1.6.1",
+          "Microsoft.Net.Native.SharedLibrary-x64": "1.6.1",
+          "Microsoft.Net.Native.SharedLibrary-x86": "1.6.1"
         },
         "build": {
           "build/Microsoft.Net.Native.Compiler.props": {},
           "build/Microsoft.Net.Native.Compiler.targets": {}
         }
       },
-      "Microsoft.Net.Native.SharedLibrary-arm/1.6.0": {
+      "Microsoft.Net.Native.SharedLibrary-arm/1.6.1": {
         "type": "package",
         "build": {
           "build/Microsoft.Net.Native.SharedLibrary-arm.props": {},
           "build/Microsoft.Net.Native.SharedLibrary-arm.targets": {}
         }
       },
-      "Microsoft.Net.Native.SharedLibrary-x64/1.6.0": {
+      "Microsoft.Net.Native.SharedLibrary-x64/1.6.1": {
         "type": "package",
         "build": {
           "build/Microsoft.Net.Native.SharedLibrary-x64.props": {},
           "build/Microsoft.Net.Native.SharedLibrary-x64.targets": {}
         }
       },
-      "Microsoft.Net.Native.SharedLibrary-x86/1.6.0": {
+      "Microsoft.Net.Native.SharedLibrary-x86/1.6.1": {
         "type": "package",
         "build": {
           "build/Microsoft.Net.Native.SharedLibrary-x86.props": {},
@@ -8001,14 +8569,14 @@
           "lib/netstandard1.0/_._": {}
         }
       },
-      "Microsoft.NETCore.UniversalWindowsPlatform/5.3.2": {
+      "Microsoft.NETCore.UniversalWindowsPlatform/5.3.3": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore": "5.0.2",
           "Microsoft.NETCore.Portable.Compatibility": "1.0.2",
           "Microsoft.NETCore.Runtime.CoreCLR": "1.0.3",
           "Microsoft.NETCore.Targets": "1.0.2",
-          "Microsoft.Net.Native.Compiler": "1.6.1",
+          "Microsoft.Net.Native.Compiler": "1.6.2",
           "Microsoft.Win32.Primitives": "4.0.1",
           "System.Collections.NonGeneric": "4.0.1",
           "System.Collections.Specialized": "4.0.1",
@@ -8046,7 +8614,7 @@
       "Microsoft.NETCore.Windows.ApiSets/1.0.1": {
         "type": "package"
       },
-      "Microsoft.Toolkit.Uwp/1.4.1": {
+      "Microsoft.Toolkit.Uwp/1.5.0": {
         "type": "package",
         "dependencies": {
           "Newtonsoft.Json": "9.0.1"
@@ -8058,10 +8626,10 @@
           "lib/uap10.0/Microsoft.Toolkit.Uwp.dll": {}
         }
       },
-      "Microsoft.Toolkit.Uwp.UI/1.4.1": {
+      "Microsoft.Toolkit.Uwp.UI/1.5.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Toolkit.Uwp": "1.4.1"
+          "Microsoft.Toolkit.Uwp": "1.5.0"
         },
         "compile": {
           "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.dll": {}
@@ -8070,11 +8638,11 @@
           "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.dll": {}
         }
       },
-      "Microsoft.Toolkit.Uwp.UI.Animations/1.4.1": {
+      "Microsoft.Toolkit.Uwp.UI.Animations/1.5.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Toolkit.Uwp": "1.4.1",
-          "Microsoft.Toolkit.Uwp.UI": "1.4.1",
+          "Microsoft.Toolkit.Uwp": "1.5.0",
+          "Microsoft.Toolkit.Uwp.UI": "1.5.0",
           "Microsoft.Xaml.Behaviors.Uwp.Managed": "1.1.0",
           "Win2D.uwp": "1.19.0"
         },
@@ -8085,12 +8653,12 @@
           "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.Animations.dll": {}
         }
       },
-      "Microsoft.Toolkit.Uwp.UI.Controls/1.4.1": {
+      "Microsoft.Toolkit.Uwp.UI.Controls/1.5.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Toolkit.Uwp": "1.4.1",
-          "Microsoft.Toolkit.Uwp.UI": "1.4.1",
-          "Microsoft.Toolkit.Uwp.UI.Animations": "1.4.1",
+          "Microsoft.Toolkit.Uwp": "1.5.0",
+          "Microsoft.Toolkit.Uwp.UI": "1.5.0",
+          "Microsoft.Toolkit.Uwp.UI.Animations": "1.5.0",
           "Robmikh.CompositionSurfaceFactory": "0.7.1"
         },
         "compile": {
@@ -8199,7 +8767,7 @@
           "System.Xml.XDocument": "4.3.0"
         }
       },
-      "Newtonsoft.Json/10.0.2": {
+      "Newtonsoft.Json/10.0.3": {
         "type": "package",
         "dependencies": {
           "Microsoft.CSharp": "4.3.0",
@@ -8626,6 +9194,145 @@
         },
         "runtime": {
           "runtimes/win/lib/netcore50/System.Private.Uri.dll": {}
+        }
+      },
+      "Rx-Core/2.2.5": {
+        "type": "package",
+        "dependencies": {
+          "Rx-Interfaces": "2.2.5"
+        },
+        "compile": {
+          "lib/windows8/System.Reactive.Core.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.Core.dll": {}
+        }
+      },
+      "Rx-Interfaces/2.2.5": {
+        "type": "package",
+        "compile": {
+          "lib/windows8/System.Reactive.Interfaces.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.Interfaces.dll": {}
+        }
+      },
+      "Rx-Linq/2.2.5": {
+        "type": "package",
+        "dependencies": {
+          "Rx-Core": "2.2.5",
+          "Rx-Interfaces": "2.2.5"
+        },
+        "compile": {
+          "lib/windows8/System.Reactive.Linq.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.Linq.dll": {}
+        }
+      },
+      "Rx-Main/2.2.5": {
+        "type": "package",
+        "dependencies": {
+          "Rx-Core": "2.2.5",
+          "Rx-Interfaces": "2.2.5",
+          "Rx-Linq": "2.2.5",
+          "Rx-PlatformServices": "2.2.5"
+        }
+      },
+      "Rx-PlatformServices/2.2.5": {
+        "type": "package",
+        "dependencies": {
+          "Rx-Core": "2.2.5",
+          "Rx-Interfaces": "2.2.5"
+        },
+        "compile": {
+          "lib/windows8/System.Reactive.PlatformServices.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.PlatformServices.dll": {}
+        }
+      },
+      "Rx-WinRT/2.2.5": {
+        "type": "package",
+        "dependencies": {
+          "Rx-Main": "2.2.5"
+        },
+        "compile": {
+          "lib/windows8/System.Reactive.WindowsRuntime.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.WindowsRuntime.dll": {}
+        }
+      },
+      "Rx-XAML/2.2.5": {
+        "type": "package",
+        "dependencies": {
+          "Rx-Main": "2.2.5"
+        },
+        "compile": {
+          "lib/windows8/System.Reactive.Windows.Threading.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.Windows.Threading.dll": {}
+        }
+      },
+      "Splat/1.6.0": {
+        "type": "package",
+        "compile": {
+          "lib/NetCore45/Splat.dll": {}
+        },
+        "runtime": {
+          "lib/NetCore45/Splat.dll": {}
+        }
+      },
+      "SQLitePCLRaw.bundle_e_sqlite3/1.1.0": {
+        "type": "package",
+        "dependencies": {
+          "SQLitePCLRaw.core": "1.1.0",
+          "SQLitePCLRaw.lib.e_sqlite3.v140": "1.1.0",
+          "SQLitePCLRaw.provider.e_sqlite3.uwp10": "1.1.0"
+        },
+        "compile": {
+          "lib/uap10.0/SQLitePCLRaw.batteries_e_sqlite3.dll": {},
+          "lib/uap10.0/SQLitePCLRaw.batteries_v2.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/SQLitePCLRaw.batteries_e_sqlite3.dll": {},
+          "lib/uap10.0/SQLitePCLRaw.batteries_v2.dll": {}
+        }
+      },
+      "SQLitePCLRaw.core/1.1.0": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.0"
+        },
+        "compile": {
+          "lib/uap10.0/SQLitePCLRaw.core.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/SQLitePCLRaw.core.dll": {}
+        }
+      },
+      "SQLitePCLRaw.lib.e_sqlite3.v140/1.1.0": {
+        "type": "package",
+        "native": {
+          "runtimes/win10-x64/native/e_sqlite3.dll": {}
+        },
+        "build": {
+          "build/SQLitePCLRaw.lib.e_sqlite3.v140.targets": {}
+        }
+      },
+      "SQLitePCLRaw.provider.e_sqlite3.uwp10/1.1.0": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.0",
+          "SQLitePCLRaw.core": "1.1.0"
+        },
+        "compile": {
+          "lib/uap10.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
         }
       },
       "System.AppContext/4.3.0": {
@@ -10413,6 +11120,41 @@
       }
     },
     "UAP,Version=v10.0/win10-x64-aot": {
+      "akavache/5.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Akavache.SQLite3": "[5.0.0]"
+        }
+      },
+      "akavache.core/5.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "6.0.3",
+          "Rx-Main": "2.2.5",
+          "Rx-WinRT": "2.2.5",
+          "Rx-Xaml": "2.2.5",
+          "Splat": "1.6.0"
+        },
+        "compile": {
+          "lib/Portable-Win81+Wpa81/Akavache.dll": {}
+        },
+        "runtime": {
+          "lib/Portable-Win81+Wpa81/Akavache.dll": {}
+        }
+      },
+      "akavache.sqlite3/5.0.0": {
+        "type": "package",
+        "dependencies": {
+          "SQLitePCLRaw.bundle_e_sqlite3": "1.1.0",
+          "akavache.core": "5.0.0"
+        },
+        "compile": {
+          "lib/Portable-Net45+Win8+WP8+Wpa81/Akavache.Sqlite3.dll": {}
+        },
+        "runtime": {
+          "lib/Portable-Net45+Win8+WP8+Wpa81/Akavache.Sqlite3.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -10440,33 +11182,33 @@
           "lib/netcore50/Microsoft.CSharp.dll": {}
         }
       },
-      "Microsoft.Net.Native.Compiler/1.6.1": {
+      "Microsoft.Net.Native.Compiler/1.6.2": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Net.Native.SharedLibrary-arm": "1.6.0",
-          "Microsoft.Net.Native.SharedLibrary-x64": "1.6.0",
-          "Microsoft.Net.Native.SharedLibrary-x86": "1.6.0"
+          "Microsoft.Net.Native.SharedLibrary-arm": "1.6.1",
+          "Microsoft.Net.Native.SharedLibrary-x64": "1.6.1",
+          "Microsoft.Net.Native.SharedLibrary-x86": "1.6.1"
         },
         "build": {
           "build/Microsoft.Net.Native.Compiler.props": {},
           "build/Microsoft.Net.Native.Compiler.targets": {}
         }
       },
-      "Microsoft.Net.Native.SharedLibrary-arm/1.6.0": {
+      "Microsoft.Net.Native.SharedLibrary-arm/1.6.1": {
         "type": "package",
         "build": {
           "build/Microsoft.Net.Native.SharedLibrary-arm.props": {},
           "build/Microsoft.Net.Native.SharedLibrary-arm.targets": {}
         }
       },
-      "Microsoft.Net.Native.SharedLibrary-x64/1.6.0": {
+      "Microsoft.Net.Native.SharedLibrary-x64/1.6.1": {
         "type": "package",
         "build": {
           "build/Microsoft.Net.Native.SharedLibrary-x64.props": {},
           "build/Microsoft.Net.Native.SharedLibrary-x64.targets": {}
         }
       },
-      "Microsoft.Net.Native.SharedLibrary-x86/1.6.0": {
+      "Microsoft.Net.Native.SharedLibrary-x86/1.6.1": {
         "type": "package",
         "build": {
           "build/Microsoft.Net.Native.SharedLibrary-x86.props": {},
@@ -10601,14 +11343,14 @@
           "lib/netstandard1.0/_._": {}
         }
       },
-      "Microsoft.NETCore.UniversalWindowsPlatform/5.3.2": {
+      "Microsoft.NETCore.UniversalWindowsPlatform/5.3.3": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore": "5.0.2",
           "Microsoft.NETCore.Portable.Compatibility": "1.0.2",
           "Microsoft.NETCore.Runtime.CoreCLR": "1.0.3",
           "Microsoft.NETCore.Targets": "1.0.2",
-          "Microsoft.Net.Native.Compiler": "1.6.1",
+          "Microsoft.Net.Native.Compiler": "1.6.2",
           "Microsoft.Win32.Primitives": "4.0.1",
           "System.Collections.NonGeneric": "4.0.1",
           "System.Collections.Specialized": "4.0.1",
@@ -10646,7 +11388,7 @@
       "Microsoft.NETCore.Windows.ApiSets/1.0.1": {
         "type": "package"
       },
-      "Microsoft.Toolkit.Uwp/1.4.1": {
+      "Microsoft.Toolkit.Uwp/1.5.0": {
         "type": "package",
         "dependencies": {
           "Newtonsoft.Json": "9.0.1"
@@ -10658,10 +11400,10 @@
           "lib/uap10.0/Microsoft.Toolkit.Uwp.dll": {}
         }
       },
-      "Microsoft.Toolkit.Uwp.UI/1.4.1": {
+      "Microsoft.Toolkit.Uwp.UI/1.5.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Toolkit.Uwp": "1.4.1"
+          "Microsoft.Toolkit.Uwp": "1.5.0"
         },
         "compile": {
           "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.dll": {}
@@ -10670,11 +11412,11 @@
           "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.dll": {}
         }
       },
-      "Microsoft.Toolkit.Uwp.UI.Animations/1.4.1": {
+      "Microsoft.Toolkit.Uwp.UI.Animations/1.5.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Toolkit.Uwp": "1.4.1",
-          "Microsoft.Toolkit.Uwp.UI": "1.4.1",
+          "Microsoft.Toolkit.Uwp": "1.5.0",
+          "Microsoft.Toolkit.Uwp.UI": "1.5.0",
           "Microsoft.Xaml.Behaviors.Uwp.Managed": "1.1.0",
           "Win2D.uwp": "1.19.0"
         },
@@ -10685,12 +11427,12 @@
           "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.Animations.dll": {}
         }
       },
-      "Microsoft.Toolkit.Uwp.UI.Controls/1.4.1": {
+      "Microsoft.Toolkit.Uwp.UI.Controls/1.5.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Toolkit.Uwp": "1.4.1",
-          "Microsoft.Toolkit.Uwp.UI": "1.4.1",
-          "Microsoft.Toolkit.Uwp.UI.Animations": "1.4.1",
+          "Microsoft.Toolkit.Uwp": "1.5.0",
+          "Microsoft.Toolkit.Uwp.UI": "1.5.0",
+          "Microsoft.Toolkit.Uwp.UI.Animations": "1.5.0",
           "Robmikh.CompositionSurfaceFactory": "0.7.1"
         },
         "compile": {
@@ -10799,7 +11541,7 @@
           "System.Xml.XDocument": "4.3.0"
         }
       },
-      "Newtonsoft.Json/10.0.2": {
+      "Newtonsoft.Json/10.0.3": {
         "type": "package",
         "dependencies": {
           "Microsoft.CSharp": "4.3.0",
@@ -11264,6 +12006,145 @@
         },
         "runtime": {
           "runtimes/aot/lib/netcore50/System.Private.Uri.dll": {}
+        }
+      },
+      "Rx-Core/2.2.5": {
+        "type": "package",
+        "dependencies": {
+          "Rx-Interfaces": "2.2.5"
+        },
+        "compile": {
+          "lib/windows8/System.Reactive.Core.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.Core.dll": {}
+        }
+      },
+      "Rx-Interfaces/2.2.5": {
+        "type": "package",
+        "compile": {
+          "lib/windows8/System.Reactive.Interfaces.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.Interfaces.dll": {}
+        }
+      },
+      "Rx-Linq/2.2.5": {
+        "type": "package",
+        "dependencies": {
+          "Rx-Core": "2.2.5",
+          "Rx-Interfaces": "2.2.5"
+        },
+        "compile": {
+          "lib/windows8/System.Reactive.Linq.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.Linq.dll": {}
+        }
+      },
+      "Rx-Main/2.2.5": {
+        "type": "package",
+        "dependencies": {
+          "Rx-Core": "2.2.5",
+          "Rx-Interfaces": "2.2.5",
+          "Rx-Linq": "2.2.5",
+          "Rx-PlatformServices": "2.2.5"
+        }
+      },
+      "Rx-PlatformServices/2.2.5": {
+        "type": "package",
+        "dependencies": {
+          "Rx-Core": "2.2.5",
+          "Rx-Interfaces": "2.2.5"
+        },
+        "compile": {
+          "lib/windows8/System.Reactive.PlatformServices.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.PlatformServices.dll": {}
+        }
+      },
+      "Rx-WinRT/2.2.5": {
+        "type": "package",
+        "dependencies": {
+          "Rx-Main": "2.2.5"
+        },
+        "compile": {
+          "lib/windows8/System.Reactive.WindowsRuntime.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.WindowsRuntime.dll": {}
+        }
+      },
+      "Rx-XAML/2.2.5": {
+        "type": "package",
+        "dependencies": {
+          "Rx-Main": "2.2.5"
+        },
+        "compile": {
+          "lib/windows8/System.Reactive.Windows.Threading.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.Windows.Threading.dll": {}
+        }
+      },
+      "Splat/1.6.0": {
+        "type": "package",
+        "compile": {
+          "lib/NetCore45/Splat.dll": {}
+        },
+        "runtime": {
+          "lib/NetCore45/Splat.dll": {}
+        }
+      },
+      "SQLitePCLRaw.bundle_e_sqlite3/1.1.0": {
+        "type": "package",
+        "dependencies": {
+          "SQLitePCLRaw.core": "1.1.0",
+          "SQLitePCLRaw.lib.e_sqlite3.v140": "1.1.0",
+          "SQLitePCLRaw.provider.e_sqlite3.uwp10": "1.1.0"
+        },
+        "compile": {
+          "lib/uap10.0/SQLitePCLRaw.batteries_e_sqlite3.dll": {},
+          "lib/uap10.0/SQLitePCLRaw.batteries_v2.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/SQLitePCLRaw.batteries_e_sqlite3.dll": {},
+          "lib/uap10.0/SQLitePCLRaw.batteries_v2.dll": {}
+        }
+      },
+      "SQLitePCLRaw.core/1.1.0": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.0"
+        },
+        "compile": {
+          "lib/uap10.0/SQLitePCLRaw.core.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/SQLitePCLRaw.core.dll": {}
+        }
+      },
+      "SQLitePCLRaw.lib.e_sqlite3.v140/1.1.0": {
+        "type": "package",
+        "native": {
+          "runtimes/win10-x64/native/e_sqlite3.dll": {}
+        },
+        "build": {
+          "build/SQLitePCLRaw.lib.e_sqlite3.v140.targets": {}
+        }
+      },
+      "SQLitePCLRaw.provider.e_sqlite3.uwp10/1.1.0": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.0",
+          "SQLitePCLRaw.core": "1.1.0"
+        },
+        "compile": {
+          "lib/uap10.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
         }
       },
       "System.AppContext/4.3.0": {
@@ -13051,6 +13932,41 @@
       }
     },
     "UAP,Version=v10.0/win10-x86": {
+      "akavache/5.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Akavache.SQLite3": "[5.0.0]"
+        }
+      },
+      "akavache.core/5.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "6.0.3",
+          "Rx-Main": "2.2.5",
+          "Rx-WinRT": "2.2.5",
+          "Rx-Xaml": "2.2.5",
+          "Splat": "1.6.0"
+        },
+        "compile": {
+          "lib/Portable-Win81+Wpa81/Akavache.dll": {}
+        },
+        "runtime": {
+          "lib/Portable-Win81+Wpa81/Akavache.dll": {}
+        }
+      },
+      "akavache.sqlite3/5.0.0": {
+        "type": "package",
+        "dependencies": {
+          "SQLitePCLRaw.bundle_e_sqlite3": "1.1.0",
+          "akavache.core": "5.0.0"
+        },
+        "compile": {
+          "lib/Portable-Net45+Win8+WP8+Wpa81/Akavache.Sqlite3.dll": {}
+        },
+        "runtime": {
+          "lib/Portable-Net45+Win8+WP8+Wpa81/Akavache.Sqlite3.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -13078,33 +13994,33 @@
           "lib/netcore50/Microsoft.CSharp.dll": {}
         }
       },
-      "Microsoft.Net.Native.Compiler/1.6.1": {
+      "Microsoft.Net.Native.Compiler/1.6.2": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Net.Native.SharedLibrary-arm": "1.6.0",
-          "Microsoft.Net.Native.SharedLibrary-x64": "1.6.0",
-          "Microsoft.Net.Native.SharedLibrary-x86": "1.6.0"
+          "Microsoft.Net.Native.SharedLibrary-arm": "1.6.1",
+          "Microsoft.Net.Native.SharedLibrary-x64": "1.6.1",
+          "Microsoft.Net.Native.SharedLibrary-x86": "1.6.1"
         },
         "build": {
           "build/Microsoft.Net.Native.Compiler.props": {},
           "build/Microsoft.Net.Native.Compiler.targets": {}
         }
       },
-      "Microsoft.Net.Native.SharedLibrary-arm/1.6.0": {
+      "Microsoft.Net.Native.SharedLibrary-arm/1.6.1": {
         "type": "package",
         "build": {
           "build/Microsoft.Net.Native.SharedLibrary-arm.props": {},
           "build/Microsoft.Net.Native.SharedLibrary-arm.targets": {}
         }
       },
-      "Microsoft.Net.Native.SharedLibrary-x64/1.6.0": {
+      "Microsoft.Net.Native.SharedLibrary-x64/1.6.1": {
         "type": "package",
         "build": {
           "build/Microsoft.Net.Native.SharedLibrary-x64.props": {},
           "build/Microsoft.Net.Native.SharedLibrary-x64.targets": {}
         }
       },
-      "Microsoft.Net.Native.SharedLibrary-x86/1.6.0": {
+      "Microsoft.Net.Native.SharedLibrary-x86/1.6.1": {
         "type": "package",
         "build": {
           "build/Microsoft.Net.Native.SharedLibrary-x86.props": {},
@@ -13238,14 +14154,14 @@
           "lib/netstandard1.0/_._": {}
         }
       },
-      "Microsoft.NETCore.UniversalWindowsPlatform/5.3.2": {
+      "Microsoft.NETCore.UniversalWindowsPlatform/5.3.3": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore": "5.0.2",
           "Microsoft.NETCore.Portable.Compatibility": "1.0.2",
           "Microsoft.NETCore.Runtime.CoreCLR": "1.0.3",
           "Microsoft.NETCore.Targets": "1.0.2",
-          "Microsoft.Net.Native.Compiler": "1.6.1",
+          "Microsoft.Net.Native.Compiler": "1.6.2",
           "Microsoft.Win32.Primitives": "4.0.1",
           "System.Collections.NonGeneric": "4.0.1",
           "System.Collections.Specialized": "4.0.1",
@@ -13283,7 +14199,7 @@
       "Microsoft.NETCore.Windows.ApiSets/1.0.1": {
         "type": "package"
       },
-      "Microsoft.Toolkit.Uwp/1.4.1": {
+      "Microsoft.Toolkit.Uwp/1.5.0": {
         "type": "package",
         "dependencies": {
           "Newtonsoft.Json": "9.0.1"
@@ -13295,10 +14211,10 @@
           "lib/uap10.0/Microsoft.Toolkit.Uwp.dll": {}
         }
       },
-      "Microsoft.Toolkit.Uwp.UI/1.4.1": {
+      "Microsoft.Toolkit.Uwp.UI/1.5.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Toolkit.Uwp": "1.4.1"
+          "Microsoft.Toolkit.Uwp": "1.5.0"
         },
         "compile": {
           "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.dll": {}
@@ -13307,11 +14223,11 @@
           "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.dll": {}
         }
       },
-      "Microsoft.Toolkit.Uwp.UI.Animations/1.4.1": {
+      "Microsoft.Toolkit.Uwp.UI.Animations/1.5.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Toolkit.Uwp": "1.4.1",
-          "Microsoft.Toolkit.Uwp.UI": "1.4.1",
+          "Microsoft.Toolkit.Uwp": "1.5.0",
+          "Microsoft.Toolkit.Uwp.UI": "1.5.0",
           "Microsoft.Xaml.Behaviors.Uwp.Managed": "1.1.0",
           "Win2D.uwp": "1.19.0"
         },
@@ -13322,12 +14238,12 @@
           "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.Animations.dll": {}
         }
       },
-      "Microsoft.Toolkit.Uwp.UI.Controls/1.4.1": {
+      "Microsoft.Toolkit.Uwp.UI.Controls/1.5.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Toolkit.Uwp": "1.4.1",
-          "Microsoft.Toolkit.Uwp.UI": "1.4.1",
-          "Microsoft.Toolkit.Uwp.UI.Animations": "1.4.1",
+          "Microsoft.Toolkit.Uwp": "1.5.0",
+          "Microsoft.Toolkit.Uwp.UI": "1.5.0",
+          "Microsoft.Toolkit.Uwp.UI.Animations": "1.5.0",
           "Robmikh.CompositionSurfaceFactory": "0.7.1"
         },
         "compile": {
@@ -13436,7 +14352,7 @@
           "System.Xml.XDocument": "4.3.0"
         }
       },
-      "Newtonsoft.Json/10.0.2": {
+      "Newtonsoft.Json/10.0.3": {
         "type": "package",
         "dependencies": {
           "Microsoft.CSharp": "4.3.0",
@@ -13863,6 +14779,145 @@
         },
         "runtime": {
           "runtimes/win/lib/netcore50/System.Private.Uri.dll": {}
+        }
+      },
+      "Rx-Core/2.2.5": {
+        "type": "package",
+        "dependencies": {
+          "Rx-Interfaces": "2.2.5"
+        },
+        "compile": {
+          "lib/windows8/System.Reactive.Core.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.Core.dll": {}
+        }
+      },
+      "Rx-Interfaces/2.2.5": {
+        "type": "package",
+        "compile": {
+          "lib/windows8/System.Reactive.Interfaces.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.Interfaces.dll": {}
+        }
+      },
+      "Rx-Linq/2.2.5": {
+        "type": "package",
+        "dependencies": {
+          "Rx-Core": "2.2.5",
+          "Rx-Interfaces": "2.2.5"
+        },
+        "compile": {
+          "lib/windows8/System.Reactive.Linq.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.Linq.dll": {}
+        }
+      },
+      "Rx-Main/2.2.5": {
+        "type": "package",
+        "dependencies": {
+          "Rx-Core": "2.2.5",
+          "Rx-Interfaces": "2.2.5",
+          "Rx-Linq": "2.2.5",
+          "Rx-PlatformServices": "2.2.5"
+        }
+      },
+      "Rx-PlatformServices/2.2.5": {
+        "type": "package",
+        "dependencies": {
+          "Rx-Core": "2.2.5",
+          "Rx-Interfaces": "2.2.5"
+        },
+        "compile": {
+          "lib/windows8/System.Reactive.PlatformServices.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.PlatformServices.dll": {}
+        }
+      },
+      "Rx-WinRT/2.2.5": {
+        "type": "package",
+        "dependencies": {
+          "Rx-Main": "2.2.5"
+        },
+        "compile": {
+          "lib/windows8/System.Reactive.WindowsRuntime.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.WindowsRuntime.dll": {}
+        }
+      },
+      "Rx-XAML/2.2.5": {
+        "type": "package",
+        "dependencies": {
+          "Rx-Main": "2.2.5"
+        },
+        "compile": {
+          "lib/windows8/System.Reactive.Windows.Threading.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.Windows.Threading.dll": {}
+        }
+      },
+      "Splat/1.6.0": {
+        "type": "package",
+        "compile": {
+          "lib/NetCore45/Splat.dll": {}
+        },
+        "runtime": {
+          "lib/NetCore45/Splat.dll": {}
+        }
+      },
+      "SQLitePCLRaw.bundle_e_sqlite3/1.1.0": {
+        "type": "package",
+        "dependencies": {
+          "SQLitePCLRaw.core": "1.1.0",
+          "SQLitePCLRaw.lib.e_sqlite3.v140": "1.1.0",
+          "SQLitePCLRaw.provider.e_sqlite3.uwp10": "1.1.0"
+        },
+        "compile": {
+          "lib/uap10.0/SQLitePCLRaw.batteries_e_sqlite3.dll": {},
+          "lib/uap10.0/SQLitePCLRaw.batteries_v2.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/SQLitePCLRaw.batteries_e_sqlite3.dll": {},
+          "lib/uap10.0/SQLitePCLRaw.batteries_v2.dll": {}
+        }
+      },
+      "SQLitePCLRaw.core/1.1.0": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.0"
+        },
+        "compile": {
+          "lib/uap10.0/SQLitePCLRaw.core.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/SQLitePCLRaw.core.dll": {}
+        }
+      },
+      "SQLitePCLRaw.lib.e_sqlite3.v140/1.1.0": {
+        "type": "package",
+        "native": {
+          "runtimes/win10-x86/native/e_sqlite3.dll": {}
+        },
+        "build": {
+          "build/SQLitePCLRaw.lib.e_sqlite3.v140.targets": {}
+        }
+      },
+      "SQLitePCLRaw.provider.e_sqlite3.uwp10/1.1.0": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.0",
+          "SQLitePCLRaw.core": "1.1.0"
+        },
+        "compile": {
+          "lib/uap10.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
         }
       },
       "System.AppContext/4.3.0": {
@@ -15650,6 +16705,41 @@
       }
     },
     "UAP,Version=v10.0/win10-x86-aot": {
+      "akavache/5.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Akavache.SQLite3": "[5.0.0]"
+        }
+      },
+      "akavache.core/5.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "6.0.3",
+          "Rx-Main": "2.2.5",
+          "Rx-WinRT": "2.2.5",
+          "Rx-Xaml": "2.2.5",
+          "Splat": "1.6.0"
+        },
+        "compile": {
+          "lib/Portable-Win81+Wpa81/Akavache.dll": {}
+        },
+        "runtime": {
+          "lib/Portable-Win81+Wpa81/Akavache.dll": {}
+        }
+      },
+      "akavache.sqlite3/5.0.0": {
+        "type": "package",
+        "dependencies": {
+          "SQLitePCLRaw.bundle_e_sqlite3": "1.1.0",
+          "akavache.core": "5.0.0"
+        },
+        "compile": {
+          "lib/Portable-Net45+Win8+WP8+Wpa81/Akavache.Sqlite3.dll": {}
+        },
+        "runtime": {
+          "lib/Portable-Net45+Win8+WP8+Wpa81/Akavache.Sqlite3.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -15677,33 +16767,33 @@
           "lib/netcore50/Microsoft.CSharp.dll": {}
         }
       },
-      "Microsoft.Net.Native.Compiler/1.6.1": {
+      "Microsoft.Net.Native.Compiler/1.6.2": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Net.Native.SharedLibrary-arm": "1.6.0",
-          "Microsoft.Net.Native.SharedLibrary-x64": "1.6.0",
-          "Microsoft.Net.Native.SharedLibrary-x86": "1.6.0"
+          "Microsoft.Net.Native.SharedLibrary-arm": "1.6.1",
+          "Microsoft.Net.Native.SharedLibrary-x64": "1.6.1",
+          "Microsoft.Net.Native.SharedLibrary-x86": "1.6.1"
         },
         "build": {
           "build/Microsoft.Net.Native.Compiler.props": {},
           "build/Microsoft.Net.Native.Compiler.targets": {}
         }
       },
-      "Microsoft.Net.Native.SharedLibrary-arm/1.6.0": {
+      "Microsoft.Net.Native.SharedLibrary-arm/1.6.1": {
         "type": "package",
         "build": {
           "build/Microsoft.Net.Native.SharedLibrary-arm.props": {},
           "build/Microsoft.Net.Native.SharedLibrary-arm.targets": {}
         }
       },
-      "Microsoft.Net.Native.SharedLibrary-x64/1.6.0": {
+      "Microsoft.Net.Native.SharedLibrary-x64/1.6.1": {
         "type": "package",
         "build": {
           "build/Microsoft.Net.Native.SharedLibrary-x64.props": {},
           "build/Microsoft.Net.Native.SharedLibrary-x64.targets": {}
         }
       },
-      "Microsoft.Net.Native.SharedLibrary-x86/1.6.0": {
+      "Microsoft.Net.Native.SharedLibrary-x86/1.6.1": {
         "type": "package",
         "build": {
           "build/Microsoft.Net.Native.SharedLibrary-x86.props": {},
@@ -15838,14 +16928,14 @@
           "lib/netstandard1.0/_._": {}
         }
       },
-      "Microsoft.NETCore.UniversalWindowsPlatform/5.3.2": {
+      "Microsoft.NETCore.UniversalWindowsPlatform/5.3.3": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore": "5.0.2",
           "Microsoft.NETCore.Portable.Compatibility": "1.0.2",
           "Microsoft.NETCore.Runtime.CoreCLR": "1.0.3",
           "Microsoft.NETCore.Targets": "1.0.2",
-          "Microsoft.Net.Native.Compiler": "1.6.1",
+          "Microsoft.Net.Native.Compiler": "1.6.2",
           "Microsoft.Win32.Primitives": "4.0.1",
           "System.Collections.NonGeneric": "4.0.1",
           "System.Collections.Specialized": "4.0.1",
@@ -15883,7 +16973,7 @@
       "Microsoft.NETCore.Windows.ApiSets/1.0.1": {
         "type": "package"
       },
-      "Microsoft.Toolkit.Uwp/1.4.1": {
+      "Microsoft.Toolkit.Uwp/1.5.0": {
         "type": "package",
         "dependencies": {
           "Newtonsoft.Json": "9.0.1"
@@ -15895,10 +16985,10 @@
           "lib/uap10.0/Microsoft.Toolkit.Uwp.dll": {}
         }
       },
-      "Microsoft.Toolkit.Uwp.UI/1.4.1": {
+      "Microsoft.Toolkit.Uwp.UI/1.5.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Toolkit.Uwp": "1.4.1"
+          "Microsoft.Toolkit.Uwp": "1.5.0"
         },
         "compile": {
           "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.dll": {}
@@ -15907,11 +16997,11 @@
           "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.dll": {}
         }
       },
-      "Microsoft.Toolkit.Uwp.UI.Animations/1.4.1": {
+      "Microsoft.Toolkit.Uwp.UI.Animations/1.5.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Toolkit.Uwp": "1.4.1",
-          "Microsoft.Toolkit.Uwp.UI": "1.4.1",
+          "Microsoft.Toolkit.Uwp": "1.5.0",
+          "Microsoft.Toolkit.Uwp.UI": "1.5.0",
           "Microsoft.Xaml.Behaviors.Uwp.Managed": "1.1.0",
           "Win2D.uwp": "1.19.0"
         },
@@ -15922,12 +17012,12 @@
           "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.Animations.dll": {}
         }
       },
-      "Microsoft.Toolkit.Uwp.UI.Controls/1.4.1": {
+      "Microsoft.Toolkit.Uwp.UI.Controls/1.5.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Toolkit.Uwp": "1.4.1",
-          "Microsoft.Toolkit.Uwp.UI": "1.4.1",
-          "Microsoft.Toolkit.Uwp.UI.Animations": "1.4.1",
+          "Microsoft.Toolkit.Uwp": "1.5.0",
+          "Microsoft.Toolkit.Uwp.UI": "1.5.0",
+          "Microsoft.Toolkit.Uwp.UI.Animations": "1.5.0",
           "Robmikh.CompositionSurfaceFactory": "0.7.1"
         },
         "compile": {
@@ -16036,7 +17126,7 @@
           "System.Xml.XDocument": "4.3.0"
         }
       },
-      "Newtonsoft.Json/10.0.2": {
+      "Newtonsoft.Json/10.0.3": {
         "type": "package",
         "dependencies": {
           "Microsoft.CSharp": "4.3.0",
@@ -16501,6 +17591,145 @@
         },
         "runtime": {
           "runtimes/aot/lib/netcore50/System.Private.Uri.dll": {}
+        }
+      },
+      "Rx-Core/2.2.5": {
+        "type": "package",
+        "dependencies": {
+          "Rx-Interfaces": "2.2.5"
+        },
+        "compile": {
+          "lib/windows8/System.Reactive.Core.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.Core.dll": {}
+        }
+      },
+      "Rx-Interfaces/2.2.5": {
+        "type": "package",
+        "compile": {
+          "lib/windows8/System.Reactive.Interfaces.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.Interfaces.dll": {}
+        }
+      },
+      "Rx-Linq/2.2.5": {
+        "type": "package",
+        "dependencies": {
+          "Rx-Core": "2.2.5",
+          "Rx-Interfaces": "2.2.5"
+        },
+        "compile": {
+          "lib/windows8/System.Reactive.Linq.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.Linq.dll": {}
+        }
+      },
+      "Rx-Main/2.2.5": {
+        "type": "package",
+        "dependencies": {
+          "Rx-Core": "2.2.5",
+          "Rx-Interfaces": "2.2.5",
+          "Rx-Linq": "2.2.5",
+          "Rx-PlatformServices": "2.2.5"
+        }
+      },
+      "Rx-PlatformServices/2.2.5": {
+        "type": "package",
+        "dependencies": {
+          "Rx-Core": "2.2.5",
+          "Rx-Interfaces": "2.2.5"
+        },
+        "compile": {
+          "lib/windows8/System.Reactive.PlatformServices.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.PlatformServices.dll": {}
+        }
+      },
+      "Rx-WinRT/2.2.5": {
+        "type": "package",
+        "dependencies": {
+          "Rx-Main": "2.2.5"
+        },
+        "compile": {
+          "lib/windows8/System.Reactive.WindowsRuntime.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.WindowsRuntime.dll": {}
+        }
+      },
+      "Rx-XAML/2.2.5": {
+        "type": "package",
+        "dependencies": {
+          "Rx-Main": "2.2.5"
+        },
+        "compile": {
+          "lib/windows8/System.Reactive.Windows.Threading.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/System.Reactive.Windows.Threading.dll": {}
+        }
+      },
+      "Splat/1.6.0": {
+        "type": "package",
+        "compile": {
+          "lib/NetCore45/Splat.dll": {}
+        },
+        "runtime": {
+          "lib/NetCore45/Splat.dll": {}
+        }
+      },
+      "SQLitePCLRaw.bundle_e_sqlite3/1.1.0": {
+        "type": "package",
+        "dependencies": {
+          "SQLitePCLRaw.core": "1.1.0",
+          "SQLitePCLRaw.lib.e_sqlite3.v140": "1.1.0",
+          "SQLitePCLRaw.provider.e_sqlite3.uwp10": "1.1.0"
+        },
+        "compile": {
+          "lib/uap10.0/SQLitePCLRaw.batteries_e_sqlite3.dll": {},
+          "lib/uap10.0/SQLitePCLRaw.batteries_v2.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/SQLitePCLRaw.batteries_e_sqlite3.dll": {},
+          "lib/uap10.0/SQLitePCLRaw.batteries_v2.dll": {}
+        }
+      },
+      "SQLitePCLRaw.core/1.1.0": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.0"
+        },
+        "compile": {
+          "lib/uap10.0/SQLitePCLRaw.core.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/SQLitePCLRaw.core.dll": {}
+        }
+      },
+      "SQLitePCLRaw.lib.e_sqlite3.v140/1.1.0": {
+        "type": "package",
+        "native": {
+          "runtimes/win10-x86/native/e_sqlite3.dll": {}
+        },
+        "build": {
+          "build/SQLitePCLRaw.lib.e_sqlite3.v140.targets": {}
+        }
+      },
+      "SQLitePCLRaw.provider.e_sqlite3.uwp10/1.1.0": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.0",
+          "SQLitePCLRaw.core": "1.1.0"
+        },
+        "compile": {
+          "lib/uap10.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
         }
       },
       "System.AppContext/4.3.0": {
@@ -18289,6 +19518,77 @@
     }
   },
   "libraries": {
+    "akavache/5.0.0": {
+      "sha512": "rV5GkRTGfqV5x6ZiWvthouO8W9hQ58ncPdKTuqowBgtjs70E6HrTGr80ar66/rNhdc1J02v8lLP7xtD8a0Bd+A==",
+      "type": "package",
+      "path": "akavache/5.0.0",
+      "files": [
+        "LICENSE",
+        "akavache.5.0.0.nupkg.sha512",
+        "akavache.nuspec"
+      ]
+    },
+    "akavache.core/5.0.0": {
+      "sha512": "3jy09Yy5BFMVrLd3CTN2Q1EeDiWkX2VO43ByMb20+uOKB6bSlajViyj4vAC9vrKlt4ZzsrWp+1OU1MIXEF2J/g==",
+      "type": "package",
+      "path": "akavache.core/5.0.0",
+      "files": [
+        "akavache.core.5.0.0.nupkg.sha512",
+        "akavache.core.nuspec",
+        "lib/MonoAndroid/Akavache.dll",
+        "lib/MonoAndroid/Akavache.pdb",
+        "lib/Portable-Net45+Win8+WP8+Wpa81/Akavache.dll",
+        "lib/Portable-Net45+Win8+WP8+Wpa81/Akavache.pdb",
+        "lib/Portable-Net45+Win8+WP8+Wpa81/Akavache.xml",
+        "lib/Portable-Win81+Wpa81/Akavache.dll",
+        "lib/Portable-Win81+Wpa81/Akavache.pdb",
+        "lib/Portable-Win81+Wpa81/Akavache.pri",
+        "lib/Portable-Win81+Wpa81/Akavache.xml",
+        "lib/Xamarin.Mac10/Akavache.dll",
+        "lib/Xamarin.Mac10/Akavache.pdb",
+        "lib/Xamarin.iOS10/Akavache.dll",
+        "lib/Xamarin.iOS10/Akavache.pdb",
+        "lib/net45/Akavache.dll",
+        "lib/net45/Akavache.pdb",
+        "lib/net45/Akavache.xml",
+        "src/EncryptionProvider.cs",
+        "src/Facades.cs",
+        "src/HttpMixin.cs",
+        "src/IsolatedStorageProvider.cs",
+        "src/MD5.cs",
+        "src/MD5Managed.cs",
+        "src/MacFilesystemProvider.cs",
+        "src/ProtectDataShim.cs",
+        "src/Registrations.cs",
+        "src/SimpleFilesystemProvider.cs",
+        "src/StreamMixins.cs",
+        "src/Utility.cs"
+      ]
+    },
+    "akavache.sqlite3/5.0.0": {
+      "sha512": "jXHuhf9MJQ7lt0l3/SRAOaT0XFpPQUFnSA+8d+YDXArKDgeqodpmxQbK9MNUqqo5NFT2O0eaGs+VDsiADrcXOw==",
+      "type": "package",
+      "path": "akavache.sqlite3/5.0.0",
+      "files": [
+        "akavache.sqlite3.5.0.0.nupkg.sha512",
+        "akavache.sqlite3.nuspec",
+        "content/AkavacheSqliteLinkerOverride.cs.pp",
+        "lib/Portable-Net45+Win8+WP8+Wpa81/Akavache.Sqlite3.dll",
+        "lib/Portable-Net45+Win8+WP8+Wpa81/Akavache.Sqlite3.pdb",
+        "lib/Portable-Net45+Win8+WP8+Wpa81/Akavache.Sqlite3.pdb.srcsrv",
+        "lib/Portable-Net45+Win8+WP8+Wpa81/Akavache.Sqlite3.xml",
+        "src/AsyncLock.cs",
+        "src/BlockingCollection.cs",
+        "src/EncryptedBlobCache.cs",
+        "src/OperationQueue.cs",
+        "src/OperationQueueCoalescing.cs",
+        "src/Operations.cs",
+        "src/Registrations.cs",
+        "src/SQLite.cs",
+        "src/SQLiteEncryptedBlobCache.cs",
+        "src/SqlitePersistentBlobCacheNext.cs"
+      ]
+    },
     "Microsoft.CSharp/4.3.0": {
       "sha512": "P+MBhIM0YX+JqROuf7i306ZLJEjQYA9uUyRDE+OqwUI5sh41e2ZbPQV3LfAPh+29cmceE1pUffXsGfR4eMY3KA==",
       "type": "package",
@@ -18346,14 +19646,14 @@
         "ref/xamarinwatchos10/_._"
       ]
     },
-    "Microsoft.Net.Native.Compiler/1.6.1": {
-      "sha512": "Xi4AB0vkO7o8krFGdl5XWXsG2lIljmIqdBc+XMi338Kp4iv57Y3j129d3gQeTikRduAsQ1uqEXUwogDfmkqtWA==",
+    "Microsoft.Net.Native.Compiler/1.6.2": {
+      "sha512": "28VesDpHpRatYNlydGB2JbCpjOo2Ils4v2J/O46lHKpLgmCrf6UzAwWnUZq5fhLzJETWb+a0AlENY3hABASQEg==",
       "type": "package",
-      "path": "microsoft.net.native.compiler/1.6.1",
+      "path": "microsoft.net.native.compiler/1.6.2",
       "files": [
         "build/Microsoft.Net.Native.Compiler.props",
         "build/Microsoft.Net.Native.Compiler.targets",
-        "microsoft.net.native.compiler.1.6.1.nupkg.sha512",
+        "microsoft.net.native.compiler.1.6.2.nupkg.sha512",
         "microsoft.net.native.compiler.nuspec",
         "tools/LibraryXML/Callisto.rd.xml",
         "tools/LibraryXML/GalaSoft.MvvmLight.Extras.Win8.rd.xml",
@@ -19241,14 +20541,14 @@
         "tools/x86/mrt100etw.dll"
       ]
     },
-    "Microsoft.Net.Native.SharedLibrary-arm/1.6.0": {
-      "sha512": "6tms4tVQoedKirFMs8q6qCLESDW3uAmFLWwUOB4lKDGtN+MHktTvA+VomsOWYtI//ByH1VSCIBvHVIqiNY8HXQ==",
+    "Microsoft.Net.Native.SharedLibrary-arm/1.6.1": {
+      "sha512": "PmgXdc9F6HPU2J9s4rtzkgTqGcMx3ycradUvxRK82WTL0ltknTX4/+ZDgqYUiEdOMHwkXoAHnKcQfsIC3GQ2Ng==",
       "type": "package",
-      "path": "microsoft.net.native.sharedlibrary-arm/1.6.0",
+      "path": "microsoft.net.native.sharedlibrary-arm/1.6.1",
       "files": [
         "build/Microsoft.Net.Native.SharedLibrary-arm.props",
         "build/Microsoft.Net.Native.SharedLibrary-arm.targets",
-        "microsoft.net.native.sharedlibrary-arm.1.6.0.nupkg.sha512",
+        "microsoft.net.native.sharedlibrary-arm.1.6.1.nupkg.sha512",
         "microsoft.net.native.sharedlibrary-arm.nuspec",
         "tools/SharedLibrary/chk/AnalysisILToc/System.Collections.Concurrent.iltoc",
         "tools/SharedLibrary/chk/AnalysisILToc/System.Collections.Concurrent.iltocpdb",
@@ -19641,14 +20941,14 @@
         "tools/SharedLibrary/ret/Toc/System.Text.RegularExpressions.toc"
       ]
     },
-    "Microsoft.Net.Native.SharedLibrary-x64/1.6.0": {
-      "sha512": "pLNmswGR+pzjLOgq+0oABz3e2C5XjSmTo81MFPSN9CeKyYiMb2eybU1fJRjyk86XFMfENK26gGUSVMhAo4zH/g==",
+    "Microsoft.Net.Native.SharedLibrary-x64/1.6.1": {
+      "sha512": "AEd9UK6oq46NBMO29LquKza/cyaIsrrfFRMZbmDlOArS5sMVOUGga3vBDebwgRzmYtUdFFmRu3XaaKhVrncEbw==",
       "type": "package",
-      "path": "microsoft.net.native.sharedlibrary-x64/1.6.0",
+      "path": "microsoft.net.native.sharedlibrary-x64/1.6.1",
       "files": [
         "build/Microsoft.Net.Native.SharedLibrary-x64.props",
         "build/Microsoft.Net.Native.SharedLibrary-x64.targets",
-        "microsoft.net.native.sharedlibrary-x64.1.6.0.nupkg.sha512",
+        "microsoft.net.native.sharedlibrary-x64.1.6.1.nupkg.sha512",
         "microsoft.net.native.sharedlibrary-x64.nuspec",
         "tools/SharedLibrary/chk/AnalysisILToc/System.Collections.Concurrent.iltoc",
         "tools/SharedLibrary/chk/AnalysisILToc/System.Collections.Concurrent.iltocpdb",
@@ -20041,14 +21341,14 @@
         "tools/SharedLibrary/ret/Toc/System.Text.RegularExpressions.toc"
       ]
     },
-    "Microsoft.Net.Native.SharedLibrary-x86/1.6.0": {
-      "sha512": "AC1O3na4oqgWdvjoMjVPvt2vCO9VESTkArknbTlep5NWVRdMU2nay4XHYWBleOhweE2kw52kJHv1BGN0dcXjhQ==",
+    "Microsoft.Net.Native.SharedLibrary-x86/1.6.1": {
+      "sha512": "jurbK0IemAFs0NDxXRCVMmC18p3NLKkk3SU+kqjzuOQyUiz9KTl4+ZOUDBRNcPGWnwuT5DIKdv6kYvywj0LjPw==",
       "type": "package",
-      "path": "microsoft.net.native.sharedlibrary-x86/1.6.0",
+      "path": "microsoft.net.native.sharedlibrary-x86/1.6.1",
       "files": [
         "build/Microsoft.Net.Native.SharedLibrary-x86.props",
         "build/Microsoft.Net.Native.SharedLibrary-x86.targets",
-        "microsoft.net.native.sharedlibrary-x86.1.6.0.nupkg.sha512",
+        "microsoft.net.native.sharedlibrary-x86.1.6.1.nupkg.sha512",
         "microsoft.net.native.sharedlibrary-x86.nuspec",
         "tools/SharedLibrary/chk/AnalysisILToc/System.Collections.Concurrent.iltoc",
         "tools/SharedLibrary/chk/AnalysisILToc/System.Collections.Concurrent.iltocpdb",
@@ -20205,7 +21505,6 @@
         "tools/SharedLibrary/chk/Native/Microsoft.NET.Native.Framework.Debug.1.6.appx",
         "tools/SharedLibrary/chk/Native/SharedLibrary.dll",
         "tools/SharedLibrary/chk/Native/SharedLibrary.pdb",
-        "tools/SharedLibrary/chk/Native/SharedLibrary.pdb.srcsrv.txt",
         "tools/SharedLibrary/chk/ResW/FxResources.System.Collections.Concurrent.SR.resw",
         "tools/SharedLibrary/chk/ResW/FxResources.System.Collections.SR.resw",
         "tools/SharedLibrary/chk/ResW/FxResources.System.Diagnostics.Tracing.SR.resw",
@@ -20584,14 +21883,14 @@
         "runtime.json"
       ]
     },
-    "Microsoft.NETCore.UniversalWindowsPlatform/5.3.2": {
-      "sha512": "bkCwDauf84lNL4BOXwa6+LWmimtAroK9TtdTrAlrMU4q0RipFnMx1mIpQBVZ9tqc6fD2B8BaqoqDRFlodcF6TA==",
+    "Microsoft.NETCore.UniversalWindowsPlatform/5.3.3": {
+      "sha512": "aCy8WhdcWqIl+gUoY905OWPCP1NqVOtT4Oejn7SIZb9KPKkB5cUfvLEmsY3xwud0TIaJaExKTUhrFluzKtSblQ==",
       "type": "package",
-      "path": "microsoft.netcore.universalwindowsplatform/5.3.2",
+      "path": "microsoft.netcore.universalwindowsplatform/5.3.3",
       "files": [
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
-        "microsoft.netcore.universalwindowsplatform.5.3.2.nupkg.sha512",
+        "microsoft.netcore.universalwindowsplatform.5.3.3.nupkg.sha512",
         "microsoft.netcore.universalwindowsplatform.nuspec"
       ]
     },
@@ -20607,49 +21906,49 @@
         "runtime.json"
       ]
     },
-    "Microsoft.Toolkit.Uwp/1.4.1": {
-      "sha512": "9bThPlEnIREgukNQQe4ufQSl86kODoGkRLOWrSanUDuApe9X68sgVBN61diPdy7LDQ9wvcEa6vYw5+Tao/Tk1A==",
+    "Microsoft.Toolkit.Uwp/1.5.0": {
+      "sha512": "/Q8T2vWRMhpI86u0w60GdTr3K4geiT9kG2VQUu/oR+d6Dn6P9whpUqWZXDzVojDakDQOQZofxMfZVOkt5Nre0w==",
       "type": "package",
-      "path": "microsoft.toolkit.uwp/1.4.1",
+      "path": "microsoft.toolkit.uwp/1.5.0",
       "files": [
         "lib/uap10.0/Microsoft.Toolkit.Uwp.dll",
         "lib/uap10.0/Microsoft.Toolkit.Uwp.pdb",
         "lib/uap10.0/Microsoft.Toolkit.Uwp.pri",
         "lib/uap10.0/Microsoft.Toolkit.Uwp.xml",
-        "microsoft.toolkit.uwp.1.4.1.nupkg.sha512",
+        "microsoft.toolkit.uwp.1.5.0.nupkg.sha512",
         "microsoft.toolkit.uwp.nuspec"
       ]
     },
-    "Microsoft.Toolkit.Uwp.UI/1.4.1": {
-      "sha512": "UMQD7B756FgCnu7Tt6C6xxqDG8ojJKwnOv6R/+ErCCDMH5HzDxLqkLOTFI95s8uzNVF/m+jZLZONuf5ltmrs9g==",
+    "Microsoft.Toolkit.Uwp.UI/1.5.0": {
+      "sha512": "EgCTwv6Eg2EjkK8bI3f3pXXAsbjxA6ZxQ3d54msBzj4i4+/uxg+3prPbGuLb9EXi08eU+AKsgbgY57MAsCvW/A==",
       "type": "package",
-      "path": "microsoft.toolkit.uwp.ui/1.4.1",
+      "path": "microsoft.toolkit.uwp.ui/1.5.0",
       "files": [
         "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.XML",
         "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.dll",
         "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.pdb",
         "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.pri",
-        "microsoft.toolkit.uwp.ui.1.4.1.nupkg.sha512",
+        "microsoft.toolkit.uwp.ui.1.5.0.nupkg.sha512",
         "microsoft.toolkit.uwp.ui.nuspec"
       ]
     },
-    "Microsoft.Toolkit.Uwp.UI.Animations/1.4.1": {
-      "sha512": "o1FA/JPT2AMlcGWa7ikTic87XuTK/AlfTyVKxXIP4AJ65UXJYdDwGx73tdMZV6J9GhtqNQEobACJnQjJruRqHA==",
+    "Microsoft.Toolkit.Uwp.UI.Animations/1.5.0": {
+      "sha512": "LDAYisJBXEiwez4xm2+wH7OZKhGQs5d9pWmK1/WoYRwgVMKQH4p8Wet2YzaorPRvyQTI/bTBRf5ngDL1qqokQA==",
       "type": "package",
-      "path": "microsoft.toolkit.uwp.ui.animations/1.4.1",
+      "path": "microsoft.toolkit.uwp.ui.animations/1.5.0",
       "files": [
         "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.Animations.dll",
         "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.Animations.pdb",
         "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.Animations.pri",
         "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.Animations.xml",
-        "microsoft.toolkit.uwp.ui.animations.1.4.1.nupkg.sha512",
+        "microsoft.toolkit.uwp.ui.animations.1.5.0.nupkg.sha512",
         "microsoft.toolkit.uwp.ui.animations.nuspec"
       ]
     },
-    "Microsoft.Toolkit.Uwp.UI.Controls/1.4.1": {
-      "sha512": "PP61sDIQh0CHYzoAq4LNIeeEcZCyGo/HbWB6kuFR2EPldeCN4ZnBoI7BfK7G6Qj9hlgFwUz+n/jiE1C9hvwGUw==",
+    "Microsoft.Toolkit.Uwp.UI.Controls/1.5.0": {
+      "sha512": "zMLBUhe/cAvoDojzYRWthBTXhxhHfHODk8ULrnWJg9bRmLj/hO10NZLlTg8VzjQO4uipmcfTulGYPZWbarSpyw==",
       "type": "package",
-      "path": "microsoft.toolkit.uwp.ui.controls/1.4.1",
+      "path": "microsoft.toolkit.uwp.ui.controls/1.5.0",
       "files": [
         "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.Controls.dll",
         "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.Controls.pdb",
@@ -20663,19 +21962,23 @@
         "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.Controls/HamburgerMenu/HamburgerMenu.xaml",
         "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.Controls/HeaderedTextBlock/HeaderedTextBlock.xaml",
         "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.Controls/ImageEx/ImageEx.xaml",
+        "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.Controls/ImageEx/RoundImageEx.xaml",
         "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.Controls/Loading/Loading.xaml",
         "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.Controls/MarkdownTextBlock/MarkdownTextBlock.xaml",
         "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.Controls/MasterDetailsView/MasterDetailsView.xaml",
+        "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.Controls/Menu/Menu.xaml",
         "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.Controls/Microsoft.Toolkit.Uwp.UI.Controls.xr.xml",
+        "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.Controls/OrbitView/OrbitView.xaml",
         "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.Controls/PullToRefreshListView/PullToRefreshListView.xaml",
         "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.Controls/RadialGauge/RadialGauge.xaml",
+        "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.Controls/RadialProgressBar/RadialProgressBar.xaml",
         "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.Controls/RangeSelector/RangeSelector.xaml",
         "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.Controls/RotatorTile/RotatorTile.xaml",
         "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.Controls/ScrollHeader/ScrollHeader.xaml",
         "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.Controls/SlidableListItem/SlidableListItem.xaml",
         "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.Controls/Themes/Generic.xaml",
         "lib/uap10.0/Microsoft.Toolkit.Uwp.UI.Controls/TileControl/TileControl.xaml",
-        "microsoft.toolkit.uwp.ui.controls.1.4.1.nupkg.sha512",
+        "microsoft.toolkit.uwp.ui.controls.1.5.0.nupkg.sha512",
         "microsoft.toolkit.uwp.ui.controls.nuspec"
       ]
     },
@@ -20786,10 +22089,10 @@
         "netstandard.library.nuspec"
       ]
     },
-    "Newtonsoft.Json/10.0.2": {
-      "sha512": "iwElSU2IXmwGvytJsezyDML2ZWDkG2JzTYzlU/BNlmzMdlmRvbnwITsGGY74gwVEpDli1UdOLkMT7/3jxWvXzA==",
+    "Newtonsoft.Json/10.0.3": {
+      "sha512": "wBM7i7i3U2WX0ecor4zdVGvgrwFUjuigBoHKiL+nH39fCOpCPjBY3RDqJM32edvdyTAVdjzlccHsg41+/+zpSA==",
       "type": "package",
-      "path": "newtonsoft.json/10.0.2",
+      "path": "newtonsoft.json/10.0.3",
       "files": [
         "LICENSE.md",
         "lib/net20/Newtonsoft.Json.dll",
@@ -20804,11 +22107,11 @@
         "lib/netstandard1.0/Newtonsoft.Json.xml",
         "lib/netstandard1.3/Newtonsoft.Json.dll",
         "lib/netstandard1.3/Newtonsoft.Json.xml",
-        "lib/portable-net40+sl5+win8+wpa81+wp8/Newtonsoft.Json.dll",
-        "lib/portable-net40+sl5+win8+wpa81+wp8/Newtonsoft.Json.xml",
-        "lib/portable-net45+win8+wpa81+wp8/Newtonsoft.Json.dll",
-        "lib/portable-net45+win8+wpa81+wp8/Newtonsoft.Json.xml",
-        "newtonsoft.json.10.0.2.nupkg.sha512",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.dll",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.xml",
+        "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.dll",
+        "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.xml",
+        "newtonsoft.json.10.0.3.nupkg.sha512",
         "newtonsoft.json.nuspec",
         "tools/install.ps1"
       ]
@@ -21928,6 +23231,289 @@
         "runtime.win8-arm.runtime.native.system.io.compression.4.3.0.nupkg.sha512",
         "runtime.win8-arm.runtime.native.system.io.compression.nuspec",
         "runtimes/win8-arm/native/clrcompression.dll"
+      ]
+    },
+    "Rx-Core/2.2.5": {
+      "sha512": "DfWVTfW6tvRkkqpnRHKxPIvaRZyDJGADuqrE6J2nwejOQbLRWi0rNUwXkViDWz++25BGDy3iRE5OE6Dv8mJxYQ==",
+      "type": "package",
+      "path": "rx-core/2.2.5",
+      "files": [
+        "lib/net40/System.Reactive.Core.XML",
+        "lib/net40/System.Reactive.Core.dll",
+        "lib/net45/System.Reactive.Core.XML",
+        "lib/net45/System.Reactive.Core.dll",
+        "lib/portable-net40+sl5+win8+wp8/System.Reactive.Core.XML",
+        "lib/portable-net40+sl5+win8+wp8/System.Reactive.Core.dll",
+        "lib/portable-net45+winrt45+wp8+wpa81/System.Reactive.Core.XML",
+        "lib/portable-net45+winrt45+wp8+wpa81/System.Reactive.Core.dll",
+        "lib/portable-win81+wpa81/System.Reactive.Core.XML",
+        "lib/portable-win81+wpa81/System.Reactive.Core.dll",
+        "lib/portable-windows8+net45+wp8/System.Reactive.Core.XML",
+        "lib/portable-windows8+net45+wp8/System.Reactive.Core.dll",
+        "lib/sl5/System.Reactive.Core.XML",
+        "lib/sl5/System.Reactive.Core.dll",
+        "lib/windows8/System.Reactive.Core.XML",
+        "lib/windows8/System.Reactive.Core.dll",
+        "lib/windowsphone71/System.Reactive.Core.XML",
+        "lib/windowsphone71/System.Reactive.Core.dll",
+        "lib/windowsphone8/System.Reactive.Core.XML",
+        "lib/windowsphone8/System.Reactive.Core.dll",
+        "rx-core.2.2.5.nupkg.sha512",
+        "rx-core.nuspec"
+      ]
+    },
+    "Rx-Interfaces/2.2.5": {
+      "sha512": "FKtG2QfMIeUcfB7r3a89VoAiszX3DTvYETkpC6U0FzWpxRK/mcHyzYOsniDfag+NsDG0P1k1c8yNSefXKp3t2A==",
+      "type": "package",
+      "path": "rx-interfaces/2.2.5",
+      "files": [
+        "lib/net40/System.Reactive.Interfaces.XML",
+        "lib/net40/System.Reactive.Interfaces.dll",
+        "lib/net45/System.Reactive.Interfaces.XML",
+        "lib/net45/System.Reactive.Interfaces.dll",
+        "lib/portable-net40+sl5+win8+wp8/System.Reactive.Interfaces.XML",
+        "lib/portable-net40+sl5+win8+wp8/System.Reactive.Interfaces.dll",
+        "lib/portable-net45+winrt45+wp8+wpa81/System.Reactive.Interfaces.XML",
+        "lib/portable-net45+winrt45+wp8+wpa81/System.Reactive.Interfaces.dll",
+        "lib/portable-win81+wpa81/System.Reactive.Interfaces.XML",
+        "lib/portable-win81+wpa81/System.Reactive.Interfaces.dll",
+        "lib/portable-windows8+net45+wp8/System.Reactive.Interfaces.XML",
+        "lib/portable-windows8+net45+wp8/System.Reactive.Interfaces.dll",
+        "lib/sl5/System.Reactive.Interfaces.XML",
+        "lib/sl5/System.Reactive.Interfaces.dll",
+        "lib/windows8/System.Reactive.Interfaces.XML",
+        "lib/windows8/System.Reactive.Interfaces.dll",
+        "lib/windowsphone71/System.Reactive.Interfaces.XML",
+        "lib/windowsphone71/System.Reactive.Interfaces.dll",
+        "lib/windowsphone8/System.Reactive.Interfaces.XML",
+        "lib/windowsphone8/System.Reactive.Interfaces.dll",
+        "rx-interfaces.2.2.5.nupkg.sha512",
+        "rx-interfaces.nuspec"
+      ]
+    },
+    "Rx-Linq/2.2.5": {
+      "sha512": "UTeCIu3cWPExxmTzdiVq7SalqTBhUaomBTaAC9LpYPoAopjlFwA3hjVWXoLkGlDc/44wqJemJuEwFP00KphiFg==",
+      "type": "package",
+      "path": "rx-linq/2.2.5",
+      "files": [
+        "lib/net40/System.Reactive.Linq.XML",
+        "lib/net40/System.Reactive.Linq.dll",
+        "lib/net45/System.Reactive.Linq.XML",
+        "lib/net45/System.Reactive.Linq.dll",
+        "lib/portable-net40+sl5+win8+wp8/System.Reactive.Linq.XML",
+        "lib/portable-net40+sl5+win8+wp8/System.Reactive.Linq.dll",
+        "lib/portable-net45+winrt45+wp8+wpa81/System.Reactive.Linq.XML",
+        "lib/portable-net45+winrt45+wp8+wpa81/System.Reactive.Linq.dll",
+        "lib/portable-win81+wpa81/System.Reactive.Linq.XML",
+        "lib/portable-win81+wpa81/System.Reactive.Linq.dll",
+        "lib/portable-windows8+net45+wp8/System.Reactive.Linq.XML",
+        "lib/portable-windows8+net45+wp8/System.Reactive.Linq.dll",
+        "lib/sl5/System.Reactive.Linq.XML",
+        "lib/sl5/System.Reactive.Linq.dll",
+        "lib/windows8/System.Reactive.Linq.XML",
+        "lib/windows8/System.Reactive.Linq.dll",
+        "lib/windowsphone71/System.Reactive.Linq.XML",
+        "lib/windowsphone71/System.Reactive.Linq.dll",
+        "lib/windowsphone8/System.Reactive.Linq.XML",
+        "lib/windowsphone8/System.Reactive.Linq.dll",
+        "rx-linq.2.2.5.nupkg.sha512",
+        "rx-linq.nuspec"
+      ]
+    },
+    "Rx-Main/2.2.5": {
+      "sha512": "qdQ6qENEiLsp/LRdzZlLlodihWN8VDjwNfWa8c2ELjEHZgTdKzt1V4i61gkHVtFKZXe8Px6KupbMP3pZ+1tusQ==",
+      "type": "package",
+      "path": "rx-main/2.2.5",
+      "files": [
+        "rx-main.2.2.5.nupkg.sha512",
+        "rx-main.nuspec"
+      ]
+    },
+    "Rx-PlatformServices/2.2.5": {
+      "sha512": "pMnNEvJVjT+wuDib+W/bi5hhIYcre7dW5yxvKrJxnR4iKJ1VLA/dY2FTtjDriHGx7OeGn12lQewXlH2oHiWFPA==",
+      "type": "package",
+      "path": "rx-platformservices/2.2.5",
+      "files": [
+        "lib/net40/System.Reactive.PlatformServices.XML",
+        "lib/net40/System.Reactive.PlatformServices.dll",
+        "lib/net45/System.Reactive.PlatformServices.XML",
+        "lib/net45/System.Reactive.PlatformServices.dll",
+        "lib/portable-net40+sl5+win8+wp8/System.Reactive.PlatformServices.XML",
+        "lib/portable-net40+sl5+win8+wp8/System.Reactive.PlatformServices.dll",
+        "lib/portable-net45+winrt45+wp8+wpa81/System.Reactive.PlatformServices.XML",
+        "lib/portable-net45+winrt45+wp8+wpa81/System.Reactive.PlatformServices.dll",
+        "lib/portable-win81+wpa81/System.Reactive.PlatformServices.XML",
+        "lib/portable-win81+wpa81/System.Reactive.PlatformServices.dll",
+        "lib/portable-windows8+net45+wp8/System.Reactive.PlatformServices.XML",
+        "lib/portable-windows8+net45+wp8/System.Reactive.PlatformServices.dll",
+        "lib/sl5/System.Reactive.PlatformServices.XML",
+        "lib/sl5/System.Reactive.PlatformServices.dll",
+        "lib/windows8/System.Reactive.PlatformServices.XML",
+        "lib/windows8/System.Reactive.PlatformServices.dll",
+        "lib/windowsphone71/System.Reactive.PlatformServices.XML",
+        "lib/windowsphone71/System.Reactive.PlatformServices.dll",
+        "lib/windowsphone8/System.Reactive.PlatformServices.XML",
+        "lib/windowsphone8/System.Reactive.PlatformServices.dll",
+        "rx-platformservices.2.2.5.nupkg.sha512",
+        "rx-platformservices.nuspec"
+      ]
+    },
+    "Rx-WinRT/2.2.5": {
+      "sha512": "gk0X1s8+XZhPEeYwSI4m5rjL0OQHCssG/Efa0nr4vfon+61p4+d4n1249n5WWSZE35/NXc0cOzvIlVw7bD+mJw==",
+      "type": "package",
+      "path": "rx-winrt/2.2.5",
+      "files": [
+        "lib/portable-win81+wpa81/System.Reactive.WindowsRuntime.XML",
+        "lib/portable-win81+wpa81/System.Reactive.WindowsRuntime.dll",
+        "lib/windows8/System.Reactive.WindowsRuntime.XML",
+        "lib/windows8/System.Reactive.WindowsRuntime.dll",
+        "lib/windowsphone8/System.Reactive.WindowsRuntime.XML",
+        "lib/windowsphone8/System.Reactive.WindowsRuntime.dll",
+        "rx-winrt.2.2.5.nupkg.sha512",
+        "rx-winrt.nuspec"
+      ]
+    },
+    "Rx-XAML/2.2.5": {
+      "sha512": "RzA/HcKP1U44i7ZchRdR3v3GdepNmr/93ydyixV+LwZs++Yxo13fsODRTqGIyz11ERSIKgnnSs6tbJUys4qRSw==",
+      "type": "package",
+      "path": "rx-xaml/2.2.5",
+      "files": [
+        "lib/net40/System.Reactive.Windows.Threading.XML",
+        "lib/net40/System.Reactive.Windows.Threading.dll",
+        "lib/net45/System.Reactive.Windows.Threading.XML",
+        "lib/net45/System.Reactive.Windows.Threading.dll",
+        "lib/portable-win81+wpa81/System.Reactive.Windows.Threading.XML",
+        "lib/portable-win81+wpa81/System.Reactive.Windows.Threading.dll",
+        "lib/sl5/System.Reactive.Windows.Threading.XML",
+        "lib/sl5/System.Reactive.Windows.Threading.dll",
+        "lib/windows8/System.Reactive.Windows.Threading.XML",
+        "lib/windows8/System.Reactive.Windows.Threading.dll",
+        "lib/windowsphone71/System.Reactive.Windows.Threading.XML",
+        "lib/windowsphone71/System.Reactive.Windows.Threading.dll",
+        "lib/windowsphone8/System.Reactive.Windows.Threading.XML",
+        "lib/windowsphone8/System.Reactive.Windows.Threading.dll",
+        "rx-xaml.2.2.5.nupkg.sha512",
+        "rx-xaml.nuspec"
+      ]
+    },
+    "Splat/1.6.0": {
+      "sha512": "266mgVQffaOdAACI9rXcCdaMUUwlmJ+gLkQ7vKv2YIwipStt3RP+DPc3sqGBdC7Cis8SymVFzTIOerYrqMyKYQ==",
+      "type": "package",
+      "path": "splat/1.6.0",
+      "files": [
+        "lib/MonoMac/Splat.dll",
+        "lib/MonoMac/Splat.dll.mdb",
+        "lib/Net45/Splat.dll",
+        "lib/Net45/Splat.pdb",
+        "lib/NetCore45/Splat.dll",
+        "lib/NetCore45/Splat.pdb",
+        "lib/NetCore45/Splat.pri",
+        "lib/Portable-Win81+Wpa81/Splat.dll",
+        "lib/Portable-Win81+Wpa81/Splat.pdb",
+        "lib/Portable-Win81+Wpa81/Splat.pri",
+        "lib/Portable-net45+win+wpa81+wp80/Splat.dll",
+        "lib/Xamarin.Mac10/Splat-XamarinMac.csproj.FilesWrittenAbsolute.txt",
+        "lib/Xamarin.Mac10/Splat.dll",
+        "lib/Xamarin.Mac10/Splat.dll.mdb",
+        "lib/Xamarin.iOS10/Splat.dll",
+        "lib/Xamarin.iOS10/Splat.dll.mdb",
+        "lib/monoandroid/Splat.dll",
+        "lib/monoandroid/Splat.dll.mdb",
+        "lib/monotouch/Splat.dll",
+        "lib/monotouch/Splat.dll.mdb",
+        "lib/wp8/Splat.dll",
+        "lib/wp8/Splat.pdb",
+        "splat.1.6.0.nupkg.sha512",
+        "splat.nuspec"
+      ]
+    },
+    "SQLitePCLRaw.bundle_e_sqlite3/1.1.0": {
+      "sha512": "oJu/SK1jiFtQ46AF+TmpAWHrS1E0/QPWA17qoWgXBe/bzPGmoRpiYBipMbpMYTKIybtuJyIzWpUQRJOcGD5rFA==",
+      "type": "package",
+      "path": "sqlitepclraw.bundle_e_sqlite3/1.1.0",
+      "files": [
+        "build/wp8/SQLitePCLRaw.bundle_e_sqlite3.targets",
+        "build/wp80/arm/SQLitePCLRaw.batteries_e_sqlite3.dll",
+        "build/wp80/arm/SQLitePCLRaw.batteries_v2.dll",
+        "build/wp80/x86/SQLitePCLRaw.batteries_e_sqlite3.dll",
+        "build/wp80/x86/SQLitePCLRaw.batteries_v2.dll",
+        "lib/MonoAndroid/SQLitePCLRaw.batteries_e_sqlite3.dll",
+        "lib/MonoAndroid/SQLitePCLRaw.batteries_v2.dll",
+        "lib/Xamarin.iOS10/SQLitePCLRaw.batteries_e_sqlite3.dll",
+        "lib/Xamarin.iOS10/SQLitePCLRaw.batteries_v2.dll",
+        "lib/net35/SQLitePCLRaw.batteries_e_sqlite3.dll",
+        "lib/net35/SQLitePCLRaw.batteries_v2.dll",
+        "lib/net40/SQLitePCLRaw.batteries_e_sqlite3.dll",
+        "lib/net40/SQLitePCLRaw.batteries_v2.dll",
+        "lib/net45/SQLitePCLRaw.batteries_e_sqlite3.dll",
+        "lib/net45/SQLitePCLRaw.batteries_v2.dll",
+        "lib/netcoreapp/SQLitePCLRaw.batteries_e_sqlite3.dll",
+        "lib/netcoreapp/SQLitePCLRaw.batteries_v2.dll",
+        "lib/netstandard1.1/SQLitePCLRaw.batteries_e_sqlite3.dll",
+        "lib/netstandard1.1/SQLitePCLRaw.batteries_v2.dll",
+        "lib/portable-net40+sl5+netcore45+wp8+MonoAndroid10+MonoTouch10+Xamarin.iOS10/SQLitePCLRaw.batteries_e_sqlite3.dll",
+        "lib/portable-net40+sl5+netcore45+wp8+MonoAndroid10+MonoTouch10+Xamarin.iOS10/SQLitePCLRaw.batteries_v2.dll",
+        "lib/portable-net45+netcore45+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10/SQLitePCLRaw.batteries_e_sqlite3.dll",
+        "lib/portable-net45+netcore45+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10/SQLitePCLRaw.batteries_v2.dll",
+        "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid10+MonoTouch10+Xamarin.iOS10/SQLitePCLRaw.batteries_e_sqlite3.dll",
+        "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid10+MonoTouch10+Xamarin.iOS10/SQLitePCLRaw.batteries_v2.dll",
+        "lib/uap10.0/SQLitePCLRaw.batteries_e_sqlite3.dll",
+        "lib/uap10.0/SQLitePCLRaw.batteries_v2.dll",
+        "lib/win8/SQLitePCLRaw.batteries_e_sqlite3.dll",
+        "lib/win8/SQLitePCLRaw.batteries_v2.dll",
+        "lib/win81/SQLitePCLRaw.batteries_e_sqlite3.dll",
+        "lib/win81/SQLitePCLRaw.batteries_v2.dll",
+        "lib/wp8/_._",
+        "lib/wpa81/SQLitePCLRaw.batteries_e_sqlite3.dll",
+        "lib/wpa81/SQLitePCLRaw.batteries_v2.dll",
+        "sqlitepclraw.bundle_e_sqlite3.1.1.0.nupkg.sha512",
+        "sqlitepclraw.bundle_e_sqlite3.nuspec"
+      ]
+    },
+    "SQLitePCLRaw.core/1.1.0": {
+      "sha512": "e5Bm2K2B2v9z8jHm1nyEN1M8pH6GG8emIboMhsqDzuLIf9uWvGPsdNm0WzWeG6oxSmTgSQsLajcuqA1gDAIMJw==",
+      "type": "package",
+      "path": "sqlitepclraw.core/1.1.0",
+      "files": [
+        "lib/MonoAndroid/SQLitePCLRaw.core.dll",
+        "lib/Xamarin.iOS10/SQLitePCLRaw.core.dll",
+        "lib/net35/SQLitePCLRaw.core.dll",
+        "lib/net40/SQLitePCLRaw.core.dll",
+        "lib/net45/SQLitePCLRaw.core.dll",
+        "lib/netstandard1.0/SQLitePCLRaw.core.dll",
+        "lib/netstandard1.1/SQLitePCLRaw.core.dll",
+        "lib/portable-net40+sl5+netcore45+wp8+MonoAndroid10+MonoTouch10+Xamarin.iOS10/SQLitePCLRaw.core.dll",
+        "lib/portable-net45+netcore45+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10/SQLitePCLRaw.core.dll",
+        "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid10+MonoTouch10+Xamarin.iOS10/SQLitePCLRaw.core.dll",
+        "lib/uap10.0/SQLitePCLRaw.core.dll",
+        "lib/win8/SQLitePCLRaw.core.dll",
+        "lib/win81/SQLitePCLRaw.core.dll",
+        "lib/wpa81/SQLitePCLRaw.core.dll",
+        "sqlitepclraw.core.1.1.0.nupkg.sha512",
+        "sqlitepclraw.core.nuspec"
+      ]
+    },
+    "SQLitePCLRaw.lib.e_sqlite3.v140/1.1.0": {
+      "sha512": "pFF30aD37wYKgPmOXEIXjTcPKKhC5gED5M+m+CiAMKJqzZxso7ucGYWw/8dJPmD04o9T5JNgi+pLRhHMd2IpFQ==",
+      "type": "package",
+      "path": "sqlitepclraw.lib.e_sqlite3.v140/1.1.0",
+      "files": [
+        "build/SQLitePCLRaw.lib.e_sqlite3.v140.targets",
+        "runtimes/win10-arm/native/e_sqlite3.dll",
+        "runtimes/win10-x64/native/e_sqlite3.dll",
+        "runtimes/win10-x86/native/e_sqlite3.dll",
+        "sqlitepclraw.lib.e_sqlite3.v140.1.1.0.nupkg.sha512",
+        "sqlitepclraw.lib.e_sqlite3.v140.nuspec"
+      ]
+    },
+    "SQLitePCLRaw.provider.e_sqlite3.uwp10/1.1.0": {
+      "sha512": "ANA4xKfJqLD2FSdOn/sOm2AhGFvjQQA7smIuBD26ClcGvn3uTEktD6VgjbWaSjrQnFslm/2Jxbmx79oqdVKUeQ==",
+      "type": "package",
+      "path": "sqlitepclraw.provider.e_sqlite3.uwp10/1.1.0",
+      "files": [
+        "lib/uap10.0/SQLitePCLRaw.provider.e_sqlite3.dll",
+        "sqlitepclraw.provider.e_sqlite3.uwp10.1.1.0.nupkg.sha512",
+        "sqlitepclraw.provider.e_sqlite3.uwp10.nuspec"
       ]
     },
     "System.AppContext/4.3.0": {
@@ -27147,18 +28733,19 @@
     },
     "MaterialDesignThemes.Uwp/1.0.0": {
       "type": "project",
-      "path": "../../MaterialUwp/MaterialDesignInXamlToolkit/MaterialDesignThemes.Uwp/project.json",
-      "msbuildProject": "../../MaterialUwp/MaterialDesignInXamlToolkit/MaterialDesignThemes.Uwp/MaterialDesignThemes.Uwp.csproj"
+      "path": "../../MaterialDesignInXamlToolkit-master/MaterialDesignThemes.Uwp/project.json",
+      "msbuildProject": "../../MaterialDesignInXamlToolkit-master/MaterialDesignThemes.Uwp/MaterialDesignThemes.Uwp.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "": [
-      "Microsoft.NETCore.UniversalWindowsPlatform >= 5.3.2",
-      "Microsoft.Toolkit.Uwp >= 1.4.1",
-      "Microsoft.Toolkit.Uwp.UI >= 1.4.1",
-      "Microsoft.Toolkit.Uwp.UI.Controls >= 1.4.1",
-      "Newtonsoft.Json >= 10.0.2",
-      "Windows.UI.Interactivity >= 1.3.0"
+      "Microsoft.NETCore.UniversalWindowsPlatform >= 5.3.3",
+      "Microsoft.Toolkit.Uwp >= 1.5.0",
+      "Microsoft.Toolkit.Uwp.UI >= 1.5.0",
+      "Microsoft.Toolkit.Uwp.UI.Controls >= 1.5.0",
+      "Newtonsoft.Json >= 10.0.3",
+      "Windows.UI.Interactivity >= 1.3.0",
+      "akavache >= 5.0.0"
     ],
     "UAP,Version=v10.0": []
   },
@@ -27175,19 +28762,20 @@
       "frameworks": {
         "uap10.0": {
           "projectReferences": {
-            "C:\\Users\\Master\\Documents\\Visual Studio 2017\\Projects\\MaterialUwp\\MaterialDesignInXamlToolkit\\MaterialDesignThemes.Uwp\\MaterialDesignThemes.Uwp.csproj": {
-              "projectPath": "C:\\Users\\Master\\Documents\\Visual Studio 2017\\Projects\\MaterialUwp\\MaterialDesignInXamlToolkit\\MaterialDesignThemes.Uwp\\MaterialDesignThemes.Uwp.csproj"
+            "C:\\Users\\Master\\Documents\\Visual Studio 2017\\Projects\\MaterialDesignInXamlToolkit-master\\MaterialDesignThemes.Uwp\\MaterialDesignThemes.Uwp.csproj": {
+              "projectPath": "C:\\Users\\Master\\Documents\\Visual Studio 2017\\Projects\\MaterialDesignInXamlToolkit-master\\MaterialDesignThemes.Uwp\\MaterialDesignThemes.Uwp.csproj"
             }
           }
         }
       }
     },
     "dependencies": {
-      "Microsoft.NETCore.UniversalWindowsPlatform": "5.3.2",
-      "Microsoft.Toolkit.Uwp": "1.4.1",
-      "Microsoft.Toolkit.Uwp.UI": "1.4.1",
-      "Microsoft.Toolkit.Uwp.UI.Controls": "1.4.1",
-      "Newtonsoft.Json": "10.0.2",
+      "akavache": "5.0.0",
+      "Microsoft.NETCore.UniversalWindowsPlatform": "5.3.3",
+      "Microsoft.Toolkit.Uwp": "1.5.0",
+      "Microsoft.Toolkit.Uwp.UI": "1.5.0",
+      "Microsoft.Toolkit.Uwp.UI.Controls": "1.5.0",
+      "Newtonsoft.Json": "10.0.3",
       "Windows.UI.Interactivity": "1.3.0"
     },
     "frameworks": {

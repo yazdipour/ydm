@@ -9,14 +9,17 @@
     Background="{StaticResource BgCard}"
     mc:Ignorable="d"
     Loading="Page_Loading">
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <controls:DropShadowPanel BlurRadius="7.0" ShadowOpacity="0.5" OffsetX="0" OffsetY="2" Color="Black">
-            <Grid Height="52"  VerticalAlignment="Top" Background="#FFE33419" RequestedTheme="Dark">
+        <controls:DropShadowPanel BlurRadius="7.0" ShadowOpacity="0.5" 
+                                  HorizontalAlignment="Stretch"
+                                  HorizontalContentAlignment="Stretch"
+                                  OffsetX="0" OffsetY="2" Color="Black">
+            <Grid Height="52" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="#FFE33419" RequestedTheme="Dark">
                 <!--FontFamily="{StaticResource Mitra}"-->
                 <TextBlock Text="YDM"
                            HorizontalAlignment="Center"

@@ -78,11 +78,6 @@ namespace ytdl.Views
 			e.Handled = true;
 			insideFrame.GoBack();
 		}
-		//Disable
-		private void OpenSetting_Click(object sender, RoutedEventArgs e)
-		{
-			insideFrame.Navigate(typeof(SettingPanel));
-		}
 
 		private void Button_Click(object sender, RoutedEventArgs e)
 		{

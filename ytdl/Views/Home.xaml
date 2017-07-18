@@ -13,7 +13,7 @@
     mc:Ignorable="d">
     <Page.Resources>
         <DataTemplate x:Key="EmailsItemTemplate" x:DataType="data:DownloadedItems">
-            <controls:DropShadowPanel BlurRadius="8.0" ShadowOpacity="0.3" OffsetX="0" OffsetY="1" Color="Black">
+            <controls:DropShadowPanel BlurRadius="8.0" ShadowOpacity="0.3" OffsetX="0" OffsetY="1" Color="Black" Width="400">
                 <controls:SlidableListItem 
                     Background="#000"
                     HorizontalAlignment="Stretch"
@@ -26,12 +26,11 @@
                     RightCommandRequested="SlidableListItem_RightCommandRequested"
                     ActivationWidth="100"
                     IsOffsetLimited="True"
-                    Height="180"
+                    Height="180" Width="400"
                     MouseSlidingEnabled="True"
                     IsPointerReleasedOnSwipingHandled="True">
                     <Grid Height="180" HorizontalAlignment="Stretch">
-                        <Image Stretch="UniformToFill" Source="{x:Bind Img}" Margin="0,-50,0,0" 
-                               Opacity=".5" />
+                        <controls:ImageEx Stretch="UniformToFill" Source="{x:Bind Img}" Margin="0,-50,0,0" Opacity=".5" />
                         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" RequestedTheme="Dark">
                             <RichTextBlock HorizontalAlignment="Center"
                                            VerticalAlignment="Center" TextAlignment="Center"
@@ -49,7 +48,6 @@
                 </controls:SlidableListItem>
             </controls:DropShadowPanel>
         </DataTemplate>
-
     </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -57,7 +55,10 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Border Margin="36,24">
-            <controls:DropShadowPanel BlurRadius="8.0" ShadowOpacity="0.3" OffsetX="0" OffsetY="1" Color="Black">
+            <controls:DropShadowPanel 
+                                  HorizontalAlignment="Stretch"
+                                  HorizontalContentAlignment="Stretch"
+                BlurRadius="8.0" ShadowOpacity="0.3" OffsetX="0" OffsetY="1" Color="Black">
                 <StackPanel Background="White" Padding="4">
                     <Grid>
                         <TextBox PlaceholderText="http://www.youtube.com/watch?v=Thd8yoBou7k" x:Name="urlText">
@@ -78,7 +79,7 @@
         </Border>
         <controls:AdaptiveGridView Name="xlist"
                                    ItemHeight="180"
-                                   DesiredWidth="360"
+                                   DesiredWidth="470"
                                    Margin="4 0 0 0"
                       ScrollViewer.VerticalScrollBarVisibility="Hidden"
                       Grid.Row="1"
@@ -87,5 +88,6 @@
                       IsItemClickEnabled="True"
                       ItemClick="xlist_ItemClick"
                       ItemTemplate="{StaticResource EmailsItemTemplate}"/>
+        <Button Content="&#xE11A;" Grid.Row="1" HorizontalAlignment="Right" Margin="12" VerticalAlignment="Bottom" Height="64" Width="64" Style="{StaticResource MaterialDesignRaisedRoundButton}" Background="#E62118"/>
     </Grid>
 </Page>
