@@ -1,23 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Runtime.InteropServices.WindowsRuntime;
+﻿using System.Numerics;
 using Windows.Foundation;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Documents;
-using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Microsoft.Graphics.Canvas;
 using Microsoft.Graphics.Canvas.Effects;
 using Microsoft.Graphics.Canvas.UI.Xaml;
 
 namespace MaterialDesignThemes.Uwp
-{    
-    [TemplatePart(Name = CanvasControlPartName, Type = typeof(CanvasControl))]
+{
+	[TemplatePart(Name = CanvasControlPartName, Type = typeof(CanvasControl))]
     [TemplatePart(Name = ContentPresenterPartName, Type = typeof(ContentPresenter))]
     public sealed class Shadow : ContentControl
     {

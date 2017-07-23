@@ -26,5 +26,15 @@ namespace ytdl.Views
 		{
 			this.InitializeComponent();
 		}
+
+		private void SlidableListItem_RightCommandRequested(object sender, EventArgs e)
+		{
+
+		}
+
+		private void AutoSuggestBox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
+		{
+
+		}
 	}
 }

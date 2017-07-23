@@ -88,6 +88,8 @@
                       IsItemClickEnabled="True"
                       ItemClick="xlist_ItemClick"
                       ItemTemplate="{StaticResource EmailsItemTemplate}"/>
-        <Button Content="&#xE11A;" Grid.Row="1" HorizontalAlignment="Right" Margin="12" VerticalAlignment="Bottom" Height="64" Width="64" Style="{StaticResource MaterialDesignRaisedRoundButton}" Background="#E62118"/>
+        <Button Content="&#xE11A;" Grid.Row="1" HorizontalAlignment="Right" Margin="12" VerticalAlignment="Bottom" 
+                Click="SearchBtn_Click"
+                Height="64" Width="64" Style="{StaticResource MaterialDesignRaisedRoundButton}" Background="#E62118"/>
     </Grid>
 </Page>

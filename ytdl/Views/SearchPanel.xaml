@@ -5,9 +5,69 @@
     xmlns:local="using:ytdl.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:data="using:ytdl.Models"
     mc:Ignorable="d">
+    <Page.Resources>
+        <SolidColorBrush x:Key="SearchBoxHitHighlightForegroundThemeBrush" Color="Pink"/>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+        <SolidColorBrush x:Key="SearchBoxHitHighlightSelectedForegroundThemeBrush" Color="Red"/>
+        <DataTemplate x:Key="EmailsItemTemplate" x:DataType="data:DownloadedItems">
+            <controls:DropShadowPanel BlurRadius="8.0" ShadowOpacity="0.3" OffsetX="0" OffsetY="1" Color="Black" Width="400">
+                <controls:SlidableListItem 
+                    Background="#000"
+                    HorizontalAlignment="Stretch"
+                    Margin="0,4"
+                    IsLeftCommandEnabled="False"
+                    RightIcon="Add" 
+                    RightLabel="Add"
+                    RightBackground="Green"
+                    RightForeground ="White"
+                    RightCommandRequested="SlidableListItem_RightCommandRequested"
+                    ActivationWidth="100"
+                    IsOffsetLimited="True"
+                    Height="100" Width="400"
+                    MouseSlidingEnabled="True"
+                    IsPointerReleasedOnSwipingHandled="True">
+                    <Grid Height="100" HorizontalAlignment="Stretch">
+                        <controls:ImageEx Stretch="UniformToFill" Source="{x:Bind Img}" Margin="0,-50,0,0" Opacity=".5" />
+                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" RequestedTheme="Dark">
+                            <RichTextBlock HorizontalAlignment="Center"
+                                           VerticalAlignment="Center" TextAlignment="Center"
+                                           IsTextSelectionEnabled="False" MaxHeight="82">
+                                <Paragraph>
+                                    <Run Text="{x:Bind Title}" FontWeight="Bold" FontSize="14"/>
+                                </Paragraph>
+                                <Paragraph>
+                                    <Run Text="Duration :" FontSize="12" />
+                                    <Run Text="{x:Bind Duration}" FontSize="12" />
+                                </Paragraph>
+                            </RichTextBlock>
+                        </StackPanel>
+                    </Grid>
+                </controls:SlidableListItem>
+            </controls:DropShadowPanel>
+        </DataTemplate>
+    </Page.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <controls:DropShadowPanel Margin="36,24" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch"
+                ShadowOpacity="0.3" OffsetX="0" OffsetY="1" Color="Black" Background="White" Padding="4">
+            <AutoSuggestBox QueryIcon="Find" PlaceholderText="Search" x:Name="searchField"
+                QuerySubmitted="AutoSuggestBox_QuerySubmitted">
+                <AutoSuggestBox.TextBoxStyle>
+                    <Style TargetType="TextBox" BasedOn="{StaticResource AutoSuggestBoxTextBoxStyle}">
+                        <Setter Property="FontSize" Value="20"/>
+                    </Style>
+                </AutoSuggestBox.TextBoxStyle>
+                </AutoSuggestBox>
+        </controls:DropShadowPanel>
+        <controls:AdaptiveGridView Name="xlist" ItemHeight="180" DesiredWidth="470" Margin="4 0 0 0"
+                      ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                      Grid.Row="1" VerticalAlignment="Stretch" SelectionMode="None"
+                      ItemTemplate="{StaticResource EmailsItemTemplate}"/>
     </Grid>
 </Page>

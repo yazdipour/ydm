@@ -6,15 +6,14 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Background="{StaticResource BgCard}"
-    mc:Ignorable="d"
+    mc:Ignorable="d" Background="{StaticResource BgCard}"
     Loading="Page_Loading">
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <!--<RelativePanel Grid.RowSpan="2" MinWidth="40" x:Name="MainGrid" SizeChanged="Page_SizeChanged" Background="{StaticResource BgCard}"/>-->
         <controls:DropShadowPanel BlurRadius="7.0" ShadowOpacity="0.5" 
                                   HorizontalAlignment="Stretch"
                                   HorizontalContentAlignment="Stretch"
@@ -28,7 +27,7 @@
                 <AppBarButton Icon="ShowBcc" HorizontalAlignment="Left" x:Name="TopMenu">
                     <AppBarButton.Flyout>
                         <MenuFlyout>
-                            <MenuFlyoutItem Text="Add batch from clipboard" Click="Batch_Click"/>
+                            <!--<MenuFlyoutItem Text="Add batch from clipboard" Click="Batch_Click"/>-->
                             <MenuFlyoutItem Text="Get all links (HQ)" Click="GetAllLinks_Click"/>
                             <MenuFlyoutItem Text="Remove all items" Click="RmAll_Click"/>
                         </MenuFlyout>
@@ -42,8 +41,10 @@
         <Grid x:Name="PRing" Grid.RowSpan="2" Visibility="Collapsed" Background="#BE000000" >
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
                 <ProgressRing x:Name="ring" IsActive="True" Height="60" Width="60" Foreground="White"/>
-                <TextBlock x:Name="loadingTxt" Text="Loading" Foreground="White" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="{StaticResource Mitra}"/>
-                <Button x:Name="reloadBtn" Content="دوباره امتحان کن" HorizontalAlignment="Center" Click="Button_Click" Background="White" Visibility="Collapsed" Margin="8" FontFamily="{StaticResource Mitra}" FontSize="17"/>
+                <TextBlock x:Name="loadingTxt" Text="Loading" Foreground="White" FontSize="18" 
+                           HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="{StaticResource Mitra}"/>
+                <Button x:Name="reloadBtn" Content="Try again" Visibility="Collapsed" HorizontalAlignment="Center" Click="Button_Click" 
+                        Background="White" Margin="8" FontFamily="{StaticResource Mitra}" FontSize="17"/>
             </StackPanel>
         </Grid>
     </Grid>

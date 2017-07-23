@@ -1,11 +1,13 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using Windows.ApplicationModel.DataTransfer;
+using Windows.UI.Composition;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Hosting;
 using ytdl.Classes;
 using ytdl.Models;
 
@@ -18,15 +20,26 @@ namespace ytdl.Views
 		{
 			this.InitializeComponent();
 		}
-		private void UserDash_Click(object sender, RoutedEventArgs e)
-		{
-			insideFrame.Navigate(typeof(UserPanel));
-		}
-
-
+		#region Acrylic
+			//applyAcrylicAccent(MainGrid);
+		//private void applyAcrylicAccent(Panel panel)
+		//{
+		//	_compositor = ElementCompositionPreview.GetElementVisual(this).Compositor;
+		//	_hostSprite = _compositor.CreateSpriteVisual();
+		//	_hostSprite.Size = new Vector2((float)panel.ActualWidth, (float)panel.ActualHeight);
+		//	ElementCompositionPreview.SetElementChildVisual(panel, _hostSprite);
+		//	_hostSprite.Brush = _compositor.CreateHostBackdropBrush();
+		//}
+		//Compositor _compositor;
+		//SpriteVisual _hostSprite;
+		//private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
+		//{
+		//	if (_hostSprite != null)
+		//		_hostSprite.Size = e.NewSize.ToVector2();
+		//}
+		#endregion
 		private async void Page_Loading(FrameworkElement sender, object args)
 		{
-
 			insideFrame.Navigate(typeof(Home));
 			StaticRing = PRing;
 			PRing.Visibility = Visibility.Visible;
@@ -46,11 +59,11 @@ namespace ytdl.Views
 				if (App.Usr.leftDay < 0) App.Usr.leftDay = -1;
 				App.Today = System.Convert.ToInt32(arr[0]);
 				PRing.Visibility = Visibility.Collapsed;
-				LeftDayText.Label = (1 + App.Usr.leftDay) + " روز";
+				LeftDayText.Label = (1 + App.Usr.leftDay).ToString();
 			}
 			catch
 			{
-				loadingTxt.Text = "مشکل در اتصال به سرور";
+				loadingTxt.Text = "Server Error!";
 				ring.IsActive = false;
 				reloadBtn.Visibility = Visibility.Visible;
 			}
@@ -89,7 +102,6 @@ namespace ytdl.Views
 			}
 			catch { }
 		}
-
 		private void GetAllLinks_Click(object sender, RoutedEventArgs e)
 		{
 			var links = new List<string>();
@@ -117,12 +129,13 @@ namespace ytdl.Views
 			foreach (var dl in ser)
 				LocalSettingManager.RemoveSetting("LI" + dl.Id);
 			LocalSettingManager.RemoveSetting("DI");
-			Button_Click(null,null);
+			Button_Click(null, null);
 		}
 
-		private void Batch_Click(object sender, RoutedEventArgs e)
+		private void UserDash_Click(object sender, RoutedEventArgs e)
 		{
-			//var x= Clipboard.GetContent().GetTextAsync();
+			insideFrame.Navigate(typeof(UserPanel));
 		}
+
 	}
 }

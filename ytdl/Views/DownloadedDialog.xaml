@@ -8,6 +8,7 @@
     Loaded="ContentDialog_Loaded" Template="{StaticResource NoMargin}"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:behaviors="using:Microsoft.Toolkit.Uwp.UI.Animations.Behaviors"
+    MinWidth="400"
     mc:Ignorable="d" RequestedTheme="Dark" BorderBrush="#111">
     <!--Background="#222"-->
     <ContentDialog.Background>

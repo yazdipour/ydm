@@ -152,5 +152,9 @@ namespace ytdl.Views
 			await dialog.ShowAsync();
 		}
 
+		private void SearchBtn_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+		{
+			Frame.Navigate(typeof(SearchPanel));
+		}
 	}
 }
