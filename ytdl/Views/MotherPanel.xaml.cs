@@ -1,27 +1,25 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
 using Windows.ApplicationModel.DataTransfer;
-using Windows.UI.Composition;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Hosting;
 using ytdl.Classes;
 using ytdl.Models;
+using Microsoft.Toolkit.Uwp.UI.Controls;
 
 namespace ytdl.Views
 {
 	public sealed partial class MotherPanel : Page
 	{
-		public static Grid StaticRing { get; set; }
+		public static Loading StaticRing { get; set; }
+		public static AppBarButton StaticNr { get; set; }
 		public MotherPanel()
 		{
 			this.InitializeComponent();
 		}
 		#region Acrylic
-			//applyAcrylicAccent(MainGrid);
+		//applyAcrylicAccent(MainGrid);
 		//private void applyAcrylicAccent(Panel panel)
 		//{
 		//	_compositor = ElementCompositionPreview.GetElementVisual(this).Compositor;
@@ -40,35 +38,20 @@ namespace ytdl.Views
 		#endregion
 		private async void Page_Loading(FrameworkElement sender, object args)
 		{
-			insideFrame.Navigate(typeof(Home));
-			StaticRing = PRing;
-			PRing.Visibility = Visibility.Visible;
-			//TODO :Remove BackStack LoginPage if exist
-			string account = LocalSettingManager.ReadSetting("Account");
-			App.Usr = JsonConvert.DeserializeObject<User>(account);
-			string get = JsonConvert.SerializeObject(new string[] { App.Usr.Id.ToString(), App.Usr.Email });
-			get = CloseHelp.Base64Encode(CloseHelp.Reverse(CloseHelp.Base64Encode(get)));
-			string url = "http://shahriar.in/app/ytdlr/dl/getdate.php?i=" + get;
-			try
+			LoadingControl.IsLoading = true;
+			StaticNr = NrAppbar;
+			if (await Api.MakeMyDayAsync())
 			{
-				url = await CloseHelp.DownloadPages(new System.Threading.CancellationToken(), url);
-				if (url.Substring(0, 3).Equals("Err"))
-					throw new System.Exception();
-				var arr = url.Split('|');
-				App.Usr.leftDay = System.Convert.ToInt32(arr[1]);
-				if (App.Usr.leftDay < 0) App.Usr.leftDay = -1;
-				App.Today = System.Convert.ToInt32(arr[0]);
-				PRing.Visibility = Visibility.Collapsed;
-				LeftDayText.Label = (1 + App.Usr.leftDay).ToString();
+				StaticRing = LoadingControl;
+				insideFrame.Navigate(typeof(Home));
+				LoadingControl.IsLoading = false;
 			}
-			catch
+			else
 			{
 				loadingTxt.Text = "Server Error!";
-				ring.IsActive = false;
 				reloadBtn.Visibility = Visibility.Visible;
 			}
 		}
-
 		private void insideFrame_Navigated(object sender, Windows.UI.Xaml.Navigation.NavigationEventArgs e)
 		{
 			if (insideFrame.CurrentSourcePageType == typeof(Home))
@@ -86,56 +69,39 @@ namespace ytdl.Views
 		}
 		private void CurrentView_BackRequested(object sender, BackRequestedEventArgs e)
 		{
-			if (insideFrame == null || !insideFrame.CanGoBack)
-				return;
+			if (insideFrame == null || !insideFrame.CanGoBack) return;
 			e.Handled = true;
 			insideFrame.GoBack();
 		}
-
-		private void Button_Click(object sender, RoutedEventArgs e)
-		{
-			try
-			{
-				var type = Frame.CurrentSourcePageType;
-				Frame.Navigate(type);
-				Frame.BackStack.Remove(Frame.BackStack.Last());
-			}
-			catch { }
-		}
 		private void GetAllLinks_Click(object sender, RoutedEventArgs e)
 		{
-			var links = new List<string>();
-			var ser = JsonConvert.DeserializeObject<List<DownloadedItems>>(LocalSettingManager.ReadSetting("DI"));
-			foreach (var dl in ser)
-			{
-				var save = LocalSettingManager.ReadSetting("LI" + dl.Id);
-				try
-				{
-					var ls = JsonConvert.DeserializeObject<LinkItems[]>(save);
-					string url = CloseHelp.Base64Encode(CloseHelp.Reverse(CloseHelp.Base64Encode(CloseHelp.Reverse(CloseHelp.Base64Encode(ls[0].tag.ToString() + "#" + dl.Id)))) + "=");
-					url = "http://shahriar.in/app/ytdlr/dl/get.php?i=" + url;
-					links.Add(url);
-				}
-				catch { }
-			}
+			//MenuFlyOut.GetAllLinks
+			var res = Api.GetAllVideoLink();
 			var dataPackage = new DataPackage();
-			dataPackage.SetText(string.Join(System.Environment.NewLine, links.ToArray()));
+			dataPackage.SetText(res);
 			Clipboard.SetContent(dataPackage);
 		}
-
 		private void RmAll_Click(object sender, RoutedEventArgs e)
 		{
+			//TODO :DB
 			var ser = JsonConvert.DeserializeObject<List<DownloadedItems>>(LocalSettingManager.ReadSetting("DI"));
 			foreach (var dl in ser)
 				LocalSettingManager.RemoveSetting("LI" + dl.Id);
 			LocalSettingManager.RemoveSetting("DI");
-			Button_Click(null, null);
+			Api.clist = new System.Collections.ObjectModel.ObservableCollection<DownloadedItems>();
+			new Helper().ReloadFrame(Frame);
 		}
-
+		private void Button_Click(object sender, RoutedEventArgs e)
+		{
+			try
+			{
+				new Helper().ReloadFrame(Frame);
+			}
+			catch { }
+		}
 		private void UserDash_Click(object sender, RoutedEventArgs e)
 		{
 			insideFrame.Navigate(typeof(UserPanel));
 		}
-
 	}
 }

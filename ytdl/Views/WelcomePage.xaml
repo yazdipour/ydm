@@ -5,20 +5,27 @@
     xmlns:local="using:ytdl.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:behaviors="using:Microsoft.Toolkit.Uwp.UI.Animations.Behaviors"
     mc:Ignorable="d" Background="Black">
-    <Border>
-        <Border.Background>
+    <Grid>
+        <Grid.Background>
             <ImageBrush Stretch="UniformToFill" ImageSource="ms-appx:///Assets/Img/loginbg.png" Opacity="0.5"/>
-        </Border.Background>
+        </Grid.Background>
+        <Border VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <interactivity:Interaction.Behaviors>
+                <behaviors:Blur Value="5" Duration="0" Delay="0" AutomaticallyStart="True"/>
+            </interactivity:Interaction.Behaviors>
+        </Border>
         <StackPanel Height="380" Width="280" Background="#CCFFFFFF" VerticalAlignment="Center" Padding="0 100">
             <Image Source="ms-appx:///Assets/Img/icon.png" Width="80" VerticalAlignment="Center"/>
             <TextBlock Text="Sign In to YDM" HorizontalAlignment="Center" 
                            VerticalAlignment="Center" FontFamily="{StaticResource Mitra}" 
                            FontSize="30" Foreground="Black" />
-            <Button HorizontalAlignment="Center" Margin="0,8,0,0" 
+            <Button HorizontalAlignment="Center" Margin="0,36,0,0" 
                                 Style="{StaticResource MaterialDesignRaisedDarkButton}" Background="#E62118"
                                 Content="Google Account" VerticalAlignment="Center"
                                 RequestedTheme="Dark" Width="186" Click="Button_Click"/>
         </StackPanel>
-    </Border>
+    </Grid>
 </Page>

@@ -6,7 +6,6 @@ namespace ytdl.Views {
         public WelcomePage() {
             this.InitializeComponent();
         }
-
         private void Button_Click(object sender,RoutedEventArgs e) {
             Frame.Navigate(typeof(LoginPage));
         }

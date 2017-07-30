@@ -35,9 +35,7 @@
                        TextWrapping="Wrap" FontSize="22"/>
                 <TextBlock x:Name="Duration" FontSize="16" Margin="12 0" Foreground="LightGray"/>
                 <TextBlock x:Name="View" FontSize="16" Margin="12 0" Foreground="LightGray"/>
-                <TextBlock Text="لینک کپی شد" FontSize="16" Margin="16" FontFamily="{StaticResource Mitra}" 
-                       Foreground="#FFEB3B" x:Name="copiedText" Opacity="0"
-                       HorizontalAlignment="Center"/>
+                
                 <ListView HorizontalAlignment="Stretch" 
                                   x:Name="xlist"
                                   SelectionMode="Single"
@@ -45,7 +43,7 @@
                                   IsItemClickEnabled="True">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <Button Content="{Binding quality}" IsHitTestVisible="False" 
+                            <Button Content="{Binding str}" IsHitTestVisible="False" 
                                 MinWidth="220"
                                 HorizontalContentAlignment="Center"/>
                         </DataTemplate>
@@ -56,9 +54,9 @@
                         </Style>
                     </ListView.ItemContainerStyle>
                 </ListView>
-                <TextBlock Text="لینک کپی شد" FontSize="16" Margin="16" FontFamily="{StaticResource Mitra}" 
-                       Foreground="#FFEB3B" x:Name="copiedText2" Opacity="0"
-                       HorizontalAlignment="Center"/>
+
+                <TextBox x:Name="txtBox" Margin="16" HorizontalAlignment="Stretch" x:DeferLoadStrategy="Lazy"/>
+                <TextBlock Text="Copied" FontSize="16" Margin="16" Foreground="#FFEB3B" x:Name="copiedText" Opacity="0" HorizontalAlignment="Center"/>
 
                 <Grid Margin="0 8">
                     <Grid.ColumnDefinitions>

@@ -101,9 +101,13 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Classes\Api.cs" />
     <Compile Include="Classes\CloseHelp.cs" />
     <Compile Include="Classes\Helper.cs" />
     <Compile Include="Classes\LocalSettingManager.cs" />
+    <Compile Include="Controllers\TabHeader.xaml.cs">
+      <DependentUpon>TabHeader.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\DownloadedItems.cs" />
     <Compile Include="Models\LinkItems.cs" />
     <Compile Include="Models\User.cs" />
@@ -114,17 +118,11 @@
     <Compile Include="Views\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\LinkGraber.xaml.cs">
-      <DependentUpon>LinkGraber.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MotherPanel.xaml.cs">
       <DependentUpon>MotherPanel.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Offline.xaml.cs">
-      <DependentUpon>Offline.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PayPanel.xaml.cs">
       <DependentUpon>PayPanel.xaml</DependentUpon>
@@ -202,6 +200,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Controllers\TabHeader.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\DownloadedDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -210,19 +212,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\LinkGraber.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\LoginPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MotherPanel.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Offline.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

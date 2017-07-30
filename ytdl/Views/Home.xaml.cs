@@ -16,7 +16,6 @@ namespace ytdl.Views
 		{
 			this.InitializeComponent();
 		}
-		ObservableCollection<DownloadedItems> clist = new ObservableCollection<DownloadedItems>();
 		private async void xlist_ItemClick(object sender, ItemClickEventArgs e)
 		{
 			var dialog = new DownloadedDialog()
@@ -39,76 +38,19 @@ namespace ytdl.Views
 			try
 			{
 				var sv = LocalSettingManager.ReadSetting("DI");
-				clist = JsonConvert.DeserializeObject<ObservableCollection<DownloadedItems>>(sv);
+				Api.clist = JsonConvert.DeserializeObject<ObservableCollection<DownloadedItems>>(sv);
 			}
 			catch { }
-			xlist.ItemsSource = clist;
-		}
-		//GetVideo Func
-		async void GetTheVideo(string input)
-		{
-			if (App.Today == 0)
-			{
-				ShowMSG("خطا در ارتباط! برنامه را ریستارت کنید");
-				return;
-			}
-			if (App.Usr.leftDay < 0)
-			{
-				if (LocalSettingManager.ExistsSetting("F" + App.Today))
-				{
-					ShowMSG("حساب خود را شارژ کنید");
-					return;
-				}
-			}
-			MotherPanel.StaticRing.Visibility = Windows.UI.Xaml.Visibility.Visible;
-			//string u = CloseHelp.Base64Encode(CloseHelp.Base64Encode(CloseHelp.Reverse((App.Today + App.Usr.Id).ToString())));
-			string u = CloseHelp.Base64Encode(CloseHelp.Base64Encode(CloseHelp.Reverse(App.Usr.Id.ToString())));
-			string video = CloseHelp.Base64Encode(input);
-			string url = "http://shahriar.in/app/ytdlr/dl/getvideo.php?u=" + u + "&videoid=" + video;
-			string respond = await CloseHelp.DownloadPages(new System.Threading.CancellationToken(false), url);
-			if (respond.Substring(0, 3) == "Err")
-			{
-				ShowMSG(respond);
-				return;
-			}
-			var temp = respond.Split(new string[] { "[*]" }, StringSplitOptions.RemoveEmptyEntries);
-			try
-			{
-				var DLI = JsonConvert.DeserializeObject<DownloadedItems>(temp[0]);
-				var LI = JsonConvert.DeserializeObject<LinkItems[]>(temp[1]);
-				var urls = JsonConvert.DeserializeObject<string[]>(temp[2]);
-				clist.Insert(0, DLI);
-				xlist.ItemsSource = clist;
-				int dr = Convert.ToInt32(DLI.Duration);
-				DLI.Duration = string.Format("{0}:{1}", dr / 60, dr % 60);
-				int index = 0;
-				foreach (var item in LI)
-				{
-					try
-					{
-						item.size = " | " + await CloseHelp.GetSize(urls[index]);
-					}
-					catch { }
-					item.quality += " | " + item.type.Replace("video/", "") + item.size;
-					index++;
-				}
-				LocalSettingManager.SaveSetting("DI", JsonConvert.SerializeObject(clist));
-				LocalSettingManager.SaveSetting("LI" + DLI.Id, JsonConvert.SerializeObject(LI));
-			}
-			catch
-			{
-				ShowMSG("در گرفتن لینک مشکلی به وجود امد. لطفا لینک را دوباره بررسی کنید");
-			}
-			MotherPanel.StaticRing.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+			xlist.ItemsSource = Api.clist;
 		}
 
-		//GetVideo Btn Event
 		private void GetInfo_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
 		{
 			string input = urlText.Text.Trim();
 			if (input.Length < 4)
 				return;
-			GetTheVideo(input);
+			Api.GetVideo(input);
+			xlist.ItemsSource = Api.clist;
 		}
 		private async void Copy_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
 		{
@@ -126,10 +68,10 @@ namespace ytdl.Views
 		{
 			var slidableitem = sender as SlidableListItem;
 			var item = slidableitem.DataContext as DownloadedItems;
-			clist.Remove(item);
-			xlist.ItemsSource = clist;
+			Api.clist.Remove(item);
+			xlist.ItemsSource = Api.clist;
 			LocalSettingManager.RemoveSetting("LI" + item.Id);
-			LocalSettingManager.SaveSetting("DI", JsonConvert.SerializeObject(clist));
+			LocalSettingManager.SaveSetting("DI", JsonConvert.SerializeObject(Api.clist));
 		}
 		private async void SymbolIcon_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
 		{
@@ -143,15 +85,6 @@ namespace ytdl.Views
 				catch { }
 			}
 		}
-		//shows error
-		async void ShowMSG(string msg)
-		{
-			var dialog = new MessageDialog(msg);
-			MotherPanel.StaticRing.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
-			dialog.Commands.Add(new UICommand("Close"));
-			await dialog.ShowAsync();
-		}
-
 		private void SearchBtn_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
 		{
 			Frame.Navigate(typeof(SearchPanel));

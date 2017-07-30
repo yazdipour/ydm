@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Linq;
 using Windows.UI;
 using Windows.UI.ViewManagement;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 
 namespace ytdl.Classes {
@@ -43,5 +45,11 @@ namespace ytdl.Classes {
             titleBar.ButtonForegroundColor = Colors.White;
         }
 
-    }
+		internal void ReloadFrame(Frame Frame)
+		{
+			var type = Frame.CurrentSourcePageType;
+			Frame.Navigate(type);
+			Frame.BackStack.Remove(Frame.BackStack.Last());
+		}
+	}
 }

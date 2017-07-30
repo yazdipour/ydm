@@ -53,7 +53,7 @@
                         Click="Charge_Click" Height="45" Margin="2 6" />
             <Button Content="بررسی مشکل شارژ" Click="Err1_Click" Background="#434C55"/>
             <Button Content="بررسی مشکل برنامه"  Click="Err2_Click" Background="#434C55"/>
-            <!--<Button Content="خروج از این حساب"  Click="Logout_Click" />-->
+            <Button Content="خروج از این حساب"  Click="Logout_Click" />
             <TextBlock Text="Ver 1.1" Foreground="Gray" FontSize="12"/>
         </StackPanel>
     </controls:DropShadowPanel>

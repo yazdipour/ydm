@@ -10,6 +10,6 @@
         <Grid Background="White">
             <ProgressRing Foreground="Black" IsActive="True" Width="40" Height="40"/>
         </Grid>
-        <WebView Source="{x:Bind LoginUrl}"  />
+        <WebView Source="{x:Bind LoginUrl}"  ContentLoading="WebView_ContentLoading"/>
     </Grid>
 </Page>
