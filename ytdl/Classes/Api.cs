@@ -12,7 +12,6 @@ namespace ytdl.Classes
 	static class Api
 	{
 		public static ObservableCollection<DownloadedItems> clist = new ObservableCollection<DownloadedItems>();
-
 		private static Boolean CheckIsConnect()
 		{
 			if (App.Today == 0)
@@ -47,8 +46,10 @@ namespace ytdl.Classes
 			{
 				string account = LocalSettingManager.ReadSetting("Account");
 				App.Usr = JsonConvert.DeserializeObject<User>(account);
-				string url = "https://shahriar.in/app/ydm/dl/getdate.php?i=" + CloseHelp.Base64Encode(CloseHelp.Reverse(CloseHelp.Base64Encode(App.Usr.Id.ToString())));
+				string url = "https://shahriar.in/app/ydm/dl/getdate.php?i=" + 
+					CloseHelp.Base64Encode(CloseHelp.Reverse(CloseHelp.Base64Encode(App.Usr.Id.ToString())));
 				url = await CloseHelp.DownloadPages(new CancellationToken(), url);
+				url = CloseHelp.MultiBase64Decode(url, 6);
 				if (url.Substring(0, 3).Equals("Err")) throw new Exception();
 				var arr = url.Split('|');
 				App.Today = Convert.ToInt32(arr[0]);
@@ -99,7 +100,6 @@ namespace ytdl.Classes
 		}
 		public static string GetVideoLink(string id, string quality)
 		{
-			string u = CloseHelp.Base64Encode(CloseHelp.Base64Encode(CloseHelp.Reverse((App.Today + App.Usr.Id).ToString())));
 			string videoId = CloseHelp.Base64Encode(id);
 			var f = CloseHelp.Base64Encode(quality);
 			string url = "https://shahriar.in/app/ydm/dl/getvideo.php?u=" + Token + "&i=" + videoId + "&f=" + f;
@@ -123,7 +123,6 @@ namespace ytdl.Classes
 			}
 			return string.Join(Environment.NewLine, links.ToArray());
 		}
-
 		public async static Task<List<DownloadedItems>> SearchVideo(string input, string maxRes)
 		{
 			var str = CloseHelp.Reverse(CloseHelp.Base64Encode(input));

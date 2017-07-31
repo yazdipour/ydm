@@ -37,7 +37,7 @@
                   HorizontalAlignment="Center"
                   VerticalAlignment="Center"/>
 
-            <TextBlock Text="sh.yazdipour@hotmail.com"/>
+            <TextBlock Text="{x:Bind mailTxt}"/>
             <Grid>
                 <AppBarButton Icon="Refresh" 
                                   VerticalAlignment="Bottom"
@@ -47,7 +47,7 @@
                        FontWeight="Light" VerticalAlignment="Bottom"
                        Foreground="#CC000000"/>
             </Grid>
-            <TextBlock Text="روز" FontFamily="{StaticResource Mitra}" 
+            <TextBlock Text="تعداد دانلود مانده" FontFamily="{StaticResource Mitra}" 
                                Margin="0 0 0 4" VerticalAlignment="Bottom"/>
             <Button Content="شارژ اکانت" Background="#EC2828"
                         Click="Charge_Click" Height="45" Margin="2 6" />

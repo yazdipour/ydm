@@ -44,5 +44,22 @@ namespace ytdl.Classes
             Array.Reverse(charArray);
             return new string(charArray);
         }
-    }
+
+		public static string MultiBase64Encode(string str, int n)
+		{
+			for (int i = 0; i < n; i++)
+			{
+				str = Base64Encode(str);
+			}
+			return str;
+		}
+		public static string MultiBase64Decode(string str, int n)
+		{
+			for (int i = 0; i < n; i++)
+			{
+				str = Base64Decode(str);
+			}
+			return str;
+		}
+	}
 }

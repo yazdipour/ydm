@@ -48,7 +48,7 @@ namespace ytdl.Views
 			}
 			else
 			{
-				loadingTxt.Text = "Server Error!";
+				loadingTxt.Text = "Error! Connection problem";
 				reloadBtn.Visibility = Visibility.Visible;
 			}
 		}

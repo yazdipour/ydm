@@ -10,16 +10,15 @@ namespace ytdl.Views
 		{
 			this.InitializeComponent();
 		}
-		string LoginUrl = "https://shahriar.in/app/ydm/pay/?e=" + CloseHelp.Base64Encode(App.Usr.Email);
-		string destinationUrl = "https://shahriar.in/app/ydm/auth/done.php";
+		string LoginUrl = "https://shahriar.in/app/ydm/pay/?e=" + (App.Usr.Email);
 
 		private void WebView_ContentLoading(WebView sender, WebViewContentLoadingEventArgs args)
 		{
 			string send = sender.Source.ToString().Trim();
-			if (send == destinationUrl)
+			if (send.Contains("shahriar.in/app/ydm/pay/done.php"))
 			{
 				Frame.BackStack.Remove(Frame.BackStack.Last());
-				Frame.Navigate(typeof(UserPanel),true);
+				Frame.Navigate(typeof(UserPanel), true);
 			}
 		}
 	}
