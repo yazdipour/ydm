@@ -19,7 +19,7 @@ namespace ytdl.Views {
         int leftDay = 0;
         private async void Logout_Click(object sender,Windows.UI.Xaml.RoutedEventArgs e) {
 			//TODO sth!
-            string msg = "آیا قصد خروج از این حساب را دارید؟ (ریستارت برنامه)";
+            string msg = "آیا قصد خروج از این حساب را دارید؟";
             var dialog = new MessageDialog(msg);
             dialog.Commands.Add(new UICommand("بیخیال"));
             dialog.Commands.Add(new UICommand("باشه",OnOKButtonClicked));

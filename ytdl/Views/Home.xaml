@@ -54,29 +54,27 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Border Margin="36,24">
-            <controls:DropShadowPanel 
+        <controls:DropShadowPanel Margin="36,24"
                                   HorizontalAlignment="Stretch"
                                   HorizontalContentAlignment="Stretch"
                 BlurRadius="8.0" ShadowOpacity="0.3" OffsetX="0" OffsetY="1" Color="Black">
-                <StackPanel Background="White" Padding="4">
-                    <Grid>
-                        <TextBox PlaceholderText="http://www.youtube.com/watch?v=Thd8yoBou7k" x:Name="urlText">
-                            <TextBox.BorderBrush>
-                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                    <GradientStop Color="#FF636363" Offset="1"/>
-                                    <GradientStop Color="White" Offset="0.9"/>
-                                </LinearGradientBrush>
-                            </TextBox.BorderBrush>
-                        </TextBox>
-                        <SymbolIcon Symbol="Copy" Width="42" Height="32" HorizontalAlignment="Right" VerticalAlignment="Center" Tapped="SymbolIcon_Tapped" />
-                    </Grid>
-                    <Button Content="GET IT" Margin="0 12 0 0" Click="GetInfo_Click" 
+            <StackPanel Background="White" Padding="4">
+                <Grid>
+                    <TextBox PlaceholderText="http://www.youtube.com/watch?v=Thd8yoBou7k" x:Name="urlText">
+                        <TextBox.BorderBrush>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FF636363" Offset="1"/>
+                                <GradientStop Color="White" Offset="0.9"/>
+                            </LinearGradientBrush>
+                        </TextBox.BorderBrush>
+                    </TextBox>
+                    <SymbolIcon Symbol="Copy" Width="42" Height="32" HorizontalAlignment="Right" VerticalAlignment="Center" Tapped="SymbolIcon_Tapped" />
+                </Grid>
+                <Button Content="GET IT" Margin="0 12 0 0" Click="GetInfo_Click" 
                             HorizontalAlignment="Stretch" Style="{StaticResource MaterialDesignRaisedDarkButton}"
                             Foreground="White" Background="#E62118"/>
-                </StackPanel>
-            </controls:DropShadowPanel>
-        </Border>
+            </StackPanel>
+        </controls:DropShadowPanel>
         <controls:AdaptiveGridView Name="xlist"
                                    ItemHeight="180"
                                    DesiredWidth="470"
@@ -88,8 +86,7 @@
                       IsItemClickEnabled="True"
                       ItemClick="xlist_ItemClick"
                       ItemTemplate="{StaticResource EmailsItemTemplate}"/>
-        <Button Content="&#xE11A;" Grid.Row="1" HorizontalAlignment="Right" Margin="12" VerticalAlignment="Bottom" 
-                Click="SearchBtn_Click"
-                Height="64" Width="64" Style="{StaticResource MaterialDesignRaisedRoundButton}" Background="#E62118"/>
+        <Button Content="&#xE11A;" Grid.Row="1" HorizontalAlignment="Right" Margin="12" VerticalAlignment="Bottom" Click="SearchBtn_Click"
+                Height="60" Width="60" Style="{StaticResource MaterialDesignRaisedRoundButton}" Background="#E62118"/>
     </Grid>
 </Page>
