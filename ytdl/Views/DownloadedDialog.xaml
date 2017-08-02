@@ -56,7 +56,7 @@
                 </ListView>
 
                 <TextBox x:Name="txtBox" Margin="16" HorizontalAlignment="Stretch" x:DeferLoadStrategy="Lazy"/>
-                <TextBlock Text="Copied" FontSize="16" Margin="16" Foreground="#FFEB3B" x:Name="copiedText" Opacity="0" HorizontalAlignment="Center"/>
+                <TextBlock x:Name="copiedText" Text="Copied" FontSize="16" Margin="16" Foreground="#FFEB3B" Opacity="0" HorizontalAlignment="Center"/>
 
                 <Grid Margin="0 8">
                     <Grid.ColumnDefinitions>

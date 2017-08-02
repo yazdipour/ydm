@@ -18,7 +18,6 @@ namespace ytdl.Views {
         string Img = "",mailTxt;
         int leftDay = 0;
         private async void Logout_Click(object sender,Windows.UI.Xaml.RoutedEventArgs e) {
-			//TODO sth!
             string msg = "آیا قصد خروج از این حساب را دارید؟";
             var dialog = new MessageDialog(msg);
             dialog.Commands.Add(new UICommand("بیخیال"));
@@ -27,10 +26,8 @@ namespace ytdl.Views {
         }
         private async void OnOKButtonClicked(IUICommand command) {
             LocalSettingManager.RemoveSetting("Account");
-            LocalSettingManager.RemoveSetting("DI");
+            await AkavacheHelper.RemoveFromLocal("MainList");
             await CloseHelp.DownloadPages(new System.Threading.CancellationToken(false),"https://shahriar.in/app/ydm/auth/logout.php");
-			//Windows.UI.Xaml.Application.Current.Exit();
-			//TODO: Try?
             Frame rootFrame = Windows.UI.Xaml.Window.Current.Content as Frame;
 			rootFrame.Navigate(typeof(WelcomePage));
 		}

@@ -16,6 +16,7 @@ namespace ytdl.Views
 		public static AppBarButton StaticNr { get; set; }
 		public MotherPanel()
 		{
+			AkavacheHelper.Init();
 			this.InitializeComponent();
 		}
 		#region Acrylic
@@ -73,22 +74,23 @@ namespace ytdl.Views
 			e.Handled = true;
 			insideFrame.GoBack();
 		}
-		private void GetAllLinks_Click(object sender, RoutedEventArgs e)
+		private async void GetAllLinks_Click(object sender, RoutedEventArgs e)
 		{
 			//MenuFlyOut.GetAllLinks
-			var res = Api.GetAllVideoLink();
+			var res = await Api.GetAllVideoLinkAsync();
 			var dataPackage = new DataPackage();
 			dataPackage.SetText(res);
 			Clipboard.SetContent(dataPackage);
 		}
-		private void RmAll_Click(object sender, RoutedEventArgs e)
+		private async void RmAll_Click(object sender, RoutedEventArgs e)
 		{
-			//TODO :DB
-			var ser = JsonConvert.DeserializeObject<List<DownloadedItems>>(LocalSettingManager.ReadSetting("DI"));
+			var m = await AkavacheHelper.ReadStringLocal("MainList");
+			var ser = JsonConvert.DeserializeObject<List<DownloadedItems>>(m);
 			foreach (var dl in ser)
-				LocalSettingManager.RemoveSetting("LI" + dl.Id);
-			LocalSettingManager.RemoveSetting("DI");
+				await AkavacheHelper.RemoveFromLocal("LI" + dl.Id);
+			await AkavacheHelper.RemoveFromLocal("MainList");
 			Api.clist = new System.Collections.ObjectModel.ObservableCollection<DownloadedItems>();
+
 			new Helper().ReloadFrame(Frame);
 		}
 		private void Button_Click(object sender, RoutedEventArgs e)

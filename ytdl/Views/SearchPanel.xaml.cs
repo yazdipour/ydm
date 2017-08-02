@@ -16,11 +16,12 @@ namespace ytdl.Views
 			this.InitializeComponent();
 		}
 
-		private void SlidableListItem_RightCommandRequested(object sender, EventArgs e)
+		private async void SlidableListItem_RightCommandRequested(object sender, EventArgs e)
 		{
 			var slidableitem = sender as SlidableListItem;
 			var item = slidableitem.DataContext as DownloadedItems;
-			Api.GetVideo(item.Id);
+			var key = await Api.GetVideo(item.Id);
+			await Api.FillSizeAsync(key);
 		}
 		private async void SlidableListItem_LeftCommandRequested(object sender, EventArgs e)
 		{
@@ -37,7 +38,7 @@ namespace ytdl.Views
 				var str = searchField.Text.Trim();
 				string maxRes = (cmBox.SelectedItem as ComboBoxItem).Content.ToString();
 				if (str.Length < 2) { MotherPanel.StaticRing.IsLoading = false; return; }
-				var dlr=await Api.SearchVideo(str, maxRes);
+				var dlr = await Api.SearchVideo(str, maxRes);
 				if (dlr == null)
 				{
 					CloseHelp.ShowMSG("Err");

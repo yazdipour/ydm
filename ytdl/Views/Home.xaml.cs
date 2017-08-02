@@ -3,7 +3,6 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.ObjectModel;
 using Windows.ApplicationModel.DataTransfer;
-using Windows.UI.Popups;
 using Windows.UI.Xaml.Controls;
 using ytdl.Classes;
 using ytdl.Models;
@@ -26,30 +25,31 @@ namespace ytdl.Views
 			await t;
 			if (t.Status == Windows.Foundation.AsyncStatus.Completed)
 			{
-				if (dialog.changedBool) LoadList();
+				if (dialog.changedBool) LoadListAsync();
 			}
 		}
 		private void Page_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
 		{
-			if (xlist.Items.Count == 0) LoadList();
+			if (xlist.Items.Count == 0) LoadListAsync();
 		}
-		private void LoadList()
+		private async void LoadListAsync()
 		{
 			try
 			{
-				var sv = LocalSettingManager.ReadSetting("DI");
+				var sv = await AkavacheHelper.ReadStringLocal("MainList");
 				Api.clist = JsonConvert.DeserializeObject<ObservableCollection<DownloadedItems>>(sv);
 			}
 			catch { }
 			xlist.ItemsSource = Api.clist;
 		}
 
-		private void GetInfo_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+		private async void GetInfo_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
 		{
 			string input = urlText.Text.Trim();
 			if (input.Length < 4)
 				return;
-			Api.GetVideo(input);
+			var key=await Api.GetVideo(input);
+			await Api.FillSizeAsync(key);
 			xlist.ItemsSource = Api.clist;
 		}
 		private async void Copy_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
@@ -64,15 +64,7 @@ namespace ytdl.Views
 				catch { }
 			}
 		}
-		private void SlidableListItem_RightCommandRequested(object sender, EventArgs e)
-		{
-			var slidableitem = sender as SlidableListItem;
-			var item = slidableitem.DataContext as DownloadedItems;
-			Api.clist.Remove(item);
-			xlist.ItemsSource = Api.clist;
-			LocalSettingManager.RemoveSetting("LI" + item.Id);
-			LocalSettingManager.SaveSetting("DI", JsonConvert.SerializeObject(Api.clist));
-		}
+	
 		private async void SymbolIcon_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
 		{
 			var dataPackageView = Clipboard.GetContent();
@@ -88,6 +80,20 @@ namespace ytdl.Views
 		private void SearchBtn_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
 		{
 			Frame.Navigate(typeof(SearchPanel));
+		}
+
+		private void SlidableListItem_RightCommandRequested(object sender, EventArgs e)
+		{
+			var slidableitem = sender as SlidableListItem;
+			var item = slidableitem.DataContext as DownloadedItems;
+			Api.clist.Remove(item);
+			xlist.ItemsSource = Api.clist;
+			async void save()
+			{
+				await AkavacheHelper.RemoveFromLocal("LI" + item.Id);
+				await AkavacheHelper.SaveStringLocal("MainList", JsonConvert.SerializeObject(Api.clist));
+			}
+			save();
 		}
 	}
 }

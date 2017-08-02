@@ -39,7 +39,7 @@ namespace ytdl.Views
 		{
 			await copiedText.Fade(value: 1, duration: 0, delay: 0).StartAsync();
 			var clicked = (e.ClickedItem) as LinkItems;
-			string url = Api.GetVideoLink(dl.Id,clicked.quality);
+			string url = Api.GetVideoLink(dl.Id, clicked.quality);
 			var dataPackage = new DataPackage();
 			dataPackage.SetText(url);
 			Clipboard.SetContent(dataPackage);
@@ -49,15 +49,14 @@ namespace ytdl.Views
 			await copiedText.Fade(value: 0, duration: 1000, delay: 1000).StartAsync();
 		}
 
-		private void ContentDialog_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+		private async void ContentDialog_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
 		{
 			oTitle.Text = dl.Title;
 			Duration.Text = "Duration : " + dl.Duration;
 			View.Text = dl.Views + " Views";
 			Img.ImageSource = new Windows.UI.Xaml.Media.Imaging.BitmapImage(new Uri(dl.Img, UriKind.Absolute));
-			//TODO: DB
 			//Getting Links
-			var save = LocalSettingManager.ReadSetting("LI" + dl.Id);
+			var save = await AkavacheHelper.ReadStringLocal("LI" + dl.Id);
 			try
 			{
 				var ls = JsonConvert.DeserializeObject<LinkItems[]>(save);
@@ -72,15 +71,15 @@ namespace ytdl.Views
 			await Windows.System.Launcher.LaunchUriAsync(uri);
 		}
 
-		private void rm_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+		private async void rm_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
 		{
-			//TODO: DB
 			//ReadLocalValue it 1st
-			var ser = JsonConvert.DeserializeObject<List<DownloadedItems>>(LocalSettingManager.ReadSetting("DI"));
+			var m = await AkavacheHelper.ReadStringLocal("MainList");
+			var ser = JsonConvert.DeserializeObject<List<DownloadedItems>>(m);
 			ser.Remove(ser.Find(obj => obj.Id == dl.Id));
 			//save changes
-			LocalSettingManager.SaveSetting("DI", JsonConvert.SerializeObject(ser));
-			LocalSettingManager.RemoveSetting("LI" + dl.Id);
+			await AkavacheHelper.SaveStringLocal("MainList", JsonConvert.SerializeObject(ser));
+			await AkavacheHelper.RemoveFromLocal("LI" + dl.Id);
 			changedBool = true;
 			Hide();
 		}
