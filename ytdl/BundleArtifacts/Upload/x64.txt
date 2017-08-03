@@ -1,5 +1,5 @@
-MainPackage=C:\Users\Master\Documents\Visual Studio 2017\Projects\ytdl\ytdl\bin\x64\Release\Upload\ytdl_1.1.1.0_x64.appx
-SymbolPackage=C:\Users\Master\Documents\Visual Studio 2017\Projects\ytdl\ytdl\bin\x64\Release\Upload\ytdl_1.1.1.0\ytdl_1.1.1.0_x64.appxsym
+MainPackage=C:\Users\Master\Documents\Visual Studio 2017\Projects\ytdl\ytdl\bin\x64\Release\Upload\ytdl_1.1.2.0_x64.appx
+SymbolPackage=C:\Users\Master\Documents\Visual Studio 2017\Projects\ytdl\ytdl\bin\x64\Release\Upload\ytdl_1.1.2.0\ytdl_1.1.2.0_x64.appxsym
 ResourcePack=C:\Users\Master\Documents\Visual Studio 2017\Projects\ytdl\ytdl\_scale-100.appx
 ResourcePack=C:\Users\Master\Documents\Visual Studio 2017\Projects\ytdl\ytdl\_scale-125.appx
 ResourcePack=C:\Users\Master\Documents\Visual Studio 2017\Projects\ytdl\ytdl\_scale-150.appx

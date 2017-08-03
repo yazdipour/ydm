@@ -70,7 +70,15 @@ namespace ytdl.Views
 		private void Button_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
 		{
 			var tag = (sender as Button).Tag.ToString();
-			LoadItemsAsync(tag);
+			try
+			{
+				LoadItemsAsync(tag);
+				if (tag == "2") FindName("GetAll");
+			}
+			catch
+			{
+				CloseHelp.ShowMSG("Something happend!");
+			}
 		}
 		private void searchField_KeyDown(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e)
 		{
@@ -82,19 +90,25 @@ namespace ytdl.Views
 				e.Handled = true;
 			}
 		}
-		private async void CpButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+		private void CpButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
 		{
-			var dataPackageView = Clipboard.GetContent();
-			if (dataPackageView.Contains(StandardDataFormats.Text))
+			List<DownloadedItems> x = (lst2.ItemsSource as List<DownloadedItems>);
+			if (x.Count > App.Usr.nrCanDownload)
 			{
-				try
-				{
-					searchField2.Text = (await dataPackageView.GetTextAsync()).Trim();
-				}
-				catch { }
+				CloseHelp.ShowMSG("You can't download " + x.Count + " videos with your account");
+			}
+			else
+			{
+				List<string> ls = new List<string>();
+				foreach (var item in x)
+					ls.Add(item.Id);
+				Api.GetBatchOfVideos(ls);
 			}
 		}
-		List<CheckBox> ListCheck=null;
+		/// <summary>
+		/// Pivot 3 WL
+		/// </summary>
+		List<CheckBox> ListCheck = null;
 
 		private void Button_Click_1(object sender, Windows.UI.Xaml.RoutedEventArgs e)
 		{
@@ -110,44 +124,38 @@ namespace ytdl.Views
 				{
 					var m = match.Value.Substring(14).Replace("\"", "");
 					if (m.Length < 6) continue;
-					ListCheck.Add(new CheckBox() { Content = "https://www.youtube.com/watch?v=" + m, IsChecked = (--count>0)});
+					ListCheck.Add(new CheckBox() { Content = "https://www.youtube.com/watch?v=" + m, IsChecked = (--count > 0) });
 				}
 				catch { }
 			}
 			FindName("LstChk");
 			FindName("BtnExtract");
 			FindName("Selecters");
-			
+
 			LstChk.ItemsSource = ListCheck;
 		}
 
-		private async void Button_Click_2(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+		private void Button_Click_2(object sender, Windows.UI.Xaml.RoutedEventArgs e)
 		{
-			var count = ListCheck.FindAll(obj => obj.IsChecked == true).Count;
-			if (count>App.Usr.nrCanDownload)
+			var ls = ListCheck.FindAll(obj => obj.IsChecked == true);
+			if (ls.Count > App.Usr.nrCanDownload)
 			{
-				CloseHelp.ShowMSG("You can't download "+count+" videos with your account");
+				CloseHelp.ShowMSG("You can't download " + ls.Count + " videos with your account");
 			}
 			else
 			{
-				MotherPanel.StaticRing.IsLoading = true;
-				foreach (var item in ListCheck.FindAll(obj => obj.IsChecked == true))
+				var lss = new List<string>();
+				foreach (var item in ls)
 				{
-					try
-					{
-						var key = await Api.GetVideo(item.Content.ToString(), false,false);
-						if (key == null) continue;
-						await Api.FillSizeAsync(key);
-					}
-					catch { }
+					lss.Add(item.Content.ToString());
 				}
-				MotherPanel.StaticRing.IsLoading = false;
+				Api.GetBatchOfVideos(lss);
 			}
 		}
 
 		private void Button_Click_De(object sender, Windows.UI.Xaml.RoutedEventArgs e)
 		{
-			foreach(var item in (ListCheck.FindAll(obj => obj.IsChecked == true)))
+			foreach (var item in (ListCheck.FindAll(obj => obj.IsChecked == true)))
 				item.IsChecked = false;
 			LstChk.ItemsSource = ListCheck;
 		}

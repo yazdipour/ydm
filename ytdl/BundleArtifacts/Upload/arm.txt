@@ -1,5 +1,5 @@
-MainPackage=C:\Users\Master\Documents\Visual Studio 2017\Projects\ytdl\ytdl\bin\ARM\Release\Upload\ytdl_1.1.0.0_ARM.appx
-SymbolPackage=C:\Users\Master\Documents\Visual Studio 2017\Projects\ytdl\ytdl\bin\ARM\Release\Upload\ytdl_1.1.0.0\ytdl_1.1.0.0_ARM.appxsym
+MainPackage=C:\Users\Master\Documents\Visual Studio 2017\Projects\ytdl\ytdl\bin\ARM\Release\Upload\ytdl_1.1.3.0_ARM.appx
+SymbolPackage=C:\Users\Master\Documents\Visual Studio 2017\Projects\ytdl\ytdl\bin\ARM\Release\Upload\ytdl_1.1.3.0\ytdl_1.1.3.0_ARM.appxsym
 ResourcePack=C:\Users\Master\Documents\Visual Studio 2017\Projects\ytdl\ytdl\_scale-100.appx
 ResourcePack=C:\Users\Master\Documents\Visual Studio 2017\Projects\ytdl\ytdl\_scale-125.appx
 ResourcePack=C:\Users\Master\Documents\Visual Studio 2017\Projects\ytdl\ytdl\_scale-150.appx

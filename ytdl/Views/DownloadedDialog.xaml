@@ -55,7 +55,7 @@
                     </ListView.ItemContainerStyle>
                 </ListView>
 
-                <TextBox x:Name="txtBox" Margin="16" HorizontalAlignment="Stretch" x:DeferLoadStrategy="Lazy"/>
+                <TextBox x:Name="txtBox" Margin="16" HorizontalAlignment="Stretch"  x:Load="False"/>
                 <TextBlock x:Name="copiedText" Text="Copied" FontSize="16" Margin="16" Foreground="#FFEB3B" Opacity="0" HorizontalAlignment="Center"/>
 
                 <Grid Margin="0 8">

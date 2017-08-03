@@ -192,5 +192,21 @@ namespace ytdl.Classes
 			}
 			catch { return "!"; }
 		}
+
+		public static async void GetBatchOfVideos(List<string> urls)
+		{
+			Views.MotherPanel.StaticRing.IsLoading = true;
+			foreach (var item in urls)
+			{
+				try
+				{
+					var key = await GetVideo(item, false, false);
+					if (key == null) continue;
+					await FillSizeAsync(key);
+				}
+				catch { }
+			}
+			Views.MotherPanel.StaticRing.IsLoading = false;
+		}
 	}
 }

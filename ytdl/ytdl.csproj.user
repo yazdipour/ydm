@@ -22,7 +22,7 @@
   <PropertyGroup>
     <AppxShowAllApps>False</AppxShowAllApps>
     <AppxPackageIsForStore>True</AppxPackageIsForStore>
-    <AppxBuildConfigurationSelection>x86|x64</AppxBuildConfigurationSelection>
+    <AppxBuildConfigurationSelection>arm</AppxBuildConfigurationSelection>
     <PackageLogoSource>C:\Users\Master\Desktop\Logo-TileLargeMedium.pdf</PackageLogoSource>
     <PackageOptionalProjectsInIdeBuilds>False</PackageOptionalProjectsInIdeBuilds>
   </PropertyGroup>
