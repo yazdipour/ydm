@@ -16,6 +16,7 @@ namespace ytdl.Views
 		{
 			this.InitializeComponent();
 		}
+
 		private async void SlidableListItem_RightCommandRequested(object sender, EventArgs e)
 		{
 			var slidableitem = sender as SlidableListItem;
@@ -35,6 +36,9 @@ namespace ytdl.Views
 			Uri uri = new Uri("http://www.youtube.com/watch?v=" + item.Id);
 			await Windows.System.Launcher.LaunchUriAsync(uri);
 		}
+		/// <summary>
+		/// Pivot 1
+		/// </summary>
 		private async void LoadItemsAsync(string tag)
 		{
 			MotherPanel.StaticRing.IsLoading = true;
@@ -67,6 +71,38 @@ namespace ytdl.Views
 			}
 			MotherPanel.StaticRing.IsLoading = false;
 		}
+		private void searchField_KeyDown(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e)
+		{
+			if (e.Key == Windows.System.VirtualKey.Enter)
+			{
+				var tag = (sender as TextBox).Tag.ToString();
+				LoadItemsAsync(tag);
+				// Make sure to set the Handled to true, otherwise the RoutedEvent might fire twice
+				e.Handled = true;
+			}
+		}
+		/// <summary>
+		/// Pivot 2 PL
+		/// </summary>
+		private void CpButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+		{
+			try
+			{
+				List<DownloadedItems> x = (lst2.ItemsSource as List<DownloadedItems>);
+				if (x.Count > App.Usr.nrCanDownload)
+				{
+					CloseHelp.ShowMSG("You can't download " + x.Count + " videos with your account");
+				}
+				else
+				{
+					List<string> ls = new List<string>();
+					foreach (var item in x)
+						ls.Add(item.Id);
+					Api.GetBatchOfVideos(ls);
+				}
+			}
+			catch { }
+		}
 		private void Button_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
 		{
 			var tag = (sender as Button).Tag.ToString();
@@ -78,31 +114,6 @@ namespace ytdl.Views
 			catch
 			{
 				CloseHelp.ShowMSG("Something happend!");
-			}
-		}
-		private void searchField_KeyDown(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e)
-		{
-			if (e.Key == Windows.System.VirtualKey.Enter)
-			{
-				var tag = (sender as TextBox).Tag.ToString();
-				LoadItemsAsync(tag);
-				// Make sure to set the Handled to true, otherwise the RoutedEvent might fire twice
-				e.Handled = true;
-			}
-		}
-		private void CpButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
-		{
-			List<DownloadedItems> x = (lst2.ItemsSource as List<DownloadedItems>);
-			if (x.Count > App.Usr.nrCanDownload)
-			{
-				CloseHelp.ShowMSG("You can't download " + x.Count + " videos with your account");
-			}
-			else
-			{
-				List<string> ls = new List<string>();
-				foreach (var item in x)
-					ls.Add(item.Id);
-				Api.GetBatchOfVideos(ls);
 			}
 		}
 		/// <summary>

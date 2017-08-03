@@ -9,7 +9,7 @@
     <UseEmulator>false</UseEmulator>
     <RemoteDebugMachine>SLAVE</RemoteDebugMachine>
     <AuthenticationMode>None</AuthenticationMode>
-    <RemoteDebugEnabled>true</RemoteDebugEnabled>
+    <RemoteDebugEnabled>false</RemoteDebugEnabled>
     <DeployOptionalPackages>false</DeployOptionalPackages>
     <CreateCleanLayout>false</CreateCleanLayout>
   </PropertyGroup>

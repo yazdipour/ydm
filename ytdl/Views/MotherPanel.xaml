@@ -42,7 +42,7 @@
                           VerticalContentAlignment="Center" Background="#FF000000" Opacity="0.76">
             <StackPanel Orientation="Horizontal" Padding="12">
                 <ProgressRing IsActive="True" Foreground="#e74c3c" Width="48" Height="48"/>
-                <TextBlock x:Name="loadingTxt" Text="Loading" VerticalAlignment="Center" FontSize="24"/>
+                <TextBlock x:Name="loadingTxt" Text=" Please wait" VerticalAlignment="Center" FontSize="24"/>
                 <Button x:Name="reloadBtn" Content="Try again" Visibility="Collapsed" HorizontalAlignment="Center" Click="Button_Click" 
                         RequestedTheme="Dark" Margin="8" FontSize="17"/>
             </StackPanel>

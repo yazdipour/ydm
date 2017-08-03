@@ -70,7 +70,6 @@ namespace MaterialDesignThemes.Uwp
                             ShadowColor = Color.FromArgb(160, 0, 0, 0),
                             Source = cl
                         },
-                        //TODO not doing any scaling right now, confirm with larger shadows
                         TransformMatrix = Matrix3x2.CreateScale(1.0f, new Vector2((float)(border.ActualWidth / 2), ((float)border.ActualHeight / 2)))
 
                     },
