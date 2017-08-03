@@ -1,7 +1,8 @@
 ﻿using Microsoft.Toolkit.Uwp.UI.Controls;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Text.RegularExpressions;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.UI.Xaml.Controls;
 using ytdl.Classes;
@@ -15,13 +16,17 @@ namespace ytdl.Views
 		{
 			this.InitializeComponent();
 		}
-
 		private async void SlidableListItem_RightCommandRequested(object sender, EventArgs e)
 		{
 			var slidableitem = sender as SlidableListItem;
 			var item = slidableitem.DataContext as DownloadedItems;
-			var key = await Api.GetVideo(item.Id);
-			await Api.FillSizeAsync(key);
+			try
+			{
+				var key = await Api.GetVideo(item.Id);
+				if (key == null) return;
+				await Api.FillSizeAsync(key);
+			}
+			catch { CloseHelp.ShowMSG("Error!"); }
 		}
 		private async void SlidableListItem_LeftCommandRequested(object sender, EventArgs e)
 		{
@@ -62,13 +67,11 @@ namespace ytdl.Views
 			}
 			MotherPanel.StaticRing.IsLoading = false;
 		}
-
 		private void Button_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
 		{
 			var tag = (sender as Button).Tag.ToString();
 			LoadItemsAsync(tag);
 		}
-
 		private void searchField_KeyDown(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e)
 		{
 			if (e.Key == Windows.System.VirtualKey.Enter)
@@ -79,7 +82,6 @@ namespace ytdl.Views
 				e.Handled = true;
 			}
 		}
-
 		private async void CpButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
 		{
 			var dataPackageView = Clipboard.GetContent();
@@ -91,6 +93,70 @@ namespace ytdl.Views
 				}
 				catch { }
 			}
+		}
+		List<CheckBox> ListCheck=null;
+
+		private void Button_Click_1(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+		{
+			string html = htmlTextBox.Text.Trim();
+			if (html.Length < 20) return;
+			Regex regex = new Regex(@"data-video-id=""(.*?)""");
+			var matchs = regex.Matches(html);
+			var count = App.Usr.nrCanDownload;
+			ListCheck = new List<CheckBox>();
+			foreach (Match match in matchs)
+			{
+				try
+				{
+					var m = match.Value.Substring(14).Replace("\"", "");
+					if (m.Length < 6) continue;
+					ListCheck.Add(new CheckBox() { Content = "https://www.youtube.com/watch?v=" + m, IsChecked = (--count>0)});
+				}
+				catch { }
+			}
+			FindName("LstChk");
+			FindName("BtnExtract");
+			FindName("Selecters");
+			
+			LstChk.ItemsSource = ListCheck;
+		}
+
+		private async void Button_Click_2(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+		{
+			var count = ListCheck.FindAll(obj => obj.IsChecked == true).Count;
+			if (count>App.Usr.nrCanDownload)
+			{
+				CloseHelp.ShowMSG("You can't download "+count+" videos with your account");
+			}
+			else
+			{
+				MotherPanel.StaticRing.IsLoading = true;
+				foreach (var item in ListCheck.FindAll(obj => obj.IsChecked == true))
+				{
+					try
+					{
+						var key = await Api.GetVideo(item.Content.ToString(), false,false);
+						if (key == null) continue;
+						await Api.FillSizeAsync(key);
+					}
+					catch { }
+				}
+				MotherPanel.StaticRing.IsLoading = false;
+			}
+		}
+
+		private void Button_Click_De(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+		{
+			foreach(var item in (ListCheck.FindAll(obj => obj.IsChecked == true)))
+				item.IsChecked = false;
+			LstChk.ItemsSource = ListCheck;
+		}
+
+		private void Button_Click_Se(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+		{
+			foreach (var item in (ListCheck.FindAll(obj => obj.IsChecked == false)))
+				item.IsChecked = true;
+			LstChk.ItemsSource = ListCheck;
 		}
 	}
 }

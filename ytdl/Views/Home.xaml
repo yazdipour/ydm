@@ -79,7 +79,7 @@
                                    ItemHeight="180"
                                    DesiredWidth="470"
                                    Margin="4 0 0 0"
-                      ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                      ScrollViewer.VerticalScrollBarVisibility="Auto"
                       Grid.Row="1"
                       VerticalAlignment="Stretch"
                       SelectionMode="None"

@@ -16,11 +16,10 @@
         </Grid.RowDefinitions>
         <!--<RelativePanel Grid.RowSpan="2" MinWidth="40" x:Name="MainGrid" SizeChanged="Page_SizeChanged" Background="{StaticResource BgCard}"/>-->
         <controls:DropShadowPanel BlurRadius="7.0" ShadowOpacity="0.5" 
-                                  HorizontalAlignment="Stretch"
+                                  HorizontalAlignment="Stretch" Visibility="Collapsed" x:Name="TopBar"
                                   HorizontalContentAlignment="Stretch"
                                   OffsetX="0" OffsetY="2" Color="Black">
             <Grid Height="52" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="#FFE33419" RequestedTheme="Dark">
-                <!--FontFamily="{StaticResource Mitra}"-->
                 <TextBlock Text="YDM"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center" FontSize="22"/>
@@ -29,7 +28,6 @@
                 <AppBarButton Icon="ShowBcc" HorizontalAlignment="Left" x:Name="TopMenu">
                     <AppBarButton.Flyout>
                         <MenuFlyout>
-                            <!--<MenuFlyoutItem Text="Add batch from clipboard" Click="Batch_Click"/>-->
                             <MenuFlyoutItem Text="Get all links (HQ)" Click="GetAllLinks_Click"/>
                             <MenuFlyoutItem Text="Remove all items" Click="RmAll_Click"/>
                         </MenuFlyout>

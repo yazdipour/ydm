@@ -44,6 +44,7 @@ namespace ytdl.Views
 			if (await Api.MakeMyDayAsync())
 			{
 				StaticRing = LoadingControl;
+				TopBar.Visibility = Visibility.Visible;
 				insideFrame.Navigate(typeof(Home));
 				LoadingControl.IsLoading = false;
 			}

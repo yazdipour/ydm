@@ -1,1 +1,1 @@
-C:\Users\Shahriar\documents\visual studio 2015\Projects\ytdl\ytdl\AppPackages\ytdl_1.0.9.0\ytdl_1.0.9.0_x86_x64_arm.appxbundle
+C:\Users\Master\Documents\Visual Studio 2017\Projects\ytdl\ytdl\bin\x64\Release\Upload\ytdl_1.1.1.0\ytdl_1.1.1.0_x86_x64.appxbundle

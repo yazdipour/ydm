@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Reactive.Linq;
 
-
 namespace ytdl.Classes
 {
 	static class AkavacheHelper
@@ -21,6 +20,11 @@ namespace ytdl.Classes
 		{
 			try { return await BlobCache.LocalMachine.GetObject<string>(key); }
 			catch (KeyNotFoundException) { return null; }
+		}
+		public async static Task<Boolean> ExistStringLocal(string key)
+		{
+			try { return await ReadStringLocal(key)==null ? false : true; }
+			catch (KeyNotFoundException) { return false; }
 		}
 		public async static Task RemoveFromLocal(string key)
 		{

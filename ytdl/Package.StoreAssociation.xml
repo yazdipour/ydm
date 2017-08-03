@@ -358,14 +358,15 @@
     <Language Code="zu-za" InMinimumRequirementSet="true" />
   </SupportedLocales>
   <ProductReservedInfo>
-    <MainPackageIdentityName>3783mindprojects.6550439DC5047</MainPackageIdentityName>
+    <MainPackageIdentityName>3783mindprojects.YDM</MainPackageIdentityName>
     <ReservedNames>
-      <ReservedName>یوتیوب دانلودر</ReservedName>
+      <ReservedName>YDM</ReservedName>
     </ReservedNames>
   </ProductReservedInfo>
   <AccountPackageIdentityNames>
     <MainPackageIdentityName>3783mindprojects.BitconLottery</MainPackageIdentityName>
     <MainPackageIdentityName>3783mindprojects.BlackReader</MainPackageIdentityName>
+    <MainPackageIdentityName>3783mindprojects.githublibrary</MainPackageIdentityName>
     <MainPackageIdentityName>3783mindprojects.InfixPrefixPostfix</MainPackageIdentityName>
     <MainPackageIdentityName>3783mindprojects.InstagramPro</MainPackageIdentityName>
     <MainPackageIdentityName>3783mindprojects.iTehran</MainPackageIdentityName>
@@ -376,6 +377,7 @@
     <MainPackageIdentityName>3783mindprojects.TelegramStore</MainPackageIdentityName>
     <MainPackageIdentityName>3783mindprojects.52602C4675F0A</MainPackageIdentityName>
     <MainPackageIdentityName>3783mindprojects.53420548E01F3</MainPackageIdentityName>
+    <MainPackageIdentityName>3783mindprojects.6550439DC5047</MainPackageIdentityName>
   </AccountPackageIdentityNames>
-  <PackageInfoList LandingUrl="http://developer.microsoft.com/dashboard/Application?appId=9NS2ZMPBBV9R" />
+  <PackageInfoList LandingUrl="https://developer.microsoft.com/dashboard/Application?appId=9PLTN8LXG7M4" />
 </StoreAssociation>

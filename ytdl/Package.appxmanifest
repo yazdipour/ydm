@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="3783mindprojects.6550439DC5047" Publisher="CN=5055881C-9F85-4877-AEA1-AF64140AD34D" Version="1.0.9.0" />
-  <mp:PhoneIdentity PhoneProductId="137aa8c1-f6dd-49bb-a323-7ce491d8f218" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Identity Name="3783mindprojects.YDM" Publisher="CN=5055881C-9F85-4877-AEA1-AF64140AD34D" Version="1.1.1.0" />
+  <mp:PhoneIdentity PhoneProductId="0d289d37-54ae-4400-b38b-a71b06203425" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>YDM</DisplayName>
     <PublisherDisplayName>Yazdipour</PublisherDisplayName>

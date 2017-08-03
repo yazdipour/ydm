@@ -374,6 +374,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        
         <Style x:Key="TBDS" TargetType="controls:DropShadowPanel">
             <Setter Property="Margin" Value="36,24"/>
             <Setter Property="HorizontalAlignment" Value="Stretch"/>
@@ -403,63 +404,99 @@
             <Setter Property="Content" Value="Search"/>
             <Setter Property="Grid.Column" Value="2"/>
         </Style>
+
+        <Style x:Key="BWL" TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedDarkButton}">
+            <Setter Property="Width" Value="148"/>
+            <Setter Property="Background" Value="DimGray"/>
+        </Style>
     </Page.Resources>
-        <Pivot Style="{StaticResource TabsStylePivotStyle}" >
-            <PivotItem>
-                <PivotItem.Header>
-                    <control:TabHeader Label="Search" Glyph="&#xE721;" />
-                </PivotItem.Header>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <controls:DropShadowPanel Style="{StaticResource TBDS}">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBox PlaceholderText="Search" x:Name="searchField" HorizontalAlignment="Stretch" Tag="1"
+    <Pivot Style="{StaticResource TabsStylePivotStyle}" >
+        <PivotItem>
+            <PivotItem.Header>
+                <control:TabHeader Label="Search" Glyph="&#xE721;" />
+            </PivotItem.Header>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <controls:DropShadowPanel Style="{StaticResource TBDS}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox PlaceholderText="Search" x:Name="searchField" HorizontalAlignment="Stretch" Tag="1"
                                      KeyDown="searchField_KeyDown"/>
-                            <ComboBox x:Name="cmBox" PlaceholderText="15" Grid.Column="1">
-                                <ComboBoxItem Content="5"/>
-                                <ComboBoxItem Content="15" IsSelected="True"/>
-                                <ComboBoxItem Content="25"/>
-                                <ComboBoxItem Content="35"/>
-                                <ComboBoxItem Content="50"/>
-                            </ComboBox>
-                            <Button Style="{StaticResource BTN}" Tag="1" Click="Button_Click"/>
-                        </Grid>
-                    </controls:DropShadowPanel>
-                    <controls:AdaptiveGridView Grid.Row="1" Name="lst1" Style="{StaticResource AGV}"/>
-                </Grid>
-            </PivotItem>
-            <PivotItem>
-                <PivotItem.Header>
-                    <control:TabHeader Label="Play List" Glyph="&#xE714;" />
-                </PivotItem.Header>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <controls:DropShadowPanel Style="{StaticResource TBDS}">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBox PlaceholderText="http://www.youtube.com/playlist?list=PlayListID" x:Name="searchField2" Tag="2"
+                        <ComboBox x:Name="cmBox" PlaceholderText="15" Grid.Column="1">
+                            <ComboBoxItem Content="5"/>
+                            <ComboBoxItem Content="15" IsSelected="True"/>
+                            <ComboBoxItem Content="25"/>
+                            <ComboBoxItem Content="35"/>
+                            <ComboBoxItem Content="50"/>
+                        </ComboBox>
+                        <Button Style="{StaticResource BTN}" Tag="1" Click="Button_Click"/>
+                    </Grid>
+                </controls:DropShadowPanel>
+                <controls:AdaptiveGridView Grid.Row="1" Name="lst1" Style="{StaticResource AGV}"/>
+            </Grid>
+        </PivotItem>
+        <PivotItem>
+            <PivotItem.Header>
+                <control:TabHeader Label="Play List" Glyph="&#xE714;" />
+            </PivotItem.Header>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <controls:DropShadowPanel Style="{StaticResource TBDS}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox PlaceholderText="http://www.youtube.com/playlist?list=PlayListID" x:Name="searchField2" Tag="2"
                                      KeyDown="searchField_KeyDown"/>
-                            <Button Style="{StaticResource BTN}" Grid.Column="1" Content="Paste" Background="#e74c3c" Click="CpButton_Click"/>
-                            <Button Style="{StaticResource BTN}" Tag="2" Click="Button_Click"/>
-                        </Grid>
-                    </controls:DropShadowPanel>
-                    <controls:AdaptiveGridView Grid.Row="1" Name="lst2" Style="{StaticResource AGV}"/>
-                </Grid>
-            </PivotItem>
-        </Pivot>
+                        <Button Style="{StaticResource BTN}" Grid.Column="1" Content="Paste" Background="#e74c3c" Click="CpButton_Click"/>
+                        <Button Style="{StaticResource BTN}" Tag="2" Click="Button_Click"/>
+                    </Grid>
+                </controls:DropShadowPanel>
+                <controls:AdaptiveGridView Grid.Row="1" Name="lst2" Style="{StaticResource AGV}"/>
+            </Grid>
+        </PivotItem>
+        <PivotItem>
+            <PivotItem.Header>
+                <control:TabHeader Label="WatchLater" Glyph="&#xEA40;" />
+            </PivotItem.Header>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <RichTextBlock TextWrapping="Wrap" Foreground="DimGray" Margin="4 8">
+                    <Paragraph>
+                        <Run FontSize="12" Text="* Right now, we can't get your WatchLater from Youtube service!"/>
+                        <LineBreak/>
+                        <Run Text="To make it easier for you to access your videos,You can go to your WatchLater page, press F12 and extract page html source and copy it here and Click Extract button"/>
+                    </Paragraph>
+                </RichTextBlock>
+                <TextBox AcceptsReturn="True" Grid.Row="1" HorizontalAlignment="Stretch" Height="80" x:Name="htmlTextBox" PlaceholderText="copy html here"/>
+                <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="4">
+                    <Button Style="{StaticResource BWL}" Content="Extract" Click="Button_Click_1"/>
+                    <Button Style="{StaticResource BWL}" x:DeferLoadStrategy="Lazy" x:Name="BtnExtract" Background="{StaticResource MyRed}" Content="Get" Click="Button_Click_2"/>
+                </StackPanel>
+                <StackPanel x:Name="Selecters" x:DeferLoadStrategy="Lazy" Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Margin="4">
+                    <Button Style="{StaticResource BWL}" Content="Select all" Click="Button_Click_Se"/>
+                    <Button Style="{StaticResource BWL}" Content="Unselect all" Click="Button_Click_De"/>
+                </StackPanel>
+                <ListView Grid.Row="4" x:Name="LstChk" x:DeferLoadStrategy="Lazy" ItemsSource="{x:Bind ListCheck,Mode=TwoWay}"/>
+            </Grid>
+        </PivotItem>
+    </Pivot>
 </Page>

@@ -24,11 +24,7 @@ namespace ytdl.Classes
 		private static Boolean CheckCharge()
 		{
 			if (App.Usr.nrCanDownload <= 0)
-			{
-				//TODO broken
-				CloseHelp.ShowMSG("Charge your account");
 				return false;
-			}
 			return CheckIsConnect();
 		}
 		private static string Token
@@ -60,17 +56,26 @@ namespace ytdl.Classes
 			}
 			catch { return false; }
 		}
-		public async static Task<string> GetVideo(string input)
+		public async static Task<string> GetVideo(string input,bool AutoLoadingGUI=true,bool ShowMsg=true)
 		{
+			List<DownloadedItems> myList = new List<DownloadedItems>(clist);
+			var tempo = input;
+			if (input.Contains("?v=")) tempo=input.Substring(input.IndexOf("?v=")+3);
+			var x = myList.Find(obj => obj.Id == tempo);
+			if (x!=null)
+			{
+				if (ShowMsg) CloseHelp.ShowMSG("This video already exists in your list");
+				return null;
+			}
 			if (!CheckCharge())
 			{
-				CloseHelp.ShowMSG("Check your account status!");
+				if (ShowMsg) CloseHelp.ShowMSG("Charge your account!");
 				return null;
 			}
 			string key = null;
 			try
 			{
-				Views.MotherPanel.StaticRing.IsLoading = true;
+				if(AutoLoadingGUI) Views.MotherPanel.StaticRing.IsLoading = true;
 				string video = CloseHelp.Base64Encode(input);
 				string url = "https://shahriar.in/app/ydm/dl/getvideo.php?u=" + Token + "&i=" + video;
 				string respond = await CloseHelp.DownloadPages(new CancellationToken(false), url);
@@ -96,10 +101,10 @@ namespace ytdl.Classes
 			}
 			catch
 			{
-				CloseHelp.ShowMSG("Problem in getting your video! Please try later");
+				if(ShowMsg)CloseHelp.ShowMSG("Problem in getting your video! Please try later");
 			}
-			Views.MotherPanel.StaticRing.IsLoading = false;
-			return null;
+			if (AutoLoadingGUI) Views.MotherPanel.StaticRing.IsLoading = false;
+			return key;
 		}
 		public static async Task FillSizeAsync(string key)
 		{
@@ -121,8 +126,7 @@ namespace ytdl.Classes
 		public static string GetVideoLink(string id, string quality)
 		{
 			string videoId = CloseHelp.Base64Encode(id);
-			var f = CloseHelp.Base64Encode(quality);
-			string url = "https://shahriar.in/app/ydm/dl/getvideo.php?u=" + Token + "&i=" + videoId + "&f=" + f;
+			string url = "https://shahriar.in/app/ydm/dl/getvideo.php?u=" + Token + "&i=" + videoId + "&format=" + quality;
 			return url;
 		}
 		public static async Task<string> GetAllVideoLinkAsync()

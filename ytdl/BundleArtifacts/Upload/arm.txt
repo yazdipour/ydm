@@ -1,6 +1,6 @@
-MainPackage=C:\Users\Shahriar\documents\visual studio 2015\Projects\ytdl\ytdl\bin\ARM\Release\Upload\ytdl_1.0.9.0_ARM.appx
-SymbolPackage=C:\Users\Shahriar\documents\visual studio 2015\Projects\ytdl\ytdl\AppPackages\ytdl_1.0.9.0\ytdl_1.0.9.0_ARM.appxsym
-ResourcePack=C:\Users\Shahriar\documents\visual studio 2015\Projects\ytdl\ytdl\_scale-100.appx
-ResourcePack=C:\Users\Shahriar\documents\visual studio 2015\Projects\ytdl\ytdl\_scale-125.appx
-ResourcePack=C:\Users\Shahriar\documents\visual studio 2015\Projects\ytdl\ytdl\_scale-150.appx
-ResourcePack=C:\Users\Shahriar\documents\visual studio 2015\Projects\ytdl\ytdl\_scale-400.appx
+MainPackage=C:\Users\Master\Documents\Visual Studio 2017\Projects\ytdl\ytdl\bin\ARM\Release\Upload\ytdl_1.1.0.0_ARM.appx
+SymbolPackage=C:\Users\Master\Documents\Visual Studio 2017\Projects\ytdl\ytdl\bin\ARM\Release\Upload\ytdl_1.1.0.0\ytdl_1.1.0.0_ARM.appxsym
+ResourcePack=C:\Users\Master\Documents\Visual Studio 2017\Projects\ytdl\ytdl\_scale-100.appx
+ResourcePack=C:\Users\Master\Documents\Visual Studio 2017\Projects\ytdl\ytdl\_scale-125.appx
+ResourcePack=C:\Users\Master\Documents\Visual Studio 2017\Projects\ytdl\ytdl\_scale-150.appx
+ResourcePack=C:\Users\Master\Documents\Visual Studio 2017\Projects\ytdl\ytdl\_scale-400.appx

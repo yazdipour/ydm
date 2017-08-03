@@ -1,6 +1,7 @@
 ﻿using Microsoft.Toolkit.Uwp.UI.Controls;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.UI.Xaml.Controls;
@@ -42,15 +43,19 @@ namespace ytdl.Views
 			catch { }
 			xlist.ItemsSource = Api.clist;
 		}
-
 		private async void GetInfo_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
 		{
 			string input = urlText.Text.Trim();
 			if (input.Length < 4)
 				return;
-			var key=await Api.GetVideo(input);
-			await Api.FillSizeAsync(key);
-			xlist.ItemsSource = Api.clist;
+			try
+			{
+				var key = await Api.GetVideo(input);
+				if (key == null) return;
+				xlist.ItemsSource = Api.clist;
+				await Api.FillSizeAsync(key);
+			}
+			catch { CloseHelp.ShowMSG("Error!"); }
 		}
 		private async void Copy_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
 		{
@@ -64,7 +69,6 @@ namespace ytdl.Views
 				catch { }
 			}
 		}
-	
 		private async void SymbolIcon_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
 		{
 			var dataPackageView = Clipboard.GetContent();
@@ -81,7 +85,6 @@ namespace ytdl.Views
 		{
 			Frame.Navigate(typeof(SearchPanel));
 		}
-
 		private void SlidableListItem_RightCommandRequested(object sender, EventArgs e)
 		{
 			var slidableitem = sender as SlidableListItem;
