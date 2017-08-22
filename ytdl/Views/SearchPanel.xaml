@@ -8,6 +8,7 @@
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:data="using:ytdl.Models"
     xmlns:control="using:ytdl.Controllers"
+    NavigationCacheMode="Enabled"
     mc:Ignorable="d">
     <Page.Resources>
         <SolidColorBrush x:Key="SearchBoxHitHighlightForegroundThemeBrush" Color="Pink"/>
@@ -392,6 +393,7 @@
             <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
             <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Hidden"/>
             <Setter Property="SelectionMode" Value="None"/>
+            <Setter Property="IsItemClickEnabled" Value="True"/>
             <Setter Property="ItemTemplate" Value="{StaticResource EmailsItemTemplate}"/>
         </Style>
         <Style x:Key="BTN" TargetType="Button">
@@ -434,7 +436,7 @@
                         <Button Style="{StaticResource BTN}" Tag="1" Click="Button_Click" Content="Search"/>
                     </Grid>
                 </controls:DropShadowPanel>
-                <controls:AdaptiveGridView Grid.Row="1" Name="lst1" Style="{StaticResource AGV}"/>
+                <controls:AdaptiveGridView Grid.Row="1" Name="lst1" Style="{StaticResource AGV}" ItemClick="lst1_ItemClick"/>
             </Grid>
         </PivotItem>
         <PivotItem>
@@ -456,19 +458,20 @@
                         </Grid.ColumnDefinitions>
                         <TextBox PlaceholderText="http://www.youtube.com/playlist?list=PlayListID" x:Name="searchField2" Tag="2"
                                      KeyDown="searchField_KeyDown"/>
-                        <Button Style="{StaticResource BTN}" x:Load="False" x:Name="GetAll" Grid.Column="1" Content="Get All" Background="#e74c3c" Click="CpButton_Click"/>
+                        <Button Style="{StaticResource BTN}" x:Load="Flase" x:Name="GetAll" Grid.Column="1" Content="Get All" Background="#e74c3c" Click="CpButton_Click"/>
                         <Button Style="{StaticResource BTN}" Tag="2" Click="Button_Click" Content="Explore"/>
                     </Grid>
                 </controls:DropShadowPanel>
-                <controls:AdaptiveGridView Grid.Row="1" Name="lst2" Style="{StaticResource AGV}"/>
+                <controls:AdaptiveGridView Grid.Row="1" Name="lst2" Style="{StaticResource AGV}" ItemClick="lst1_ItemClick"/>
             </Grid>
         </PivotItem>
         <PivotItem>
             <PivotItem.Header>
-                <control:TabHeader Label="WatchLater" Glyph="&#xEA40;" />
+                <control:TabHeader Label="Advance" Glyph="&#xEA40;" />
             </PivotItem.Header>
             <Grid>
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
@@ -477,21 +480,22 @@
                 </Grid.RowDefinitions>
                 <RichTextBlock TextWrapping="Wrap" Foreground="DimGray" Margin="4 8">
                     <Paragraph>
-                        <Run FontSize="12" Text="* Right now, we can't get your WatchLater from Youtube service!"/>
+                        <Run Text="You can use this section to extract video urls from html pages, based on html attributes."/>
                         <LineBreak/>
-                        <Run Text="To make it easier for you to access your videos,You can go to your WatchLater page, press F12 and extract page html source and copy it here and Click Extract button"/>
+                        <Run Text="Copy your html code here and specify attribute in the textbox blow and then click extract"/>
                     </Paragraph>
                 </RichTextBlock>
                 <TextBox AcceptsReturn="True" Grid.Row="1" HorizontalAlignment="Stretch" Height="80" x:Name="htmlTextBox" PlaceholderText="copy html here"/>
                 <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="4">
+                    <TextBox Text="data-video-id" x:Name="FilterBox" Width="180"/>
                     <Button Style="{StaticResource BWL}" Content="Extract" Click="Button_Click_1"/>
-                    <Button Style="{StaticResource BWL}"  x:Load="False" x:Name="BtnExtract" Background="{StaticResource MyRed}" Content="Get" Click="Button_Click_2"/>
                 </StackPanel>
                 <StackPanel x:Name="Selecters"  x:Load="False" Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Margin="4">
                     <Button Style="{StaticResource BWL}" Content="Select all" Click="Button_Click_Se"/>
                     <Button Style="{StaticResource BWL}" Content="Unselect all" Click="Button_Click_De"/>
                 </StackPanel>
-                <ListView Grid.Row="4" x:Name="LstChk" x:Load="False" ItemsSource="{x:Bind ListCheck,Mode=TwoWay}"/>
+                <Button HorizontalAlignment="Center" Grid.Row="4" Style="{StaticResource BWL}"  x:DeferLoadStrategy="Lazy" x:Name="BtnExtract" Background="{StaticResource MyRed}" Content="Get selected links" Click="Button_Click_2"/>
+                <ListView Grid.Row="5" x:Name="LstChk" x:Load="False" ItemsSource="{x:Bind ListCheck,Mode=TwoWay}"/>
             </Grid>
         </PivotItem>
     </Pivot>

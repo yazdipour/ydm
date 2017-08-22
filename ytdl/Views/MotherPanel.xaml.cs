@@ -75,23 +75,24 @@ namespace ytdl.Views
 			e.Handled = true;
 			insideFrame.GoBack();
 		}
-		private async void GetAllLinks_Click(object sender, RoutedEventArgs e)
+		private void GetAllLinks_Click(object sender, RoutedEventArgs e)
 		{
 			//MenuFlyOut.GetAllLinks
-			var res = await Api.GetAllVideoLinkAsync();
-			var dataPackage = new DataPackage();
-			dataPackage.SetText(res);
-			Clipboard.SetContent(dataPackage);
+			Api.GetAllVideoLinkAsync();
 		}
 		private async void RmAll_Click(object sender, RoutedEventArgs e)
 		{
-			var m = await AkavacheHelper.ReadStringLocal("MainList");
-			var ser = JsonConvert.DeserializeObject<List<DownloadedItems>>(m);
-			foreach (var dl in ser)
-				await AkavacheHelper.RemoveFromLocal("LI" + dl.Id);
-			await AkavacheHelper.RemoveFromLocal("MainList");
+			try
+			{
+				var m = await AkavacheHelper.ReadStringLocal("MainList");
+				var ser = JsonConvert.DeserializeObject<List<DownloadedItems>>(m);
+				foreach (var dl in ser)
+					await AkavacheHelper.RemoveFromLocal("LI" + dl.Id);
+				await AkavacheHelper.RemoveFromLocal("MainList");
+			}
+			catch {}
 			Api.clist = new System.Collections.ObjectModel.ObservableCollection<DownloadedItems>();
-
+			Frame.BackStack.Clear();
 			new Helper().ReloadFrame(Frame);
 		}
 		private void Button_Click(object sender, RoutedEventArgs e)

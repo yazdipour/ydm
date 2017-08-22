@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.DataTransfer;
 using ytdl.Models;
 
 namespace ytdl.Classes
@@ -64,12 +65,12 @@ namespace ytdl.Classes
 			var x = myList.Find(obj => obj.Id == tempo);
 			if (x!=null)
 			{
-				if (ShowMsg) CloseHelp.ShowMSG("This video already exists in your list");
+				if (ShowMsg) CloseHelp.ShowMSG("این ویدیو در لیست موجود است");
 				return null;
 			}
 			if (!CheckCharge())
 			{
-				if (ShowMsg) CloseHelp.ShowMSG("Charge your account!");
+				if (ShowMsg) CloseHelp.ShowMSG("اکانت خود را شارژ کنید");
 				return null;
 			}
 			string key = null;
@@ -129,7 +130,7 @@ namespace ytdl.Classes
 			string url = "https://shahriar.in/app/ydm/dl/getvideo.php?u=" + Token + "&i=" + videoId + "&format=" + quality;
 			return url;
 		}
-		public static async Task<string> GetAllVideoLinkAsync()
+		public static async void GetAllVideoLinkAsync()
 		{
 			var links = new List<string>();
 			var ser = JsonConvert.DeserializeObject<List<DownloadedItems>>(await AkavacheHelper.ReadStringLocal("MainList"));
@@ -144,7 +145,10 @@ namespace ytdl.Classes
 				}
 				catch { }
 			}
-			return string.Join(Environment.NewLine, links.ToArray());
+			var linksString= string.Join(Environment.NewLine, links.ToArray());
+			var dataPackage = new DataPackage();
+			dataPackage.SetText(linksString);
+			Clipboard.SetContent(dataPackage);
 		}
 		public async static Task<List<DownloadedItems>> SearchVideo(string input, string maxRes)
 		{

@@ -53,9 +53,11 @@ namespace ytdl.Views {
             await EmailManager.ShowComposeNewEmailAsync(mail);
         }
 
-        private void Charge_Click(object sender,Windows.UI.Xaml.RoutedEventArgs e) {
-            Frame.Navigate(typeof(PayPanel));
-        }
+        private async void Charge_Click(object sender,Windows.UI.Xaml.RoutedEventArgs e) {
+			//Frame.Navigate(typeof(PayPanel));
+			var url = "https://shahriar.in/app/ydm/pay/?e="+App.Usr.Email;
+			await Windows.System.Launcher.LaunchUriAsync(new Uri(url));
+		}
         #endregion
 
     }
