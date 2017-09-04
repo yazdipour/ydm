@@ -392,6 +392,7 @@
             <Setter Property="VerticalAlignment" Value="Stretch"/>
             <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
             <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Hidden"/>
+            <Setter Property="ScrollViewer.VerticalScrollMode" Value="Enabled"/>
             <Setter Property="SelectionMode" Value="None"/>
             <Setter Property="IsItemClickEnabled" Value="True"/>
             <Setter Property="ItemTemplate" Value="{StaticResource EmailsItemTemplate}"/>
@@ -446,7 +447,7 @@
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
+                    <!--<RowDefinition Height="Auto"/>-->
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <controls:DropShadowPanel Style="{StaticResource TBDS}">
@@ -458,7 +459,7 @@
                         </Grid.ColumnDefinitions>
                         <TextBox PlaceholderText="http://www.youtube.com/playlist?list=PlayListID" x:Name="searchField2" Tag="2"
                                      KeyDown="searchField_KeyDown"/>
-                        <Button Style="{StaticResource BTN}" x:Load="Flase" x:Name="GetAll" Grid.Column="1" Content="Get All" Background="#e74c3c" Click="CpButton_Click"/>
+                        <Button Style="{StaticResource BTN}" x:Name="GetAll" Grid.Column="1" Content="Get All" Background="#e74c3c" Click="CpButton_Click" x:Load="False"/>
                         <Button Style="{StaticResource BTN}" Tag="2" Click="Button_Click" Content="Explore"/>
                     </Grid>
                 </controls:DropShadowPanel>

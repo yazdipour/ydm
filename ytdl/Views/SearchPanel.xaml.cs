@@ -23,7 +23,7 @@ namespace ytdl.Views
 				var item = slidableitem.DataContext as DownloadedItems;
 				var key = await Api.GetVideo(item.Id);
 				if (key == null) return;
-				await Api.FillSizeAsync(key);
+				//await Api.FillSizeAsync(key);
 			}
 			catch { CloseHelp.ShowMSG("Error!"); }
 		}
@@ -46,7 +46,7 @@ namespace ytdl.Views
 				var item = e.ClickedItem as DownloadedItems;
 				var key = await Api.GetVideo(item.Id);
 				if (key == null) return;
-				await Api.FillSizeAsync(key);
+				//await Api.FillSizeAsync(key);
 			}
 			catch { CloseHelp.ShowMSG("Error!"); }
 		}
@@ -122,8 +122,8 @@ namespace ytdl.Views
 			var tag = (sender as Button).Tag.ToString();
 			try
 			{
-				LoadItemsAsync(tag);
 				if (tag == "2") FindName("GetAll");
+				LoadItemsAsync(tag);
 			}
 			catch
 			{

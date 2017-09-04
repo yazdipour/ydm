@@ -5,13 +5,14 @@
     <UseEmulator>true</UseEmulator>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
-    <DeviceId>DA831653-315E-41D9-BF63-CCCE346F4E9C</DeviceId>
+    <DeviceId>30F105C9-681E-420b-A277-7C086EAD8A4E</DeviceId>
     <UseEmulator>false</UseEmulator>
     <RemoteDebugMachine>SLAVE</RemoteDebugMachine>
     <AuthenticationMode>None</AuthenticationMode>
     <RemoteDebugEnabled>false</RemoteDebugEnabled>
     <DeployOptionalPackages>false</DeployOptionalPackages>
     <CreateCleanLayout>false</CreateCleanLayout>
+    <UseSimulator>false</UseSimulator>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <RemoteDebugMachine>192.168.1.115:4020 (DESKTOP-JKPPLER)</RemoteDebugMachine>

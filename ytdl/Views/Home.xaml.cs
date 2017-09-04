@@ -53,7 +53,6 @@ namespace ytdl.Views
 				var key = await Api.GetVideo(input);
 				if (key == null) return;
 				xlist.ItemsSource = Api.clist;
-				await Api.FillSizeAsync(key);
 			}
 			catch { CloseHelp.ShowMSG("Error!"); }
 		}

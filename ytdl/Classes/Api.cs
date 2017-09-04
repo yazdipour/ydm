@@ -57,13 +57,13 @@ namespace ytdl.Classes
 			}
 			catch { return false; }
 		}
-		public async static Task<string> GetVideo(string input,bool AutoLoadingGUI=true,bool ShowMsg=true)
+		public async static Task<string> GetVideo(string input, bool AutoLoadingGUI = true, bool ShowMsg = true)
 		{
 			List<DownloadedItems> myList = new List<DownloadedItems>(clist);
 			var tempo = input;
-			if (input.Contains("?v=")) tempo=input.Substring(input.IndexOf("?v=")+3);
+			if (input.Contains("?v=")) tempo = input.Substring(input.IndexOf("?v=") + 3);
 			var x = myList.Find(obj => obj.Id == tempo);
-			if (x!=null)
+			if (x != null)
 			{
 				if (ShowMsg) CloseHelp.ShowMSG("این ویدیو در لیست موجود است");
 				return null;
@@ -76,7 +76,7 @@ namespace ytdl.Classes
 			string key = null;
 			try
 			{
-				if(AutoLoadingGUI) Views.MotherPanel.StaticRing.IsLoading = true;
+				if (AutoLoadingGUI) Views.MotherPanel.StaticRing.IsLoading = true;
 				string video = CloseHelp.Base64Encode(input);
 				string url = "https://shahriar.in/app/ydm/dl/getvideo.php?u=" + Token + "&i=" + video;
 				string respond = await CloseHelp.DownloadPages(new CancellationToken(false), url);
@@ -102,27 +102,25 @@ namespace ytdl.Classes
 			}
 			catch
 			{
-				if(ShowMsg)CloseHelp.ShowMSG("Problem in getting your video! Please try later");
+				if (ShowMsg) CloseHelp.ShowMSG("Problem in getting your video! Please try later");
 			}
 			if (AutoLoadingGUI) Views.MotherPanel.StaticRing.IsLoading = false;
 			return key;
 		}
-		public static async Task FillSizeAsync(string key)
+		public static async Task<string> FillSizeAsync(string id, string link, int inx)
 		{
-			var ls = await AkavacheHelper.ReadStringLocal(key);
-			var LI = JsonConvert.DeserializeObject<LinkItems[]>(ls);
-			foreach (var item in LI)
+			var key = id + "_" + inx;
+			var size = await AkavacheHelper.ReadStringLocal(key);
+			if (size == null || size.Length < 2)
 			{
-				item.str = item.type + " | " + item.quality;
 				try
 				{
-					item.size = await GetSize(item.url);
+					size = await GetSize(link);
 				}
-				catch { item.size = "!"; }
-				item.str += " | " + item.size;
-				item.url = null;
+				catch { size = "!"; }
+				await AkavacheHelper.SaveStringLocal(key, size);
 			}
-			await AkavacheHelper.SaveStringLocal(key, JsonConvert.SerializeObject(LI));
+			return size;
 		}
 		public static string GetVideoLink(string id, string quality)
 		{
@@ -145,7 +143,7 @@ namespace ytdl.Classes
 				}
 				catch { }
 			}
-			var linksString= string.Join(Environment.NewLine, links.ToArray());
+			var linksString = string.Join(Environment.NewLine, links.ToArray());
 			var dataPackage = new DataPackage();
 			dataPackage.SetText(linksString);
 			Clipboard.SetContent(dataPackage);
@@ -196,7 +194,6 @@ namespace ytdl.Classes
 			}
 			catch { return "!"; }
 		}
-
 		public static async void GetBatchOfVideos(List<string> urls)
 		{
 			Views.MotherPanel.StaticRing.IsLoading = true;
@@ -206,7 +203,6 @@ namespace ytdl.Classes
 				{
 					var key = await GetVideo(item, false, false);
 					if (key == null) continue;
-					await FillSizeAsync(key);
 				}
 				catch { }
 			}
