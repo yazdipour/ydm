@@ -1,6 +1,6 @@
-MainPackage=C:\Users\Master\Documents\Visual Studio 2017\Projects\ytdl\ytdl\bin\x64\Release\Upload\ytdl_1.1.2.0_x64.appx
-SymbolPackage=C:\Users\Master\Documents\Visual Studio 2017\Projects\ytdl\ytdl\bin\x64\Release\Upload\ytdl_1.1.2.0\ytdl_1.1.2.0_x64.appxsym
-ResourcePack=C:\Users\Master\Documents\Visual Studio 2017\Projects\ytdl\ytdl\_scale-100.appx
-ResourcePack=C:\Users\Master\Documents\Visual Studio 2017\Projects\ytdl\ytdl\_scale-125.appx
-ResourcePack=C:\Users\Master\Documents\Visual Studio 2017\Projects\ytdl\ytdl\_scale-150.appx
-ResourcePack=C:\Users\Master\Documents\Visual Studio 2017\Projects\ytdl\ytdl\_scale-400.appx
+MainPackage=C:\Users\Master\Documents\Visual Studio 2017\Projects\youtuber-uwp\ytdl\bin\x64\Release\Upload\ytdl_1.2.3.0_x64.appx
+SymbolPackage=C:\Users\Master\Documents\Visual Studio 2017\Projects\youtuber-uwp\ytdl\bin\x64\Release\Upload\ytdl_1.2.3.0\ytdl_1.2.3.0_x64.appxsym
+ResourcePack=C:\Users\Master\Documents\Visual Studio 2017\Projects\youtuber-uwp\ytdl\bin\x64\Release\ytdl_1.2.3.0_scale-100.appx
+ResourcePack=C:\Users\Master\Documents\Visual Studio 2017\Projects\youtuber-uwp\ytdl\bin\x64\Release\ytdl_1.2.3.0_scale-125.appx
+ResourcePack=C:\Users\Master\Documents\Visual Studio 2017\Projects\youtuber-uwp\ytdl\bin\x64\Release\ytdl_1.2.3.0_scale-150.appx
+ResourcePack=C:\Users\Master\Documents\Visual Studio 2017\Projects\youtuber-uwp\ytdl\bin\x64\Release\ytdl_1.2.3.0_scale-400.appx

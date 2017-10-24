@@ -88,7 +88,7 @@ namespace ytdl.Views
 			FindName("txtBox");
 			FindName("btnBox");
 			var clicked = xlist.SelectedItem as LinkItems;
-			txtBox.Text = Api.GetVideoLink(dl.Id,clicked.quality);
+			txtBox.Text = Api.GetVideoLink(dl.Id,clicked.tag);
 			sizeTxt.Text = "";
 			sizeLoading.IsIndeterminate = true;
 			string size=await Api.FillSizeAsync(dl.Id, clicked.url, xlist.SelectedIndex);

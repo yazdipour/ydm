@@ -1,1 +1,1 @@
-C:\Users\Master\Documents\Visual Studio 2017\Projects\ytdl\ytdl\bin\ARM\Release\Upload\ytdl_1.1.3.0\ytdl_1.1.3.0_arm.appxbundle
+C:\Users\Master\Documents\Visual Studio 2017\Projects\youtuber-uwp\ytdl\bin\ARM\Release\Upload\ytdl_1.2.5.0\ytdl_1.2.5.0_arm.appxbundle

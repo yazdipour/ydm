@@ -488,7 +488,7 @@
                 </RichTextBlock>
                 <TextBox AcceptsReturn="True" Grid.Row="1" HorizontalAlignment="Stretch" Height="80" x:Name="htmlTextBox" PlaceholderText="copy html here"/>
                 <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="4">
-                    <TextBox Text="data-video-id" x:Name="FilterBox" Width="180"/>
+                    <TextBox Text="href" x:Name="FilterBox" Width="180"/>
                     <Button Style="{StaticResource BWL}" Content="Extract" Click="Button_Click_1"/>
                 </StackPanel>
                 <StackPanel x:Name="Selecters"  x:Load="False" Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Margin="4">

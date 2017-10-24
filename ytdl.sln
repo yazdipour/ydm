@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.16
+VisualStudioVersion = 15.0.26730.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ytdl", "ytdl\ytdl.csproj", "{78083C1C-5500-4051-8FF9-439D1A814B8D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaterialDesignThemes.Uwp", "MaterialLib\MaterialDesignThemes.Uwp\MaterialDesignThemes.Uwp.csproj", "{E4686A3F-CC25-4EEF-9A24-7CD4A22DA233}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ydtl.android", "ydtl.android\ydtl.android.csproj", "{09BE46ED-1102-43C4-96F4-BF8F336894BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,8 +57,35 @@ Global
 		{E4686A3F-CC25-4EEF-9A24-7CD4A22DA233}.Release|x64.Build.0 = Release|x64
 		{E4686A3F-CC25-4EEF-9A24-7CD4A22DA233}.Release|x86.ActiveCfg = Release|x86
 		{E4686A3F-CC25-4EEF-9A24-7CD4A22DA233}.Release|x86.Build.0 = Release|x86
+		{09BE46ED-1102-43C4-96F4-BF8F336894BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09BE46ED-1102-43C4-96F4-BF8F336894BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09BE46ED-1102-43C4-96F4-BF8F336894BA}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{09BE46ED-1102-43C4-96F4-BF8F336894BA}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{09BE46ED-1102-43C4-96F4-BF8F336894BA}.Debug|ARM.Build.0 = Debug|Any CPU
+		{09BE46ED-1102-43C4-96F4-BF8F336894BA}.Debug|ARM.Deploy.0 = Debug|Any CPU
+		{09BE46ED-1102-43C4-96F4-BF8F336894BA}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{09BE46ED-1102-43C4-96F4-BF8F336894BA}.Debug|x64.Build.0 = Debug|Any CPU
+		{09BE46ED-1102-43C4-96F4-BF8F336894BA}.Debug|x64.Deploy.0 = Debug|Any CPU
+		{09BE46ED-1102-43C4-96F4-BF8F336894BA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{09BE46ED-1102-43C4-96F4-BF8F336894BA}.Debug|x86.Build.0 = Debug|Any CPU
+		{09BE46ED-1102-43C4-96F4-BF8F336894BA}.Debug|x86.Deploy.0 = Debug|Any CPU
+		{09BE46ED-1102-43C4-96F4-BF8F336894BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09BE46ED-1102-43C4-96F4-BF8F336894BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09BE46ED-1102-43C4-96F4-BF8F336894BA}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{09BE46ED-1102-43C4-96F4-BF8F336894BA}.Release|ARM.ActiveCfg = Release|Any CPU
+		{09BE46ED-1102-43C4-96F4-BF8F336894BA}.Release|ARM.Build.0 = Release|Any CPU
+		{09BE46ED-1102-43C4-96F4-BF8F336894BA}.Release|ARM.Deploy.0 = Release|Any CPU
+		{09BE46ED-1102-43C4-96F4-BF8F336894BA}.Release|x64.ActiveCfg = Release|Any CPU
+		{09BE46ED-1102-43C4-96F4-BF8F336894BA}.Release|x64.Build.0 = Release|Any CPU
+		{09BE46ED-1102-43C4-96F4-BF8F336894BA}.Release|x64.Deploy.0 = Release|Any CPU
+		{09BE46ED-1102-43C4-96F4-BF8F336894BA}.Release|x86.ActiveCfg = Release|Any CPU
+		{09BE46ED-1102-43C4-96F4-BF8F336894BA}.Release|x86.Build.0 = Release|Any CPU
+		{09BE46ED-1102-43C4-96F4-BF8F336894BA}.Release|x86.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1AF18702-9189-47D5-8975-92E2D814B885}
 	EndGlobalSection
 EndGlobal

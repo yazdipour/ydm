@@ -18,7 +18,7 @@
     <RemoteDebugMachine>192.168.1.115:4020 (DESKTOP-JKPPLER)</RemoteDebugMachine>
     <AuthenticationMode>None</AuthenticationMode>
     <RemoteDebugEnabled>false</RemoteDebugEnabled>
-    <CreateCleanLayout>true</CreateCleanLayout>
+    <CreateCleanLayout>false</CreateCleanLayout>
   </PropertyGroup>
   <PropertyGroup>
     <AppxShowAllApps>False</AppxShowAllApps>

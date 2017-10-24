@@ -4,6 +4,6 @@
 		public string url { get; set; }
 		public string quality { get; set; }
         public string type { get; set; }
-        public string size { get; set; }
+        public string tag { get; set; }
     }
 }

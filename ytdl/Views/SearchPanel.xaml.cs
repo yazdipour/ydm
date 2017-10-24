@@ -1,6 +1,7 @@
 ﻿using Microsoft.Toolkit.Uwp.UI.Controls;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 using Windows.UI.Xaml.Controls;
 using ytdl.Classes;
@@ -145,20 +146,24 @@ namespace ytdl.Views
 			var matchs = regex.Matches(html);
 			var count = App.Usr.nrCanDownload;
 			ListCheck = new List<CheckBox>();
+			var tempList= new List<string>();
 			foreach (Match match in matchs)
 			{
 				try
 				{
 					var m = match.Value.Substring(filter.Length + 1).Replace("\"", "");
 					if (m.Length < 6) continue;
-					ListCheck.Add(new CheckBox() { Content = "https://www.youtube.com/watch?v=" + m, IsChecked = (--count > 0) });
+					if (m.Contains("?v=")) { m = m.Substring(m.IndexOf("?v=")+3); }
+					tempList.Add(m);
 				}
 				catch { }
 			}
+			tempList = tempList.Distinct().ToList();
+			foreach (var item in tempList)
+				ListCheck.Add(new CheckBox() { Content = "https://www.youtube.com/watch?v=" + item, IsChecked = (--count > 0) });
 			FindName("LstChk");
 			FindName("BtnExtract");
 			FindName("Selecters");
-
 			LstChk.ItemsSource = ListCheck;
 		}
 

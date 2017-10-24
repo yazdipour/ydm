@@ -122,10 +122,10 @@ namespace ytdl.Classes
 			}
 			return size;
 		}
-		public static string GetVideoLink(string id, string quality)
+		public static string GetVideoLink(string id, string tag)
 		{
 			string videoId = CloseHelp.Base64Encode(id);
-			string url = "https://shahriar.in/app/ydm/dl/getvideo.php?u=" + Token + "&i=" + videoId + "&format=" + quality;
+			string url = "https://shahriar.in/app/ydm/dl/getvideo.php?u=" + Token + "&i=" + videoId + "&format=" + tag;
 			return url;
 		}
 		public static async void GetAllVideoLinkAsync()
@@ -138,7 +138,7 @@ namespace ytdl.Classes
 				try
 				{
 					var ls = JsonConvert.DeserializeObject<LinkItems[]>(save);
-					string url = GetVideoLink(dl.Id, ls[0].quality);
+					string url = GetVideoLink(dl.Id, ls[0].tag);
 					links.Add(url);
 				}
 				catch { }

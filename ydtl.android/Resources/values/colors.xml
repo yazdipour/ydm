@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!--Get colors from: http://www.materialpalette.com/-->
+  <color name="primary">#D1030D</color>
+  <color name="primaryDark">#BC0104</color>
+  <color name="lightPrimary">#F3B3B7</color>
+  <color name="textIcon">#FFFFFF</color>
+  <color name="accent">#ff9800</color>
+  <color name="primaryText">#212121</color>
+  <color name="secondaryText">#757575</color>
+  <color name="divider">#BDBDBD</color>
+  
+  <color name="activated_color">#E8E8E8</color>
+  <color name="primaryRipple">#E8E8E8</color>
+
+  <color name="MyBlue" >#2196f3</color>
+  <color name="MyGreen">#2ecc71</color>
+  <color name="MyRed"  >#D6030F</color>
+  <color name="BgCard" >#E7E7E7</color>
+  <color name="FgCard" >#FAFAFA</color>
+</resources>

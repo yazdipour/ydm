@@ -21,7 +21,7 @@ namespace ytdl.Classes {
             }
             catch(Exception) { return false; }
         }
-        public static void RemoveSetting(string address,bool roam = false) { 
+		public static void RemoveSetting(string address,bool roam = false) { 
             var ls = !roam ? ApplicationData.Current.LocalSettings : ApplicationData.Current.RoamingSettings;
             try {
                 ls.Values.Remove(address);
