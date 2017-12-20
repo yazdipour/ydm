@@ -19,24 +19,7 @@ namespace ytdl.Views
 			AkavacheHelper.Init();
 			this.InitializeComponent();
 		}
-		#region Acrylic
-		//applyAcrylicAccent(MainGrid);
-		//private void applyAcrylicAccent(Panel panel)
-		//{
-		//	_compositor = ElementCompositionPreview.GetElementVisual(this).Compositor;
-		//	_hostSprite = _compositor.CreateSpriteVisual();
-		//	_hostSprite.Size = new Vector2((float)panel.ActualWidth, (float)panel.ActualHeight);
-		//	ElementCompositionPreview.SetElementChildVisual(panel, _hostSprite);
-		//	_hostSprite.Brush = _compositor.CreateHostBackdropBrush();
-		//}
-		//Compositor _compositor;
-		//SpriteVisual _hostSprite;
-		//private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
-		//{
-		//	if (_hostSprite != null)
-		//		_hostSprite.Size = e.NewSize.ToVector2();
-		//}
-		#endregion
+
 		private async void Page_Loading(FrameworkElement sender, object args)
 		{
 			LoadingControl.IsLoading = true;
@@ -75,6 +58,18 @@ namespace ytdl.Views
 			e.Handled = true;
 			insideFrame.GoBack();
 		}
+
+		//Reload - After Offline Dialog
+		private void Button_Click(object sender, RoutedEventArgs e)
+		{
+			try
+			{
+				new Helper().ReloadFrame(Frame);
+			}
+			catch { }
+		}
+
+		#region NavBar Btns
 		private void GetAllLinks_Click(object sender, RoutedEventArgs e)
 		{
 			//MenuFlyOut.GetAllLinks
@@ -95,17 +90,33 @@ namespace ytdl.Views
 			Frame.BackStack.Clear();
 			new Helper().ReloadFrame(Frame);
 		}
-		private void Button_Click(object sender, RoutedEventArgs e)
-		{
-			try
-			{
-				new Helper().ReloadFrame(Frame);
-			}
-			catch { }
-		}
 		private void UserDash_Click(object sender, RoutedEventArgs e)
 		{
-			insideFrame.Navigate(typeof(UserPanel));
+			Nav(typeof(UserPanel));
 		}
+		private void NavBtn(object sender, RoutedEventArgs e)
+		{
+			switch ((sender as Button).Tag.ToString())
+			{
+				case "1":
+					Nav(typeof(Home));
+					break;
+				case "2":
+					Nav(typeof(SearchPanel),"search");
+					break;
+				case "3":
+					Nav(typeof(SearchPanel), "playlist");
+					break;
+				case "4":
+					Nav(typeof(SearchPanel), "advance");
+					break;
+			}
+		}
+		private void Nav(System.Type cls,object param=null)
+		{
+			if(param!=null || insideFrame.CurrentSourcePageType!=cls)
+				insideFrame.Navigate(cls, param);
+		}
+		#endregion
 	}
 }

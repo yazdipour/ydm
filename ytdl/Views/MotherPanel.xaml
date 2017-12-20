@@ -9,23 +9,36 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" Background="{StaticResource BgCard}"
     Loading="Page_Loading">
+    <Page.Resources>
+        <Style x:Key="XButton" TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedDarkButton}">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="#222222"/>
+            <Setter Property="FontFamily" Value="Segoe MDL2 Assets"/>
+        </Style>
+        <Style TargetType="AppBarButton">
+            <Setter Property="Width" Value="48"/>
+        </Style>
+    </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <!--<RelativePanel Grid.RowSpan="2" MinWidth="40" x:Name="MainGrid" SizeChanged="Page_SizeChanged" Background="{StaticResource BgCard}"/>-->
         <controls:DropShadowPanel BlurRadius="7.0" ShadowOpacity="0.5" 
                                   HorizontalAlignment="Stretch" Visibility="Collapsed" x:Name="TopBar"
                                   HorizontalContentAlignment="Stretch"
                                   OffsetX="0" OffsetY="2" Color="Black">
             <Grid Height="52" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="#FFE33419" RequestedTheme="Dark">
-                <TextBlock Text="YDM"
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Center" FontSize="22"/>
                 <AppBarButton x:Name="NrAppbar" Icon="Contact" HorizontalAlignment="Right" 
                               Click="UserDash_Click" Margin="0,-4,0,0" />
-                <AppBarButton Icon="ShowBcc" HorizontalAlignment="Left" x:Name="TopMenu">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button Style="{StaticResource XButton}" Content="&#xE80F;" Tag="1" Click="NavBtn" />
+                    <Button Style="{StaticResource XButton}" Content="&#xE11A;" Tag="2" Click="NavBtn" />
+                    <Button Style="{StaticResource XButton}" Content="&#xE71D;" Tag="3" Click="NavBtn"/>
+                    <Button Style="{StaticResource XButton}" Content="&#xE8AF;"  Tag="4" Click="NavBtn"/>
+                </StackPanel>
+                <AppBarButton x:Name="TopMenu"  Icon="ShowBcc" HorizontalAlignment="Left">
                     <AppBarButton.Flyout>
                         <MenuFlyout>
                             <MenuFlyoutItem Text="Copy all links (HQ)" Click="GetAllLinks_Click"/>

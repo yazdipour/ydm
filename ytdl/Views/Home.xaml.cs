@@ -1,7 +1,6 @@
 ﻿using Microsoft.Toolkit.Uwp.UI.Controls;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.UI.Xaml.Controls;
@@ -15,19 +14,6 @@ namespace ytdl.Views
 		public Home()
 		{
 			this.InitializeComponent();
-		}
-		private async void xlist_ItemClick(object sender, ItemClickEventArgs e)
-		{
-			var dialog = new DownloadedDialog()
-			{
-				Dl = e.ClickedItem as DownloadedItems
-			};
-			var t = dialog.ShowAsync();
-			await t;
-			if (t.Status == Windows.Foundation.AsyncStatus.Completed)
-			{
-				if (dialog.changedBool) LoadListAsync();
-			}
 		}
 		private void Page_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
 		{
@@ -43,31 +29,34 @@ namespace ytdl.Views
 			catch { }
 			xlist.ItemsSource = Api.clist;
 		}
+		//Click on item
+		private async void xlist_ItemClick(object sender, ItemClickEventArgs e)
+		{
+			try
+			{
+				var dl = e.ClickedItem as DownloadedItems;
+				if (dl == null) return;
+				var dialog = new DownloadedDialog() { Dl = dl };
+				var t = dialog.ShowAsync();
+				await t;
+				if (t.Status == Windows.Foundation.AsyncStatus.Completed)
+					if (dialog.changedBool) LoadListAsync();
+			}
+			catch { }
+		}
+		//Big Red Button
 		private async void GetInfo_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
 		{
 			string input = urlText.Text.Trim();
-			if (input.Length < 4)
-				return;
+			if (input.Length < 4) return;
 			try
 			{
 				var key = await Api.GetVideo(input);
-				if (key == null) return;
-				xlist.ItemsSource = Api.clist;
+				if (key != null) xlist.ItemsSource = Api.clist;
 			}
 			catch { CloseHelp.ShowMSG("Error!"); }
 		}
-		private async void Copy_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
-		{
-			var dataPackageView = Clipboard.GetContent();
-			if (dataPackageView.Contains(StandardDataFormats.Text))
-			{
-				try
-				{
-					urlText.Text = (await dataPackageView.GetTextAsync()).Trim();
-				}
-				catch { }
-			}
-		}
+		//Copy Button
 		private async void SymbolIcon_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
 		{
 			var dataPackageView = Clipboard.GetContent();
@@ -80,22 +69,29 @@ namespace ytdl.Views
 				catch { }
 			}
 		}
-		private void SearchBtn_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
-		{
-			Frame.Navigate(typeof(SearchPanel));
-		}
+		//Slide To Remove
 		private void SlidableListItem_RightCommandRequested(object sender, EventArgs e)
 		{
 			var slidableitem = sender as SlidableListItem;
+			if (slidableitem == null) return;
 			var item = slidableitem.DataContext as DownloadedItems;
-			Api.clist.Remove(item);
-			xlist.ItemsSource = Api.clist;
+			if (item == null) return;
 			async void save()
 			{
-				await AkavacheHelper.RemoveFromLocal("LI" + item.Id);
-				await AkavacheHelper.SaveStringLocal("MainList", JsonConvert.SerializeObject(Api.clist));
+				try
+				{
+					await AkavacheHelper.RemoveFromLocal("LI" + item.Id);
+					await AkavacheHelper.SaveStringLocal("MainList", JsonConvert.SerializeObject(Api.clist));
+				}
+				catch { }
 			}
-			save();
+			try
+			{
+				Api.clist.Remove(item);
+				xlist.ItemsSource = Api.clist;
+				save();
+			}
+			catch { }
 		}
 	}
 }

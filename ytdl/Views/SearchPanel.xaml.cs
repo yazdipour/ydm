@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 using ytdl.Classes;
 using ytdl.Models;
 
@@ -11,9 +12,38 @@ namespace ytdl.Views
 {
 	public sealed partial class SearchPanel : Page
 	{
+		public string Agent { get; set; } = null;
+
 		public SearchPanel()
 		{
 			this.InitializeComponent();
+		}
+
+		protected override void OnNavigatedTo(NavigationEventArgs e)
+		{
+			base.OnNavigatedTo(e);
+			Agent = e.Parameter as string;
+		}
+
+		private void Page_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+		{
+			switch (Agent)
+			{
+				case "search":
+					FindName("SearchGrid"); 
+					FindName("cmBox"); 
+					break;
+				case "playlist":
+					Title.Text = "Get Playlist";
+					FindName("SearchGrid");
+					searchField.PlaceholderText = "http://www.youtube.com/playlist?list=PlayListID";
+					searchButton.Content = "Explore";
+					break;
+				case "advance":
+					Title.Text = "Advance";
+					FindName("AdvGrid");
+					break;
+			}
 		}
 
 		private async void SlidableListItem_RightCommandRequested(object sender, EventArgs e)
@@ -54,10 +84,10 @@ namespace ytdl.Views
 		/// <summary>
 		/// Pivot 1
 		/// </summary>
-		private async void LoadItemsAsync(string tag)
+		private async void LoadItemsAsync()
 		{
 			MotherPanel.StaticRing.IsLoading = true;
-			if (tag == "1")
+			if (Agent == "search")
 			{
 				var str = searchField.Text.Trim();
 				string maxRes = (cmBox.SelectedItem as ComboBoxItem).Content.ToString();
@@ -69,11 +99,11 @@ namespace ytdl.Views
 					MotherPanel.StaticRing.IsLoading = false;
 					return;
 				}
-				lst1.ItemsSource = dlr;
+				lst.ItemsSource = dlr;
 			}
 			else
 			{
-				var str = searchField2.Text.Trim();
+				var str = searchField.Text.Trim();
 				if (str.Length < 2) { MotherPanel.StaticRing.IsLoading = false; return; }
 				var dlr = await Api.GetPlayList(str);
 				if (dlr == null)
@@ -82,7 +112,7 @@ namespace ytdl.Views
 					MotherPanel.StaticRing.IsLoading = false;
 					return;
 				}
-				lst2.ItemsSource = dlr;
+				lst.ItemsSource = dlr;
 			}
 			MotherPanel.StaticRing.IsLoading = false;
 		}
@@ -90,8 +120,7 @@ namespace ytdl.Views
 		{
 			if (e.Key == Windows.System.VirtualKey.Enter)
 			{
-				var tag = (sender as TextBox).Tag.ToString();
-				LoadItemsAsync(tag);
+				LoadItemsAsync();
 				// Make sure to set the Handled to true, otherwise the RoutedEvent might fire twice
 				e.Handled = true;
 			}
@@ -103,7 +132,7 @@ namespace ytdl.Views
 		{
 			try
 			{
-				List<DownloadedItems> x = (lst2.ItemsSource as List<DownloadedItems>);
+				List<DownloadedItems> x = (lst.ItemsSource as List<DownloadedItems>);
 				if (x.Count > App.Usr.nrCanDownload)
 				{
 					CloseHelp.ShowMSG("You can't download " + x.Count + " videos with your account");
@@ -120,11 +149,10 @@ namespace ytdl.Views
 		}
 		private void Button_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
 		{
-			var tag = (sender as Button).Tag.ToString();
 			try
 			{
-				if (tag == "2") FindName("GetAll");
-				LoadItemsAsync(tag);
+				if (Agent=="playlist") FindName("GetAll");
+				LoadItemsAsync();
 			}
 			catch
 			{
@@ -139,30 +167,40 @@ namespace ytdl.Views
 		private void Button_Click_1(object sender, Windows.UI.Xaml.RoutedEventArgs e)
 		{
 			string html = htmlTextBox.Text.Trim();
-			string filter = FilterBox.Text.Trim();
 			if (html.Length < 20) return;
-			if (filter.Length < 2) return;
-			Regex regex = new Regex(filter + @"=""(.*?)""");
-			var matchs = regex.Matches(html);
-			var count = App.Usr.nrCanDownload;
 			ListCheck = new List<CheckBox>();
-			var tempList= new List<string>();
-			foreach (Match match in matchs)
+			var count = App.Usr.nrCanDownload;
+			var tempList = new List<string>();
+			if (htmlRadio.IsChecked == true)
 			{
-				try
+				string filter = FilterBox.Text.Trim();
+				string ele = EleBox.Text.Trim();
+				if (filter.Length < 2) return;
+				Regex regex = new Regex(@"<"+ ele +"(.*?)" + filter + @"=""(.*?)""");
+				var matchs = regex.Matches(html);
+				foreach (Match match in matchs)
 				{
-					var m = match.Value.Substring(filter.Length + 1).Replace("\"", "");
-					if (m.Length < 6) continue;
-					if (m.Contains("?v=")) { m = m.Substring(m.IndexOf("?v=")+3); }
-					tempList.Add(m);
+					try
+					{
+						var m = match.Value.Substring(filter.Length + 1).Replace("\"", "");
+						if (m.Length < 6) continue;
+						if (m.Contains("?v=")) { m = m.Substring(m.IndexOf("?v=") + 3); }
+						tempList.Add(m);
+					}
+					catch { }
 				}
-				catch { }
+				tempList = tempList.Distinct().ToList();
+				foreach (var item in tempList)
+					ListCheck.Add(new CheckBox() { Content = "https://www.youtube.com/watch?v=" + item.Trim(), IsChecked = (--count > 0) });
 			}
-			tempList = tempList.Distinct().ToList();
-			foreach (var item in tempList)
-				ListCheck.Add(new CheckBox() { Content = "https://www.youtube.com/watch?v=" + item, IsChecked = (--count > 0) });
-			FindName("LstChk");
-			FindName("BtnExtract");
+			else
+			{
+				tempList = new List<string>(html.Split(new[] { "\r\n", "\r", "\n" },StringSplitOptions.None));
+				foreach (var item in tempList)
+					ListCheck.Add(new CheckBox() { Content = item.Trim() });
+			}
+			
+			LstParent.Visibility = Windows.UI.Xaml.Visibility.Visible;
 			FindName("Selecters");
 			LstChk.ItemsSource = ListCheck;
 		}
@@ -181,7 +219,11 @@ namespace ytdl.Views
 				{
 					lss.Add(item.Content.ToString());
 				}
-				Api.GetBatchOfVideos(lss);
+				try
+				{
+					Api.GetBatchOfVideos(lss);
+				}
+				catch { }
 			}
 		}
 
@@ -198,6 +240,5 @@ namespace ytdl.Views
 				item.IsChecked = true;
 			LstChk.ItemsSource = ListCheck;
 		}
-
 	}
 }
