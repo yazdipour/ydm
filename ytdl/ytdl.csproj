@@ -11,8 +11,8 @@
     <AssemblyName>ytdl</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion>10.0.16299.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.16299.0</TargetPlatformMinVersion>
+    <TargetPlatformVersion>10.0.15063.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.15063.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -148,10 +148,10 @@
   <ItemGroup>
     <Content Include="Assets\Img\300Logo.png" />
     <Content Include="Assets\Img\avatar.jpg" />
+    <Content Include="Assets\Img\bg.jpg" />
     <Content Include="Assets\Img\g.png" />
     <Content Include="Assets\Img\loginbg.png" />
-    <Content Include="Assets\Img\getimage.png" />
-    <Content Include="Assets\Img\redbg.jpg" />
+    <Content Include="Assets\Img\TypoWhite.png" />
     <Content Include="Assets\Img\w.png" />
     <Content Include="Assets\Img\YDMTypography.PNG" />
     <Content Include="Assets\PackageLogo.scale-100.png" />

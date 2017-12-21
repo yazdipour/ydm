@@ -8,26 +8,32 @@
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     mc:Ignorable="d" 
-    >
+    RequestedTheme="Dark">
     <Grid>
+        <Grid.Background>
+            <ImageBrush Stretch="UniformToFill" ImageSource="ms-appx:///Assets/Img/bg.jpg"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <controls:DropShadowPanel BlurRadius="8" ShadowOpacity="0.7" OffsetX="0" OffsetY="4"
-                                  Width="82" Height="82" Grid.Row="1" 
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center">
+            <controls:DropShadowPanel BlurRadius="8" ShadowOpacity="0.7" OffsetX="0" OffsetY="4"
+                                  Width="82" Height="82" 
                                   Color="Black" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Border Background="White" Padding="12" CornerRadius="12">
-                <Image Source="ms-appx:///Assets/Img/icon.png" Width="68" VerticalAlignment="Center"/>
-            </Border>
-        </controls:DropShadowPanel>
-        <Button HorizontalAlignment="Center" Margin="0,36,0,0" Style="{StaticResource MaterialDesignRaisedDarkButton}" 
+                <Border Background="White" Padding="12" CornerRadius="12">
+                    <Image Source="ms-appx:///Assets/Img/icon.png" Width="68" VerticalAlignment="Center"/>
+                </Border>
+            </controls:DropShadowPanel>
+            <Image Margin="12" Source="ms-appx:///Assets/Img/TypoWhite.png" Height="82" Width="150" Stretch="UniformToFill"/>
+        </StackPanel>
+        <Button HorizontalAlignment="Center" Style="{StaticResource MaterialDesignRaisedDarkButton}" 
                 Background="White" VerticalAlignment="Center" Width="200" Click="Button_Click" Grid.Row="2">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Sign in with " FontWeight="Light" Foreground="Black"/>
-                <TextBlock Text=" Google" FontWeight="ExtraBold" Foreground="Black"/>
+                <TextBlock Text=" Google" FontWeight="ExtraBold" Foreground="Black" FontFamily="Segoe UI Black"/>
             </StackPanel>
         </Button>
     </Grid>

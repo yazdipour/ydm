@@ -8,6 +8,10 @@ namespace ytdl.Views {
         }
         private void Button_Click(object sender,RoutedEventArgs e) {
             Frame.Navigate(typeof(LoginPage));
-        }
+			var hlp = new Classes.Helper();
+			hlp.Visibility_TitleBar(true);
+			hlp.ChangeTitle();
+			hlp.ChangeStatus();
+		}
     }
 }
