@@ -1,6 +1,0 @@
-MainPackage=C:\Users\Master\Documents\Visual Studio 2017\Projects\youtuber-uwp\ytdl\bin\ARM\Release\Upload\ytdl_1.2.5.0_ARM.appx
-SymbolPackage=C:\Users\Master\Documents\Visual Studio 2017\Projects\youtuber-uwp\ytdl\bin\ARM\Release\Upload\ytdl_1.2.5.0\ytdl_1.2.5.0_ARM.appxsym
-ResourcePack=C:\Users\Master\Documents\Visual Studio 2017\Projects\youtuber-uwp\ytdl\bin\ARM\Release\ytdl_1.2.5.0_scale-100.appx
-ResourcePack=C:\Users\Master\Documents\Visual Studio 2017\Projects\youtuber-uwp\ytdl\bin\ARM\Release\ytdl_1.2.5.0_scale-125.appx
-ResourcePack=C:\Users\Master\Documents\Visual Studio 2017\Projects\youtuber-uwp\ytdl\bin\ARM\Release\ytdl_1.2.5.0_scale-150.appx
-ResourcePack=C:\Users\Master\Documents\Visual Studio 2017\Projects\youtuber-uwp\ytdl\bin\ARM\Release\ytdl_1.2.5.0_scale-400.appx

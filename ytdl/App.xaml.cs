@@ -43,17 +43,24 @@ namespace ytdl
 			{
 				if (rootFrame.Content == null)
 				{
-					if (Classes.LocalSettingManager.ExistsSetting("Account"))
-						rootFrame.Navigate(typeof(Views.MotherPanel), e.Arguments);
-					else
-						rootFrame.Navigate(typeof(Views.WelcomePage), e.Arguments);
+					//if (Classes.LocalSettingManager.ExistsSetting("Account")){
+					//rootFrame.Navigate(typeof(Views.MotherPanel), e.Arguments);
+					//try
+					//{
+					//	var hlp = new Classes.Helper();
+					//	hlp.ChangeTitle();
+					//	hlp.ChangeStatus();
+					//}
+					//catch { }
+					//}else{
+					rootFrame.Navigate(typeof(Views.WelcomePage), e.Arguments);
 					try
 					{
 						var hlp = new Classes.Helper();
-						hlp.ChangeTitle();
-						hlp.ChangeStatus();
+						hlp.Visibility_TitleBar(false);
 					}
 					catch { }
+					//}
 				}
 				// Ensure the current window is active
 				Window.Current.Activate();

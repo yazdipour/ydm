@@ -33,16 +33,16 @@ namespace ytdl.Classes
 		}
 		internal async void ChangeStatus()
 		{
-			try
-			{
-				StatusBar statusBar = StatusBar.GetForCurrentView();
-				statusBar.BackgroundColor = ConvertFrom("#BD2810").Color;
-				statusBar.ForegroundColor = Colors.White;
-				statusBar.ProgressIndicator.ProgressValue = 0;
-				statusBar.BackgroundOpacity = 1;
-				await statusBar.ShowAsync();
-			}
-			catch (Exception) { }
+			//try
+			//{
+			//	StatusBar statusBar = StatusBar.GetForCurrentView();
+			//	statusBar.BackgroundColor = ConvertFrom("#BD2810").Color;
+			//	statusBar.ForegroundColor = Colors.White;
+			//	statusBar.ProgressIndicator.ProgressValue = 0;
+			//	statusBar.BackgroundOpacity = 1;
+			//	await statusBar.ShowAsync();
+			//}
+			//catch (Exception) { }
 		}
 		internal void ChangeTitle()
 		{
@@ -62,6 +62,13 @@ namespace ytdl.Classes
 				Frame.BackStack.Remove(Frame.BackStack.Last());
 			}
 			catch { }
+		}
+
+		internal void Visibility_TitleBar(bool visible)
+		{
+			var coreTitleBar = Windows.ApplicationModel.Core.CoreApplication.GetCurrentView().TitleBar;
+			coreTitleBar.ExtendViewIntoTitleBar = !visible;
+			Windows.UI.Xaml.Window.Current.SetTitleBar(null);
 		}
 	}
 }
