@@ -6,26 +6,35 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
-    xmlns:behaviors="using:Microsoft.Toolkit.Uwp.UI.Animations.Behaviors"
-    mc:Ignorable="d" Background="Black">
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    mc:Ignorable="d" 
+    RequestedTheme="Dark">
     <Grid>
         <Grid.Background>
-            <ImageBrush Stretch="UniformToFill" ImageSource="ms-appx:///Assets/Img/loginbg.png" Opacity="0.5"/>
+            <ImageBrush Stretch="UniformToFill" ImageSource="ms-appx:///Assets/Img/bg.jpg"/>
         </Grid.Background>
-        <Border VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-            <interactivity:Interaction.Behaviors>
-                <behaviors:Blur Value="5" Duration="0" Delay="0" AutomaticallyStart="True"/>
-            </interactivity:Interaction.Behaviors>
-        </Border>
-        <StackPanel Height="380" Width="280" Background="#CCFFFFFF" VerticalAlignment="Center" Padding="0 100">
-            <Image Source="ms-appx:///Assets/Img/icon.png" Width="80" VerticalAlignment="Center"/>
-            <TextBlock Text="Sign In to YDM" HorizontalAlignment="Center" 
-                           VerticalAlignment="Center" FontFamily="{StaticResource Mitra}" 
-                           FontSize="30" Foreground="Black" />
-            <Button HorizontalAlignment="Center" Margin="0,36,0,0" 
-                                Style="{StaticResource MaterialDesignRaisedDarkButton}" Background="#E62118"
-                                Content="Google Account" VerticalAlignment="Center"
-                                RequestedTheme="Dark" Width="186" Click="Button_Click"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center">
+            <controls:DropShadowPanel BlurRadius="8" ShadowOpacity="0.7" OffsetX="0" OffsetY="4"
+                                  Width="82" Height="82" 
+                                  Color="Black" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Border Background="White" Padding="12" CornerRadius="12">
+                    <Image Source="ms-appx:///Assets/Img/icon.png" Width="68" VerticalAlignment="Center"/>
+                </Border>
+            </controls:DropShadowPanel>
+            <Image Margin="12" Source="ms-appx:///Assets/Img/TypoWhite.png" Height="82" Width="150" Stretch="UniformToFill"/>
         </StackPanel>
+        <Button HorizontalAlignment="Center" Style="{StaticResource MaterialDesignRaisedDarkButton}" 
+                Background="White" VerticalAlignment="Center" Width="200" Click="Button_Click" Grid.Row="2">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Sign in with " FontWeight="Light" Foreground="Black"/>
+                <TextBlock Text=" Google" FontWeight="ExtraBold" Foreground="Black" FontFamily="Segoe UI Black"/>
+            </StackPanel>
+        </Button>
     </Grid>
 </Page>

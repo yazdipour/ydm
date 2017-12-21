@@ -1,2 +1,0 @@
-MainPackage=C:\Users\Master\Documents\Visual Studio 2017\Projects\youtuber-uwp\ytdl\bin\x86\Release\ytdl_1.2.3.0_x86.appx
-SymbolPackage=C:\Users\Master\Documents\Visual Studio 2017\Projects\youtuber-uwp\ytdl\AppPackages\ytdl_1.2.3.0_Test\ytdl_1.2.3.0_x86.appxsym

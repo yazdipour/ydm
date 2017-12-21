@@ -165,7 +165,7 @@
 
                         <TextBlock Text="Text:" Style="{StaticResource TitleTextBlockStyle}" />
                         <TextBox AcceptsReturn="True" Grid.Row="1" HorizontalAlignment="Left" 
-                                 PlaceholderText="Place Your Text Here" Height="80" MinWidth="480" Margin="8" x:Name="htmlTextBox" />
+                                 PlaceholderText="Place Your Text Here" Height="80" MinWidth="480" Margin="8" x:Name="htmlTextBox"/>
 
                         <Button Style="{StaticResource BWL}" Background="{StaticResource MyRed}" Content="Extract" Click="Button_Click_1" HorizontalAlignment="Center"/>
                     </StackPanel>

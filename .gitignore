@@ -3,7 +3,7 @@
 *.user
 *.userosscache
 *.sln.docstates
-
+BundleArtifacts/
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 *.suo
