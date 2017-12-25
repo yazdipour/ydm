@@ -40,7 +40,8 @@ namespace ytdl.Views
 				var t = dialog.ShowAsync();
 				await t;
 				if (t.Status == Windows.Foundation.AsyncStatus.Completed)
-					if (dialog.changedBool) LoadListAsync();
+					if (dialog.changed== "reload") LoadListAsync();
+					else if (dialog.changed.Length>2) Frame.Navigate(typeof(StreamPanel),dialog.changed);
 			}
 			catch { }
 		}

@@ -1,12 +1,12 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
-using Windows.ApplicationModel.DataTransfer;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using ytdl.Classes;
 using ytdl.Models;
 using Microsoft.Toolkit.Uwp.UI.Controls;
+using Microsoft.AppCenter.Analytics;
 
 namespace ytdl.Views
 {
@@ -35,6 +35,7 @@ namespace ytdl.Views
 			{
 				loadingTxt.Text = "Error! Connection problem";
 				reloadBtn.Visibility = Visibility.Visible;
+				Analytics.TrackEvent("Connection_Error");
 			}
 		}
 		private void insideFrame_Navigated(object sender, Windows.UI.Xaml.Navigation.NavigationEventArgs e)
@@ -74,6 +75,7 @@ namespace ytdl.Views
 		{
 			//MenuFlyOut.GetAllLinks
 			Api.GetAllVideoLinkAsync();
+			Analytics.TrackEvent("Click Mother.GetAll");
 		}
 		private async void RmAll_Click(object sender, RoutedEventArgs e)
 		{
@@ -85,10 +87,11 @@ namespace ytdl.Views
 					await AkavacheHelper.RemoveFromLocal("LI" + dl.Id);
 				await AkavacheHelper.RemoveFromLocal("MainList");
 			}
-			catch {}
+			catch { }
 			Api.clist = new System.Collections.ObjectModel.ObservableCollection<DownloadedItems>();
 			Frame.BackStack.Clear();
 			new Helper().ReloadFrame(Frame);
+			Analytics.TrackEvent("Click Mother.RmAll");
 		}
 		private void UserDash_Click(object sender, RoutedEventArgs e)
 		{
@@ -102,7 +105,7 @@ namespace ytdl.Views
 					Nav(typeof(Home));
 					break;
 				case "2":
-					Nav(typeof(SearchPanel),"search");
+					Nav(typeof(SearchPanel), "search");
 					break;
 				case "3":
 					Nav(typeof(SearchPanel), "playlist");
@@ -112,9 +115,9 @@ namespace ytdl.Views
 					break;
 			}
 		}
-		private void Nav(System.Type cls,object param=null)
+		private void Nav(System.Type cls, object param = null)
 		{
-			if(param!=null || insideFrame.CurrentSourcePageType!=cls)
+			if (param != null || insideFrame.CurrentSourcePageType != cls)
 				insideFrame.Navigate(cls, param);
 		}
 		#endregion

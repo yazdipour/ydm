@@ -10,17 +10,16 @@
                 <ResourceDictionary Source="ms-appx:///MaterialDesignThemes.Uwp/Themes/MaterialDesign.xaml" />
                 <ResourceDictionary Source="ms-appx:///MaterialDesignThemes.Uwp/Themes/MaterialDesignColor.Indigo.Named.xaml" />
             </ResourceDictionary.MergedDictionaries>
-
             <ResourceDictionary.ThemeDictionaries>
                 <ResourceDictionary x:Key="Light">
                     <SolidColorBrush x:Key="PrimaryHueLightBrush" Color="{StaticResource IndigoPrimary900}"/>
                     <SolidColorBrush x:Key="PrimaryHueLightForegroundBrush" Color="{StaticResource IndigoPrimary300Foreground}"/>
                 </ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>
-            
+
             <SolidColorBrush x:Key="MyBlue" Color="#2196f3" />
             <SolidColorBrush x:Key="MyGreen" Color="#2ecc71" />
-            <SolidColorBrush x:Key="MyRed" Color="#D6030F" /> 
+            <SolidColorBrush x:Key="MyRed" Color="#D6030F" />
             <SolidColorBrush x:Key="BgCard" Color="#E7E7E7" />
             <SolidColorBrush x:Key="FgCard" Color="#FAFAFA" />
 
@@ -45,13 +44,12 @@
                                     MaxHeight="{TemplateBinding MaxHeight}"
                                     MinWidth="{TemplateBinding MinWidth}"
                                     MinHeight="{TemplateBinding MinHeight}" >
-                            <Grid x:Name="DialogSpace" VerticalAlignment="Stretch">
+                            <Grid x:Name="DialogSpace" VerticalAlignment="Stretch" Background="#99000000">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="*" />
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
-                                <!--Margin="{ThemeResource ContentDialogContentScrollViewerMargin}"-->
                                 <ScrollViewer x:Name="ContentScrollViewer"
                                             HorizontalScrollBarVisibility="Disabled"
                                             VerticalScrollBarVisibility="Disabled"
@@ -61,10 +59,9 @@
                                     <Grid>
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto" />
-                                            <!--Here, I delete 'Height="Auto"' of RowDefinition.-->
                                             <RowDefinition />
                                         </Grid.RowDefinitions>
-                                        <ContentControl x:Name="Title"
+                                        <ContentControl x:Name="Title"  x:Load="False"
                                                 Margin="{ThemeResource ContentDialogTitleMargin}"
                                                 Content="{TemplateBinding Title}"
                                                 ContentTemplate="{TemplateBinding TitleTemplate}"

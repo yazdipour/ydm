@@ -4,77 +4,91 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
-    Loaded="ContentDialog_Loaded" Template="{StaticResource NoMargin}"
-    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
-    xmlns:behaviors="using:Microsoft.Toolkit.Uwp.UI.Animations.Behaviors"
-    MinWidth="400" MinHeight="400" mc:Ignorable="d" RequestedTheme="Dark" BorderBrush="#111">
-    <!--Background="#222"-->
-    <ContentDialog.Background>
-        <ImageBrush x:Name="Img" Stretch="UniformToFill" ImageSource="ms-appx:///Assets/Img/loginbg.png"/>
-    </ContentDialog.Background>
+    Loaded="ContentDialog_Loaded" Template="{ThemeResource NoMargin}"
+    mc:Ignorable="d" RequestedTheme="Dark">
     <ContentControl.Resources>
+        <Style TargetType="Grid">
+            <Setter Property="Padding" Value="0"/>
+        </Style>
         <Style TargetType="SymbolIcon">
             <Setter Property="Height" Value="40"/>
             <Setter Property="Margin" Value="8 0"/>
         </Style>
-        <Style TargetType="Button">
+        <Style TargetType="Button" x:Key="BtnIcon" BasedOn="{StaticResource MaterialDesignRaisedDarkButton}">
+            <Setter Property="Height" Value="68"/>
+            <Setter Property="Width" Value="98"/>
+            <Setter Property="Margin" Value="0 4"/>
             <Setter Property="Margin" Value="0 4"/>
         </Style>
     </ContentControl.Resources>
-    <Grid Background="#88111111">
-        <Border VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-            <interactivity:Interaction.Behaviors>
-                <behaviors:Blur Value="5" Duration="0" Delay="0" AutomaticallyStart="True"/>
-            </interactivity:Interaction.Behaviors>
-        </Border>
-        <ScrollViewer>
-            <StackPanel VerticalAlignment="Center">
-                <TextBlock x:Name="oTitle" FontWeight="Light" Margin="12 4 12 0"
+    <ContentDialog.Background>
+        <ImageBrush x:Name="Img" Stretch="UniformToFill" ImageSource="ms-appx:///Assets/Img/loginbg.png"/>
+    </ContentDialog.Background>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <TextBlock x:Name="oTitle" FontWeight="Light" Margin="12 4 12 0"
                        TextWrapping="Wrap" FontSize="22"/>
-                <TextBlock x:Name="Duration" FontSize="16" Margin="12 0" Foreground="LightGray"/>
-                <TextBlock x:Name="View" FontSize="16" Margin="12 0" Foreground="LightGray"/>
+            <TextBlock x:Name="Duration" FontSize="16" Margin="12 0" Foreground="LightGray"/>
+            <TextBlock x:Name="View" FontSize="16" Margin="12 0" Foreground="LightGray"/>
 
-                <ComboBox HorizontalAlignment="Stretch" x:Name="xlist" PlaceholderText="Select quality" Margin="40,20" SelectionChanged="xlist_SelectionChanged">
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding str}"/>
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
-                </ComboBox>
+            <ComboBox HorizontalAlignment="Stretch" x:Name="xlist" PlaceholderText="Select quality" Margin="40,20" SelectionChanged="xlist_SelectionChanged">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding str}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
 
-                <TextBox x:Name="txtBox" Margin="40,20" HorizontalAlignment="Stretch" x:Load="False"/>
-                <Grid x:Name="btnBox" x:Load="False" HorizontalAlignment="Center">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="52"/>
-                        <RowDefinition Height="52"/>
-                    </Grid.RowDefinitions>
-                    <TextBlock x:Name="sizeTxt" Grid.ColumnSpan="2" TextAlignment="Center" HorizontalAlignment="Center"/>
-                    <ProgressBar x:Name="sizeLoading" Grid.ColumnSpan="2" Foreground="White"/>
-                    <Button Background="#3498db" Grid.Row="1" Grid.Column="0" Tag="0" Click="Link_Click" Content="Open with browser" Height="52"  Style="{StaticResource MaterialDesignRaisedDarkButton}"/>
-                    <Button Background="#f39c12" Grid.Row="1" Grid.Column="1" Tag="1" Click="Link_Click" Content="Copy link"  Height="52" Width="160" Style="{StaticResource MaterialDesignRaisedDarkButton}"/>
-                </Grid>
-                <Grid Margin="0 8">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="52"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="52"/>
-                    </Grid.ColumnDefinitions>
-                    <Button Grid.Column="1" HorizontalAlignment="Stretch" Background="#7F000000"  Click="Button_Click" Content="Close" VerticalAlignment="Stretch"/>
-                    <Button HorizontalAlignment="Stretch" Background="{StaticResource MyRed}"
-                        VerticalAlignment="Stretch" Click="OpenYT_Click" >
-                        <FontIcon Glyph="&#xE29B;"  Height="36"/>
-                    </Button>
-                    <Button HorizontalAlignment="Stretch" Background="Gray" Grid.Column="2" 
-                        VerticalAlignment="Stretch" Click="rm_Click" >
-                        <FontIcon Glyph="&#xE107;"  Height="36"/>
-                    </Button>
-                </Grid>
+            <TextBox x:Name="txtBox" Margin="40,20" HorizontalAlignment="Stretch" x:Load="False"/>
+            <StackPanel x:Name="btnBox" x:Load="False" HorizontalAlignment="Center" Orientation="Horizontal" Padding="8 0">
+                <Button Background="{StaticResource MyBlue}" Tag="0" Click="Link_Click" Style="{StaticResource BtnIcon}">
+                    <StackPanel>
+                        <FontIcon Glyph="&#xEC27;"/>
+                        <TextBlock Text="Browser"/>
+                    </StackPanel>
+                </Button>
+                <Button Background="#f39c12" Tag="1" Click="Link_Click" Style="{StaticResource BtnIcon}">
+                    <StackPanel>
+                        <FontIcon Glyph="&#xE167;" />
+                        <TextBlock Text="Copy link"/>
+                    </StackPanel>
+                </Button>
+                <Button Background="{StaticResource MyRed}" Tag="2" Click="Link_Click" Style="{StaticResource BtnIcon}">
+                    <StackPanel>
+                        <FontIcon Glyph="&#xE173;"/>
+                        <TextBlock Text="Stream"/>
+                    </StackPanel>
+                </Button>
+                <Button Background="{StaticResource MyGreen}" Tag="3" Click="Link_Click" Style="{StaticResource BtnIcon}">
+                    <StackPanel>
+                        <FontIcon Glyph="&#xE72D;"/>
+                        <TextBlock Text="Share"/>
+                    </StackPanel>
+                </Button>
             </StackPanel>
-        </ScrollViewer>
+            <TextBlock x:Name="sizeTxt" TextAlignment="Center" HorizontalAlignment="Center"/>
+            <ProgressBar x:Name="sizeLoading" Foreground="White" Width="270"/>
+        </StackPanel>
+        <Grid Margin="0 8" Height="58" VerticalAlignment="Bottom" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="52"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="52"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="1" HorizontalAlignment="Stretch" Background="#7F000000"  Click="Button_Click" Content="Close" VerticalAlignment="Stretch"/>
+            <Button HorizontalAlignment="Stretch" Background="{StaticResource MyRed}"
+                        VerticalAlignment="Stretch" Click="OpenYT_Click" >
+                <FontIcon Glyph="&#xE29B;"  Height="36"/>
+            </Button>
+            <Button HorizontalAlignment="Stretch" Background="Gray" Grid.Column="2" 
+                        VerticalAlignment="Stretch" Click="rm_Click" >
+                <FontIcon Glyph="&#xE107;"  Height="36"/>
+            </Button>
+        </Grid>
     </Grid>
 </ContentDialog>

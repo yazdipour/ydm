@@ -12,6 +12,7 @@ namespace ytdl.Views {
 			hlp.Visibility_TitleBar(true);
 			hlp.ChangeTitle();
 			hlp.ChangeStatus();
+			Microsoft.AppCenter.Analytics.Analytics.TrackEvent("Click Welcome.Login");
 		}
-    }
+	}
 }

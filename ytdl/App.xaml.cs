@@ -32,10 +32,10 @@ namespace ytdl
 			{
 				rootFrame = new Frame();
 				rootFrame.NavigationFailed += OnNavigationFailed;
-				if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
-				{
-					//TODO: Load state from previously suspended application
-				}
+				//if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
+				//{
+				//	//Load state from previously suspended application
+				//}
 				Window.Current.Content = rootFrame;
 			}
 
@@ -70,7 +70,6 @@ namespace ytdl
 			}
 		}
 
-		/// <summarm name="e">Details about the navigation failure</param>
 		void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
 		{
 			throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
@@ -80,7 +79,7 @@ namespace ytdl
 		{
 			Classes.AkavacheHelper.ShutDown();
 			var deferral = e.SuspendingOperation.GetDeferral();
-			//TODO: Save application state and stop any background activity
+			//Save application state and stop any background activity
 			deferral.Complete();
 		}
 	}

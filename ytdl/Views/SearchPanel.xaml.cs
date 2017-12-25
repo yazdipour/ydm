@@ -27,6 +27,7 @@ namespace ytdl.Views
 
 		private void Page_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
 		{
+			Microsoft.AppCenter.Analytics.Analytics.TrackEvent("Search Usage");
 			switch (Agent)
 			{
 				case "search":

@@ -33,20 +33,20 @@ namespace ytdl.Classes
 		}
 		internal async void ChangeStatus()
 		{
-			//try
-			//{
-			//	StatusBar statusBar = StatusBar.GetForCurrentView();
-			//	statusBar.BackgroundColor = ConvertFrom("#BD2810").Color;
-			//	statusBar.ForegroundColor = Colors.White;
-			//	statusBar.ProgressIndicator.ProgressValue = 0;
-			//	statusBar.BackgroundOpacity = 1;
-			//	await statusBar.ShowAsync();
-			//}
-			//catch (Exception) { }
+			try
+			{
+				StatusBar statusBar = StatusBar.GetForCurrentView();
+				statusBar.BackgroundColor = ConvertFrom("#BD2810").Color;
+				statusBar.ForegroundColor = Colors.White;
+				statusBar.ProgressIndicator.ProgressValue = 0;
+				statusBar.BackgroundOpacity = 1;
+				await statusBar.ShowAsync();
+			}
+			catch (Exception) { }
 		}
 		internal void ChangeTitle()
 		{
-			var titleBar = ApplicationView.GetForCurrentView().TitleBar;
+			var titleBar = Windows.UI.ViewManagement.ApplicationView.GetForCurrentView().TitleBar;
 			titleBar.InactiveBackgroundColor = titleBar.BackgroundColor = ConvertFrom("#BD2810").Color;
 			titleBar.InactiveForegroundColor = titleBar.ForegroundColor = Colors.White;
 			titleBar.ButtonInactiveBackgroundColor = titleBar.ButtonBackgroundColor = ConvertFrom("#BD2810").Color;
