@@ -27,7 +27,7 @@
                                   OffsetX="0" OffsetY="1" Color="Black">
         <StackPanel Background="White"
                         Padding="2 8">
-            <controls:RoundImageEx x:Name="ImageExControl1"
+            <controls:ImageEx x:Name="ImageExControl1"
                   IsCacheEnabled="True" Margin="0,-46,0,0"
                   Source="{x:Bind Img,Mode=OneWay}"
                   Stretch="Fill" Width="92" Height="92"
