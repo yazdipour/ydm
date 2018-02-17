@@ -1,1 +1,1 @@
-C:\Users\Master\source\repos\youtuber-uwp\ytdl\bin\x64\Release\Upload\ytdl_1.5.2.0\ytdl_1.5.2.0_x86_x64.appxbundle
+C:\Users\Master\source\repos\YDM.App\ytdl\bin\ARM\Release\Upload\ytdl_1.6.4.0\ytdl_1.6.4.0_arm.appxbundle
