@@ -122,13 +122,15 @@ namespace ytdl.Classes
 			}
 			return size;
 		}
-		public static string GetVideoLink(string id, string tag)
-		{
-			string videoId = CloseHelp.Base64Encode(id);
-			string url = "https://shahriar.in/app/ydm/dl/getvideo.php?u=" + Token + "&i=" + videoId + "&format=" + tag;
-			return url;
-		}
-		public static async void GetAllVideoLinkAsync()
+		//public static string GetVideoLink(string id, string tag)
+		//{
+		//	string videoId = CloseHelp.Base64Encode(id);
+		//	string url = "https://shahriar.in/app/ydm/dl/getvideo.php?u=" 
+		//+ Token + "&i=" + videoId + "&format=" + tag;
+
+		//	return url;
+		//}
+		public static async void GetAllVideoLinkAsync(string quality = "high")
 		{
 			var links = new List<string>();
 			var ser = JsonConvert.DeserializeObject<List<DownloadedItems>>(await AkavacheHelper.ReadStringLocal("MainList"));
@@ -138,8 +140,10 @@ namespace ytdl.Classes
 				try
 				{
 					var ls = JsonConvert.DeserializeObject<LinkItems[]>(save);
-					string url = GetVideoLink(dl.Id, ls[0].tag);
-					links.Add(url);
+					var list = new List<LinkItems>(ls);
+					var temp = ls[0].url;
+					if (quality != "high") temp = list.Find(o => o.quality.Contains("medium")).url;
+					links.Add(temp);
 				}
 				catch { }
 			}

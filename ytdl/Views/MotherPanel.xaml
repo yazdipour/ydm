@@ -39,7 +39,8 @@
                 <AppBarButton x:Name="TopMenu" Width="48" Icon="ShowBcc" HorizontalAlignment="Left">
                     <AppBarButton.Flyout>
                         <MenuFlyout>
-                            <MenuFlyoutItem Text="Copy all links (HQ)" Click="GetAllLinks_Click"/>
+                            <MenuFlyoutItem Tag="high" Text="Copy all links (HQ)" Click="GetAllLinks_Click"/>
+                            <MenuFlyoutItem Tag="medium" Text="Copy all links (MQ)" Click="GetAllLinks_Click"/>
                             <MenuFlyoutItem Text="Remove all items" Click="RmAll_Click"/>
                         </MenuFlyout>
                     </AppBarButton.Flyout>

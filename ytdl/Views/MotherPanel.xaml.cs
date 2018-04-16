@@ -73,9 +73,13 @@ namespace ytdl.Views
 		#region NavBar Btns
 		private void GetAllLinks_Click(object sender, RoutedEventArgs e)
 		{
-			//MenuFlyOut.GetAllLinks
-			Api.GetAllVideoLinkAsync();
-			Analytics.TrackEvent("Click Mother.GetAll");
+			try
+			{
+				var m = sender as MenuFlyoutItem;
+				Api.GetAllVideoLinkAsync(m.Tag.ToString());
+				Analytics.TrackEvent("Click Mother.GetAll");
+			}
+			catch { }
 		}
 		private async void RmAll_Click(object sender, RoutedEventArgs e)
 		{
