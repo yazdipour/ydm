@@ -48,6 +48,8 @@ namespace ytdl.Views
 			{
 				AkavacheHelper.ShutDown();
 				AkavacheHelper.Init();
+				json = await AkavacheHelper.ReadStringLocal("LI" + dl.Id);
+				if (json == null) return;
 			}
 			var ls = JsonConvert.DeserializeObject<LinkItems[]>(json);
 			xlist.ItemsSource = ls;
