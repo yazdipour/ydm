@@ -36,7 +36,7 @@ namespace ytdl.Views
 			{
 				var dl = e.ClickedItem as DownloadedItems;
 				if (dl == null) return;
-				var dialog = new DownloadedDialog() { Dl = dl };
+				var dialog = new DownloadedDialog() { dl = dl };
 				var t = dialog.ShowAsync();
 				await t;
 				if (t.Status == Windows.Foundation.AsyncStatus.Completed)

@@ -12,7 +12,10 @@ namespace ytdl.Classes
 {
 	static class Api
 	{
+		static string BASE_URL = "https://shahriar.in/app/ydm";
+
 		public static ObservableCollection<DownloadedItems> clist = new ObservableCollection<DownloadedItems>();
+
 		private static Boolean CheckIsConnect()
 		{
 			if (App.Today == 0)
@@ -22,12 +25,14 @@ namespace ytdl.Classes
 			}
 			return true;
 		}
+
 		private static Boolean CheckCharge()
 		{
 			if (App.Usr.nrCanDownload <= 0)
 				return false;
 			return CheckIsConnect();
 		}
+
 		private static string Token
 		{
 			get
@@ -37,6 +42,7 @@ namespace ytdl.Classes
 				return token;
 			}
 		}
+
 		public static async Task<Boolean> MakeMyDayAsync()
 		{
 			try
@@ -57,6 +63,7 @@ namespace ytdl.Classes
 			}
 			catch { return false; }
 		}
+
 		public async static Task<string> GetVideo(string input, bool AutoLoadingGUI = true, bool ShowMsg = true)
 		{
 			List<DownloadedItems> myList = new List<DownloadedItems>(clist);
@@ -92,10 +99,10 @@ namespace ytdl.Classes
 				clist.Insert(0, DLI);
 				DLI.Duration = ConvertDuration(DLI.Duration);
 				key = "LI" + DLI.Id;
-				await AkavacheHelper.SaveStringLocal("MainList", JsonConvert.SerializeObject(clist));
 				var LI = JsonConvert.DeserializeObject<LinkItems[]>(temp[1]);
 				foreach (var item in LI)
 					item.str = item.type + " | " + item.quality;
+				await AkavacheHelper.SaveStringLocal("MainList", JsonConvert.SerializeObject(clist));
 				await AkavacheHelper.SaveStringLocal(key, JsonConvert.SerializeObject(LI));
 				Views.MotherPanel.StaticNr.Label = App.Usr.nrCanDownload.ToString();
 				App.Usr.nrCanDownload--;
@@ -107,6 +114,7 @@ namespace ytdl.Classes
 			if (AutoLoadingGUI) Views.MotherPanel.StaticRing.IsLoading = false;
 			return key;
 		}
+
 		public static async Task<string> FillSizeAsync(string id, string link, int inx)
 		{
 			var key = id + "_" + inx;
@@ -122,14 +130,12 @@ namespace ytdl.Classes
 			}
 			return size;
 		}
-		//public static string GetVideoLink(string id, string tag)
-		//{
-		//	string videoId = CloseHelp.Base64Encode(id);
-		//	string url = "https://shahriar.in/app/ydm/dl/getvideo.php?u=" 
-		//+ Token + "&i=" + videoId + "&format=" + tag;
 
-		//	return url;
-		//}
+		public static string GetVideoLink(string id, string tag)
+		{
+			return BASE_URL + "/dl/getvideo.php?u=" + Token + "&i=" + CloseHelp.Base64Encode(id) + "&format=" + tag;
+		}
+
 		public static async void GetAllVideoLinkAsync(string quality = "high")
 		{
 			var links = new List<string>();
@@ -141,9 +147,10 @@ namespace ytdl.Classes
 				{
 					var ls = JsonConvert.DeserializeObject<LinkItems[]>(save);
 					var list = new List<LinkItems>(ls);
-					var temp = ls[0].url;
-					if (quality != "high") temp = list.Find(o => o.quality.Contains("medium")).url;
-					links.Add(temp);
+					var temp = ls[0];
+					if (quality != "high") temp = list.Find(o => o.quality.Contains("medium"));
+					if(temp==null) temp = ls[0];
+					links.Add(GetVideoLink(dl.Id, temp.tag));
 				}
 				catch { }
 			}

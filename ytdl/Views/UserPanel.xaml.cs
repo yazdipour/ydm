@@ -16,7 +16,7 @@ namespace ytdl.Views {
 			Analytics.TrackEvent("Visit UserPanel");
 		}
 		User usr = new User();
-        string Img = "",mailTxt, Version = "V1.6";
+		string Img = "", mailTxt, Version = "V1.8";
         int leftDay = 0;
         private async void Logout_Click(object sender,Windows.UI.Xaml.RoutedEventArgs e) {
             string msg = "آیا قصد خروج از این حساب را دارید؟";

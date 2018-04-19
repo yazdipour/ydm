@@ -24,6 +24,7 @@ namespace ytdl
 			this.InitializeComponent();
 			this.Suspending += OnSuspending;
 			AppCenter.Start("de21106e-0606-4849-869c-de65c671e627", typeof(Analytics));
+			Analytics.SetEnabledAsync(true);
 		}
 		protected override void OnLaunched(LaunchActivatedEventArgs e)
 		{

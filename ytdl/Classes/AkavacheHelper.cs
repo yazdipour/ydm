@@ -19,12 +19,12 @@ namespace ytdl.Classes
 		public async static Task<string> ReadStringLocal(string key)
 		{
 			try { return await BlobCache.LocalMachine.GetObject<string>(key); }
-			catch (KeyNotFoundException) { return null; }
+			catch (Exception) { return null; }
 		}
 		public async static Task<Boolean> ExistStringLocal(string key)
 		{
 			try { return await ReadStringLocal(key)==null ? false : true; }
-			catch (KeyNotFoundException) { return false; }
+			catch (Exception) { return false; }
 		}
 		public async static Task RemoveFromLocal(string key)
 		{

@@ -1,5 +1,4 @@
-﻿using Microsoft.Toolkit.Uwp.UI.Animations;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using Windows.ApplicationModel.DataTransfer;
@@ -11,21 +10,9 @@ namespace ytdl.Views
 {
 	public sealed partial class DownloadedDialog : ContentDialog
 	{
-#region Head
+		#region Head
 		public string changed = "";
-		private DownloadedItems dl;
-		internal DownloadedItems Dl
-		{
-			get
-			{
-				return dl;
-			}
-
-			set
-			{
-				dl = value;
-			}
-		}
+		internal DownloadedItems dl;
 		public DownloadedDialog()
 		{
 			InitializeComponent();
@@ -38,20 +25,34 @@ namespace ytdl.Views
 
 		private async void ContentDialog_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
 		{
-			oTitle.Text = dl.Title;
-			Duration.Text = "Duration : " + dl.Duration;
-			View.Text = dl.Views + " Views";
-			Img.ImageSource = new Windows.UI.Xaml.Media.Imaging.BitmapImage(new Uri(dl.Img, UriKind.Absolute));
-			var save = await AkavacheHelper.ReadStringLocal("LI" + dl.Id);
 			try
 			{
-				var ls = JsonConvert.DeserializeObject<LinkItems[]>(save);
-				xlist.ItemsSource = ls;
+				oTitle.Text = dl.Title;
+				Duration.Text = "Duration : " + dl.Duration;
+				View.Text = dl.Views + " Views";
+				Img.ImageSource = new Windows.UI.Xaml.Media.Imaging.BitmapImage(new Uri(dl.Img, UriKind.Absolute));
+				await LoadListAsync();
+				DataTransferManager dataTransferManager = DataTransferManager.GetForCurrentView();
+				dataTransferManager.DataRequested += DataTransferManager_DataRequested;
 			}
-			catch { }
-			DataTransferManager dataTransferManager = DataTransferManager.GetForCurrentView();
-			dataTransferManager.DataRequested += DataTransferManager_DataRequested;
+			catch
+			{
+				Hide();
+			}
 		}
+
+		private async System.Threading.Tasks.Task LoadListAsync()
+		{
+			var json = await AkavacheHelper.ReadStringLocal("LI" + dl.Id);
+			if (json == null)
+			{
+				AkavacheHelper.ShutDown();
+				AkavacheHelper.Init();
+			}
+			var ls = JsonConvert.DeserializeObject<LinkItems[]>(json);
+			xlist.ItemsSource = ls;
+		}
+
 		private async void Link_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
 		{
 			string url = txtBox.Text;
@@ -82,22 +83,22 @@ namespace ytdl.Views
 		private void DataTransferManager_DataRequested(DataTransferManager sender, DataRequestedEventArgs args)
 		{
 			DataRequest request = args.Request;
-			request.Data.SetText(txtBox.Text+ "\n\n Watch Youtube Videos without censorship with YDM: https://goo.gl/QM2KC5");
+			request.Data.SetText(txtBox.Text + "\n\n Watch Youtube Videos without censorship with YDM: https://goo.gl/QM2KC5");
 			request.Data.Properties.Title = dl.Title;
 		}
+
 		private async void xlist_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
 			FindName("txtBox");
 			FindName("btnBox");
 			var clicked = xlist.SelectedItem as LinkItems;
-			txtBox.Text = clicked.url;
+			txtBox.Text = Api.GetVideoLink(dl.Id, clicked.tag);
 			sizeTxt.Text = "";
 			sizeLoading.IsIndeterminate = true;
-			string size=await Api.FillSizeAsync(dl.Id, clicked.url, xlist.SelectedIndex);
+			string size = await Api.FillSizeAsync(dl.Id, clicked.url, xlist.SelectedIndex);
 			sizeTxt.Text = "File size: " + size;
 			sizeLoading.IsIndeterminate = false;
 		}
-
 
 		private async void OpenYT_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
 		{
