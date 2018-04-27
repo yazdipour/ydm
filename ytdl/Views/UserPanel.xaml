@@ -55,6 +55,7 @@
             <Button Content="بررسی مشکل برنامه"  Click="Err2_Click" Background="#434C55"/>
             <Button Content="خروج از این حساب"  Click="Logout_Click" />
             <TextBlock Text="{x:Bind Version}" Foreground="Gray" FontSize="12"/>
+            <HyperlinkButton Content="Get YDM Android 👽" HorizontalAlignment="Center" NavigateUri="https://goo.gl/e8zN97"/>
         </StackPanel>
     </controls:DropShadowPanel>
 </Page>
