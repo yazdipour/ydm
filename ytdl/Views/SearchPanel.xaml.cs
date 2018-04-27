@@ -57,7 +57,7 @@ namespace ytdl.Views
 				if (key == null) return;
 				//await Api.FillSizeAsync(key);
 			}
-			catch { CloseHelp.ShowMSG("Error!"); }
+			catch { Utils.ShowMSG("Error!"); }
 		}
 		private async void SlidableListItem_LeftCommandRequested(object sender, EventArgs e)
 		{
@@ -80,7 +80,7 @@ namespace ytdl.Views
 				if (key == null) return;
 				//await Api.FillSizeAsync(key);
 			}
-			catch { CloseHelp.ShowMSG("Error!"); }
+			catch { Utils.ShowMSG("Error!"); }
 		}
 		/// <summary>
 		/// Pivot 1
@@ -96,7 +96,7 @@ namespace ytdl.Views
 				var dlr = await Api.SearchVideo(str, maxRes);
 				if (dlr == null)
 				{
-					CloseHelp.ShowMSG("Err");
+					Utils.ShowMSG("Err");
 					MotherPanel.StaticRing.IsLoading = false;
 					return;
 				}
@@ -109,7 +109,7 @@ namespace ytdl.Views
 				var dlr = await Api.GetPlayList(str);
 				if (dlr == null)
 				{
-					CloseHelp.ShowMSG("Err");
+					Utils.ShowMSG("Err");
 					MotherPanel.StaticRing.IsLoading = false;
 					return;
 				}
@@ -136,7 +136,7 @@ namespace ytdl.Views
 				List<DownloadedItems> x = (lst.ItemsSource as List<DownloadedItems>);
 				if (x.Count > App.Usr.nrCanDownload)
 				{
-					CloseHelp.ShowMSG("You can't download " + x.Count + " videos with your account");
+					Utils.ShowMSG("You can't download " + x.Count + " videos with your account");
 				}
 				else
 				{
@@ -157,7 +157,7 @@ namespace ytdl.Views
 			}
 			catch
 			{
-				CloseHelp.ShowMSG("Something happend!");
+				Utils.ShowMSG("Something happend!");
 			}
 		}
 		/// <summary>
@@ -211,7 +211,7 @@ namespace ytdl.Views
 			var ls = ListCheck.FindAll(obj => obj.IsChecked == true);
 			if (ls.Count > App.Usr.nrCanDownload)
 			{
-				CloseHelp.ShowMSG("You can't download " + ls.Count + " videos with your account");
+				Utils.ShowMSG("You can't download " + ls.Count + " videos with your account");
 			}
 			else
 			{

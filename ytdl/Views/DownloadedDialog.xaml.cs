@@ -1,10 +1,11 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.UI.Xaml.Controls;
 using ytdl.Classes;
 using ytdl.Models;
+using System.Reactive.Linq;
+using Akavache;
 
 namespace ytdl.Views
 {
@@ -43,16 +44,11 @@ namespace ytdl.Views
 
 		private async System.Threading.Tasks.Task LoadListAsync()
 		{
-			var json = await AkavacheHelper.ReadStringLocal("LI" + dl.Id);
-			if (json == null)
+			try
 			{
-				AkavacheHelper.ShutDown();
-				AkavacheHelper.Init();
-				json = await AkavacheHelper.ReadStringLocal("LI" + dl.Id);
-				if (json == null) return;
+				xlist.ItemsSource = await BlobCache.LocalMachine.GetObject<LinkItems[]>("LI" + dl.Id);
 			}
-			var ls = JsonConvert.DeserializeObject<LinkItems[]>(json);
-			xlist.ItemsSource = ls;
+			catch { }
 		}
 
 		private async void Link_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
@@ -111,13 +107,16 @@ namespace ytdl.Views
 		private async void rm_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
 		{
 			//ReadLocalValue it 1st
-			var m = await AkavacheHelper.ReadStringLocal("MainList");
-			var ser = JsonConvert.DeserializeObject<List<DownloadedItems>>(m);
-			ser.Remove(ser.Find(obj => obj.Id == dl.Id));
-			//save changes
-			await AkavacheHelper.SaveStringLocal("MainList", JsonConvert.SerializeObject(ser));
-			await AkavacheHelper.RemoveFromLocal("LI" + dl.Id);
-			changed = "reload";
+			try
+			{
+				var ser = await BlobCache.LocalMachine.GetObject<List<DownloadedItems>>("MainList");
+				ser.Remove(ser.Find(obj => obj.Id == dl.Id));
+				//save changes
+				await BlobCache.LocalMachine.InsertObject("MainList", ser);
+				await BlobCache.LocalMachine.Invalidate("LI" + dl.Id);
+				changed = "reload";
+			}
+			catch { }
 			Hide();
 		}
 	}

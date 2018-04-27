@@ -7,6 +7,8 @@ using ytdl.Classes;
 using ytdl.Models;
 using Microsoft.Toolkit.Uwp.UI.Controls;
 using Microsoft.AppCenter.Analytics;
+using Akavache;
+using System.Reactive.Linq;
 
 namespace ytdl.Views
 {
@@ -16,7 +18,6 @@ namespace ytdl.Views
 		public static AppBarButton StaticNr { get; set; }
 		public MotherPanel()
 		{
-			AkavacheHelper.Init();
 			this.InitializeComponent();
 		}
 
@@ -85,11 +86,9 @@ namespace ytdl.Views
 		{
 			try
 			{
-				var m = await AkavacheHelper.ReadStringLocal("MainList");
-				var ser = JsonConvert.DeserializeObject<List<DownloadedItems>>(m);
-				foreach (var dl in ser)
-					await AkavacheHelper.RemoveFromLocal("LI" + dl.Id);
-				await AkavacheHelper.RemoveFromLocal("MainList");
+				var ser = await BlobCache.LocalMachine.GetObject<List<DownloadedItems>>("MainList");
+				foreach (var dl in ser) await BlobCache.LocalMachine.Invalidate("LI" + dl.Id);
+				await BlobCache.LocalMachine.Invalidate("MainList");
 			}
 			catch { }
 			Api.clist = new System.Collections.ObjectModel.ObservableCollection<DownloadedItems>();

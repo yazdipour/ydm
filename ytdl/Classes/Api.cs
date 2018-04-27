@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Akavache;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -7,12 +8,16 @@ using System.Threading;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.DataTransfer;
 using ytdl.Models;
+using System.Reactive.Linq;
+using Refit;
 
 namespace ytdl.Classes
 {
 	static class Api
 	{
-		static string BASE_URL = "https://shahriar.in/app/ydm";
+		public static string BASE_URL ="https://shahriar.in/app/ydm";
+
+		public static IYdm YdmApi = RestService.For<IYdm>(BASE_URL);
 
 		public static ObservableCollection<DownloadedItems> clist = new ObservableCollection<DownloadedItems>();
 
@@ -20,7 +25,7 @@ namespace ytdl.Classes
 		{
 			if (App.Today == 0)
 			{
-				CloseHelp.ShowMSG("Error in connecting to server! Please restart the application");
+				Utils.ShowMSG("Error in connecting to server! Please restart the application");
 				return false;
 			}
 			return true;
@@ -38,7 +43,7 @@ namespace ytdl.Classes
 			get
 			{
 				var inside = (App.Usr.Id + "|" + App.Today);
-				string token = CloseHelp.Base64Encode(CloseHelp.Reverse(CloseHelp.Base64Encode(inside)));
+				string token = Utils.Base64Encode(Utils.Reverse(Utils.Base64Encode(inside)));
 				return token;
 			}
 		}
@@ -49,12 +54,10 @@ namespace ytdl.Classes
 			{
 				string account = LocalSettingManager.ReadSetting("Account");
 				App.Usr = JsonConvert.DeserializeObject<User>(account);
-				string url = "https://shahriar.in/app/ydm/dl/getdate.php?i=" +
-					CloseHelp.Base64Encode(CloseHelp.Reverse(CloseHelp.Base64Encode(App.Usr.Id.ToString())));
-				url = await CloseHelp.DownloadPages(new CancellationToken(), url);
-				url = CloseHelp.MultiBase64Decode(url, 6);
-				if (url.Substring(0, 3).Equals("Err")) throw new Exception();
-				var arr = url.Split('|');
+				string date = await YdmApi.GetDate(Utils.Base64Encode(Utils.Reverse(Utils.Base64Encode(App.Usr.Id.ToString()))));
+				date = Utils.MultiBase64Decode(date, 6);
+				if (date.Substring(0, 3).Equals("Err")) throw new Exception();
+				var arr = date.Split('|');
 				App.Today = Convert.ToInt32(arr[0]);
 				App.Usr.nrCanDownload = Convert.ToInt32(arr[1]);
 				if (App.Usr.nrCanDownload < 0) App.Usr.nrCanDownload = 0;
@@ -72,25 +75,24 @@ namespace ytdl.Classes
 			var x = myList.Find(obj => obj.Id == tempo);
 			if (x != null)
 			{
-				if (ShowMsg) CloseHelp.ShowMSG("این ویدیو در لیست موجود است");
+				if (ShowMsg) Utils.ShowMSG("این ویدیو در لیست موجود است");
 				return null;
 			}
 			if (!CheckCharge())
 			{
-				if (ShowMsg) CloseHelp.ShowMSG("اکانت خود را شارژ کنید");
+				if (ShowMsg) Utils.ShowMSG("اکانت خود را شارژ کنید");
 				return null;
 			}
 			string key = null;
 			try
 			{
 				if (AutoLoadingGUI) Views.MotherPanel.StaticRing.IsLoading = true;
-				string video = CloseHelp.Base64Encode(input);
-				string url = "https://shahriar.in/app/ydm/dl/getvideo.php?u=" + Token + "&i=" + video;
-				string respond = await CloseHelp.DownloadPages(new CancellationToken(false), url);
+				string video = Utils.Base64Encode(input);
+				var respond = await YdmApi.GetVideo(Token, video);
 				if (respond.Substring(0, 3) == "Err")
 				{
 					Views.MotherPanel.StaticRing.IsLoading = false;
-					CloseHelp.ShowMSG(respond);
+					Utils.ShowMSG(respond);
 					return null;
 				}
 				var temp = respond.Split(new string[] { "[*]" }, StringSplitOptions.RemoveEmptyEntries);
@@ -102,14 +104,14 @@ namespace ytdl.Classes
 				var LI = JsonConvert.DeserializeObject<LinkItems[]>(temp[1]);
 				foreach (var item in LI)
 					item.str = item.type + " | " + item.quality;
-				await AkavacheHelper.SaveStringLocal("MainList", JsonConvert.SerializeObject(clist));
-				await AkavacheHelper.SaveStringLocal(key, JsonConvert.SerializeObject(LI));
+				await BlobCache.LocalMachine.InsertObject("MainList", clist);
+				await BlobCache.LocalMachine.InsertObject(key, LI);
 				Views.MotherPanel.StaticNr.Label = App.Usr.nrCanDownload.ToString();
 				App.Usr.nrCanDownload--;
 			}
 			catch
 			{
-				if (ShowMsg) CloseHelp.ShowMSG("Problem in getting your video! Please try later");
+				if (ShowMsg) Utils.ShowMSG("Problem in getting your video! Please try later");
 			}
 			if (AutoLoadingGUI) Views.MotherPanel.StaticRing.IsLoading = false;
 			return key;
@@ -118,71 +120,63 @@ namespace ytdl.Classes
 		public static async Task<string> FillSizeAsync(string id, string link, int inx)
 		{
 			var key = id + "_" + inx;
-			var size = await AkavacheHelper.ReadStringLocal(key);
-			if (size == null || size.Length < 2)
+			try
 			{
-				try
-				{
-					size = await GetSize(link);
-				}
-				catch { size = "!"; }
-				await AkavacheHelper.SaveStringLocal(key, size);
+				var size = await BlobCache.LocalMachine.GetObject<string>(key);
+				return size;
 			}
-			return size;
+			catch (KeyNotFoundException)
+			{
+				var size = await GetSize(link);
+				await BlobCache.LocalMachine.InsertObject<string>(key, size);
+				return size;
+			}
+			catch
+			{
+				return "!";
+			}
 		}
 
 		public static string GetVideoLink(string id, string tag)
-		{
-			return BASE_URL + "/dl/getvideo.php?u=" + Token + "&i=" + CloseHelp.Base64Encode(id) + "&format=" + tag;
-		}
+			=> BASE_URL + "/dl/getvideo.php?u=" + Token + "&i=" + Utils.Base64Encode(id) + "&format=" + tag;
 
 		public static async void GetAllVideoLinkAsync(string quality = "high")
 		{
 			var links = new List<string>();
-			var ser = JsonConvert.DeserializeObject<List<DownloadedItems>>(await AkavacheHelper.ReadStringLocal("MainList"));
-			foreach (var dl in ser)
+			List<DownloadedItems> ser = new List<DownloadedItems>();
+			try
 			{
-				var save = await AkavacheHelper.ReadStringLocal("LI" + dl.Id);
-				try
+				foreach (var dl in await BlobCache.LocalMachine.GetObject<List<DownloadedItems>>("MainList"))
 				{
-					var ls = JsonConvert.DeserializeObject<LinkItems[]>(save);
-					var list = new List<LinkItems>(ls);
-					var temp = ls[0];
-					if (quality != "high") temp = list.Find(o => o.quality.Contains("medium"));
-					if(temp==null) temp = ls[0];
-					links.Add(GetVideoLink(dl.Id, temp.tag));
+					try
+					{
+						var ls = await BlobCache.LocalMachine.GetObject<LinkItems[]>("LI" + dl.Id);
+						var list = new List<LinkItems>(ls);
+						var temp = ls[0];
+						if (quality != "high") temp = list.Find(o => o.quality.Contains("medium"));
+						if (temp == null) temp = ls[0];
+						links.Add(GetVideoLink(dl.Id, temp.tag));
+					}
+					catch { }
 				}
-				catch { }
 			}
+			catch { }
 			var linksString = string.Join(Environment.NewLine, links.ToArray());
 			var dataPackage = new DataPackage();
 			dataPackage.SetText(linksString);
 			Clipboard.SetContent(dataPackage);
 		}
+
 		public async static Task<List<DownloadedItems>> SearchVideo(string input, string maxRes)
-		{
-			var str = CloseHelp.Reverse(CloseHelp.Base64Encode(input));
-			string url = "https://shahriar.in/app/ydm/search/search.php?q=" + str + "&maxResults=" + CloseHelp.Base64Encode(maxRes);
-			string respond = await CloseHelp.DownloadPages(new CancellationToken(false), url);
-			if (respond.Substring(0, 3) == "Err")
-			{
-				return null;
-			}
-			return JsonConvert.DeserializeObject<List<DownloadedItems>>(respond);
-		}
+			=> await YdmApi.Search(Utils.Reverse(Utils.Base64Encode(input)), Utils.Base64Encode(maxRes));
+
 		public async static Task<List<DownloadedItems>> GetPlayList(string str)
 		{
-			if (str.Contains("list="))
-				str = str.Substring(str.IndexOf("list=") + 5);
-			str = CloseHelp.Reverse(CloseHelp.Base64Encode(str));
-			string url = "https://shahriar.in/app/ydm/search/playList.php?q=" + str;
-			string respond = await CloseHelp.DownloadPages(new CancellationToken(false), url);
-			if (respond.Substring(0, 3) == "Err")
-			{
-				return null;
-			}
-			return JsonConvert.DeserializeObject<List<DownloadedItems>>(respond);
+			if (str.Contains("list=")) str = str.Substring(str.IndexOf("list=") + 5);
+			str = Utils.Reverse(Utils.Base64Encode(str));
+			return await YdmApi.GetPlayList(str);
 		}
+
 		public static async Task<string> GetSize(string url)
 		{
 			try
@@ -196,6 +190,7 @@ namespace ytdl.Classes
 			}
 			catch { return "!"; }
 		}
+
 		private static string ConvertDuration(string drr)
 		{
 			try
@@ -205,6 +200,7 @@ namespace ytdl.Classes
 			}
 			catch { return "!"; }
 		}
+
 		public static async void GetBatchOfVideos(List<string> urls)
 		{
 			Views.MotherPanel.StaticRing.IsLoading = true;

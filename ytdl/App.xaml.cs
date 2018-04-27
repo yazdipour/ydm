@@ -12,17 +12,14 @@ namespace ytdl
 {
 	sealed partial class App : Application
 	{
-		private static User usr;
+		internal static User Usr;
 		internal static int Today = 0;
-		internal static User Usr
-		{
-			get { return usr; }
-			set { usr = value; }
-		}
+
 		public App()
 		{
 			this.InitializeComponent();
 			this.Suspending += OnSuspending;
+			Akavache.BlobCache.ApplicationName = "YDM";
 			AppCenter.Start("de21106e-0606-4849-869c-de65c671e627", typeof(Analytics));
 			Analytics.SetEnabledAsync(true);
 		}
@@ -33,10 +30,6 @@ namespace ytdl
 			{
 				rootFrame = new Frame();
 				rootFrame.NavigationFailed += OnNavigationFailed;
-				//if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
-				//{
-				//	//Load state from previously suspended application
-				//}
 				Window.Current.Content = rootFrame;
 			}
 
@@ -78,7 +71,7 @@ namespace ytdl
 
 		private void OnSuspending(object sender, SuspendingEventArgs e)
 		{
-			Classes.AkavacheHelper.ShutDown();
+			//Classes.AkavacheHelper.ShutDown();
 			var deferral = e.SuspendingOperation.GetDeferral();
 			//Save application state and stop any background activity
 			deferral.Complete();

@@ -1,4 +1,5 @@
-﻿using Microsoft.Toolkit.Uwp.UI.Controls;
+﻿using Akavache;
+using Microsoft.Toolkit.Uwp.UI.Controls;
 using Newtonsoft.Json;
 using System;
 using System.Collections.ObjectModel;
@@ -6,6 +7,7 @@ using Windows.ApplicationModel.DataTransfer;
 using Windows.UI.Xaml.Controls;
 using ytdl.Classes;
 using ytdl.Models;
+using System.Reactive.Linq;
 
 namespace ytdl.Views
 {
@@ -23,8 +25,7 @@ namespace ytdl.Views
 		{
 			try
 			{
-				var sv = await AkavacheHelper.ReadStringLocal("MainList");
-				Api.clist = JsonConvert.DeserializeObject<ObservableCollection<DownloadedItems>>(sv);
+				Api.clist = await BlobCache.LocalMachine.GetObject<ObservableCollection<DownloadedItems>>("MainList");
 			}
 			catch { }
 			xlist.ItemsSource = Api.clist;
@@ -40,8 +41,8 @@ namespace ytdl.Views
 				var t = dialog.ShowAsync();
 				await t;
 				if (t.Status == Windows.Foundation.AsyncStatus.Completed)
-					if (dialog.changed== "reload") LoadListAsync();
-					else if (dialog.changed.Length>2) Frame.Navigate(typeof(StreamPanel),dialog.changed);
+					if (dialog.changed == "reload") LoadListAsync();
+					else if (dialog.changed.Length > 2) Frame.Navigate(typeof(StreamPanel), dialog.changed);
 			}
 			catch { }
 		}
@@ -55,7 +56,7 @@ namespace ytdl.Views
 				var key = await Api.GetVideo(input);
 				if (key != null) xlist.ItemsSource = Api.clist;
 			}
-			catch { CloseHelp.ShowMSG("Error!"); }
+			catch { Utils.ShowMSG("Error!"); }
 		}
 		//Copy Button
 		private async void SymbolIcon_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
@@ -81,8 +82,8 @@ namespace ytdl.Views
 			{
 				try
 				{
-					await AkavacheHelper.RemoveFromLocal("LI" + item.Id);
-					await AkavacheHelper.SaveStringLocal("MainList", JsonConvert.SerializeObject(Api.clist));
+					await BlobCache.LocalMachine.Invalidate("LI" + item.Id);
+					await BlobCache.LocalMachine.InsertObject("MainList", Api.clist);
 				}
 				catch { }
 			}
