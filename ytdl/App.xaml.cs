@@ -14,7 +14,6 @@ namespace ytdl
 	{
 		internal static User Usr;
 		internal static int Today = 0;
-
 		public App()
 		{
 			this.InitializeComponent();

@@ -22,7 +22,7 @@ namespace ytdl.Classes
 		[Get("/search/search.php?q={text}&maxResults={max}")]
 		Task<List<DownloadedItems>> Search(string text,string max);
 
-		[Get("/ydm/search/playList.php?q={list}")]
+		[Get("/search/playList.php?q={list}")]
 		Task<List<DownloadedItems>> GetPlayList(string list);
 	}
 }
