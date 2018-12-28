@@ -1,0 +1,37 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="io.github.yazdipour.ydm.Home">
+
+    <TextView
+        android:id="@+id/tv_home_no_video"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:layout_margin="16dp"
+        android:text="@string/tv_empty_home"
+        android:visibility="invisible" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rcv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="top">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <com.github.clans.fab.FloatingActionButton
+        android:id="@+id/fab_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:src="@drawable/ic_add_circle_white_24dp"
+        app:fab_colorNormal="@color/_persianRed"
+        app:fab_colorPressed="@color/_cinnabar"
+        app:fab_colorRipple="@color/_red"
+        app:fab_showShadow="true"
+        app:fab_size="normal" />
+</FrameLayout>

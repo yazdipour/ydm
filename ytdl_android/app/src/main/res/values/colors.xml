@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimaryDark">@color/_dark</color>
+    <color name="colorPrimary">@color/_red</color>
+    <color name="colorAccent">@color/_redDark</color>
+
+    <color name="_dark">#222222</color>
+    <color name="_redDark">#BD2810</color>
+    <color name="_persianRed">#CD2A22</color>
+    <color name="_red">#E33419</color>
+    <color name="_white">#E7E7E7</color>
+
+    <color name="_nero">#202020</color>
+    <color name="_black">#212121</color>
+    <color name="_blackSide">#2C2C2C</color>
+    <color name="_matterhorn">#4E4D4D</color>
+    <color name="_shark">#32353E</color>
+    <color name="_cinnabar">#E63C35</color>
+    <color name="_valencia">#DA4D47</color>
+    <color name="_flamingo">#EF554E</color>
+    <color name="_roofTerracotta">#9B4A45</color>
+    <color name="_stormGrey">#737989</color>
+    <color name="_sepia">#A06145</color>
+    <color name="_nobel">#A0A0A0</color>
+    <color name="_feldspar">#DB9575</color>
+</resources>

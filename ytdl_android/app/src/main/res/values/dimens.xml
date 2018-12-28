@@ -1,0 +1,18 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="appbar_padding_top">8dp</dimen>
+
+    <dimen name="recycler_item_margin">10dp</dimen>
+    <dimen name="recycler_item_margin_top">1dp</dimen>
+    <dimen name="recycler_item_margin_bottom">2dp</dimen>
+
+    <dimen name="item_radius">10dp</dimen>
+    <dimen name="item_max_elevation">35dp</dimen>
+
+
+    <dimen name="button_width_about_page">240dp</dimen>
+    <dimen name="margin_icon_home_cards">24dp</dimen>
+</resources>

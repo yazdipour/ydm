@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Ydm</string>
+    <string name="get_btn">GET</string>
+    <string name="youtube_url">Youtube URL</string>
+    <string name="action_settings">SETTING</string>
+    <string name="tv_empty_home">Touch \'+\' to get your Youtube Video</string>
+    <string name="youtube_video_image">Youtube Video Image</string>
+    <string name="tv_under_account">تعداد دانلود مانده</string>
+    <string name="tv_charge">شارژ حساب</string>
+    <string name="tv_err">بررسی خطا</string>
+    <string name="tv_logout">خروج از حساب</string>
+    <string name="title_activity_login">Sign in</string>
+
+    <string name="user_info">24635757987456o554132</string>
+    <string name="login_with_google">Login with Google</string>
+    <string name="tv_otherapps">برنامه های دیگر</string>
+    <string name="ydm_windows10">YDM Windows10</string>
+    <string name="tv_version">Version 1.0</string>
+    <string name="title_activity_video_view">VideoView</string>
+    <string name="choose_quality">Choose Quality:</string>
+    <string name="copy_youtube_link">Open Youtube</string>
+    <string name="close">Close</string>
+</resources>

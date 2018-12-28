@@ -1,0 +1,37 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="io.github.yazdipour.ydm.Search">
+
+    <com.wang.avi.AVLoadingIndicatorView
+        android:id="@+id/avl"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:indicatorColor="@color/_shark"
+        app:indicatorName="LineScalePartyIndicator"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/main_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="8dp">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <com.github.clans.fab.FloatingActionButton
+        android:id="@+id/fab_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:src="@drawable/ic_search_white_24dp"
+        app:fab_colorNormal="@color/_persianRed"
+        app:fab_colorPressed="@color/_cinnabar"
+        app:fab_colorRipple="@color/_red"
+        app:fab_showShadow="true"
+        app:fab_size="normal" />
+
+</FrameLayout>
