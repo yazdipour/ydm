@@ -9,7 +9,10 @@ using Android.OS;
 
 namespace YDM.Droid
 {
-    [Activity(Label = "YDM", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    //[Activity(Icon = "@drawable/icon")]
+    [Activity(Label = "YDM", Icon = "@mipmap/ic_launcher", Theme = "@style/MainTheme", MainLauncher = true
+    , ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation
+    , ScreenOrientation = ScreenOrientation.Portrait)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
