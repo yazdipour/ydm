@@ -1,0 +1,310 @@
+﻿<Page
+    x:Class="YDM.UWP.Views.SearchPanel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:control="using:YDM.UWP.Controllers"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:data="using:YDM.Share.Models"
+    xmlns:local="using:YDM.UWP.Views"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Loaded="Page_Loaded"
+    mc:Ignorable="d">
+    <!--xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"-->
+    <Page.Resources>
+        <SolidColorBrush x:Key="SearchBoxHitHighlightForegroundThemeBrush" Color="Pink" />
+        <SolidColorBrush x:Key="SearchBoxHitHighlightSelectedForegroundThemeBrush" Color="Red" />
+        <DataTemplate x:Key="EmailsItemTemplate" x:DataType="data:DownloadedItems">
+            <controls:DropShadowPanel
+                Width="400"
+                BlurRadius="8.0"
+                OffsetX="0"
+                OffsetY="1"
+                ShadowOpacity="0.3"
+                Color="Black">
+                <!--<controls:SlidableListItem
+                    Width="400"
+                    Height="100"
+                    Margin="0,4"
+                    HorizontalAlignment="Stretch"
+                    ActivationWidth="100"
+                    Background="#000"
+                    IsOffsetLimited="True"
+                    IsPointerReleasedOnSwipingHandled="True"
+                    LeftBackground="{StaticResource MyBlue}"
+                    LeftCommandRequested="SlidableListItem_LeftCommandRequested"
+                    LeftForeground="White"
+                    LeftIcon="World"
+                    LeftLabel="Open in Browser"
+                    MouseSlidingEnabled="True"
+                    RightBackground="Green"
+                    RightCommandRequested="SlidableListItem_RightCommandRequested"
+                    RightForeground="White"
+                    RightIcon="Add"
+                    RightLabel="Add">-->
+                    <Grid Height="100" HorizontalAlignment="Stretch">
+                        <controls:ImageEx
+                            Margin="0,-50,0,0"
+                            Opacity=".5"
+                            Source="{x:Bind Img}"
+                            Stretch="UniformToFill" />
+                        <StackPanel
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            RequestedTheme="Dark">
+                            <RichTextBlock
+                                MaxHeight="82"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                IsTextSelectionEnabled="False"
+                                TextAlignment="Center">
+                                <Paragraph>
+                                    <Run
+                                        FontSize="14"
+                                        FontWeight="Bold"
+                                        Text="{x:Bind Title}" />
+                                </Paragraph>
+                                <Paragraph>
+                                    <Run FontSize="12" Text="Channel :" />
+                                    <Run FontSize="12" Text="{x:Bind Channel}" />
+                                </Paragraph>
+                            </RichTextBlock>
+                        </StackPanel>
+                    </Grid>
+                <!--</controls:SlidableListItem>-->
+            </controls:DropShadowPanel>
+        </DataTemplate>
+        <Style x:Key="TBDS" TargetType="controls:DropShadowPanel">
+            <Setter Property="Margin" Value="36,24" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="Background" Value="White" />
+            <Setter Property="Color" Value="Black" />
+            <Setter Property="Padding" Value="4" />
+            <Setter Property="OffsetY" Value="1" />
+            <Setter Property="OffsetX" Value="0" />
+            <Setter Property="OffsetX" Value="0" />
+            <Setter Property="ShadowOpacity" Value="0.3" />
+        </Style>
+        <Style x:Key="AGV" TargetType="controls:AdaptiveGridView">
+            <Setter Property="Margin" Value="4,0,0,0" />
+            <Setter Property="DesiredWidth" Value="470" />
+            <Setter Property="ItemHeight" Value="100" />
+            <Setter Property="VerticalAlignment" Value="Stretch" />
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Hidden" />
+            <Setter Property="ScrollViewer.VerticalScrollMode" Value="Enabled" />
+            <Setter Property="SelectionMode" Value="None" />
+            <Setter Property="IsItemClickEnabled" Value="True" />
+            <Setter Property="ItemTemplate" Value="{StaticResource EmailsItemTemplate}" />
+        </Style>
+        <Style x:Key="BTN" TargetType="Button">
+            <Setter Property="Width" Value="88" />
+            <Setter Property="Background" Value="{StaticResource MyRed}" />
+            <Setter Property="RequestedTheme" Value="Dark" />
+            <Setter Property="Grid.Column" Value="2" />
+        </Style>
+        <Style
+            x:Key="BWL"
+            BasedOn="{StaticResource MaterialDesignRaisedDarkButton}"
+            TargetType="Button">
+            <Setter Property="Background" Value="DimGray" />
+        </Style>
+    </Page.Resources>
+    <ScrollViewer>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!--  Title  -->
+            <TextBlock
+                x:Name="Title"
+                HorizontalAlignment="Center"
+                Style="{StaticResource HeaderTextBlockStyle}"
+                Text="Search" />
+
+            <!--  Search / Playlist  -->
+            <Grid
+                x:Name="SearchGrid"
+                Grid.Row="1"
+                x:Load="False">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <controls:DropShadowPanel Style="{StaticResource TBDS}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBox
+                            x:Name="searchField"
+                            HorizontalAlignment="Stretch"
+                            KeyDown="searchField_KeyDown"
+                            PlaceholderText="Search" />
+                        <ComboBox
+                            x:Name="cmBox"
+                            Grid.Column="1"
+                            x:Load="false"
+                            PlaceholderText="15">
+                            <ComboBoxItem Content="5" />
+                            <ComboBoxItem Content="15" IsSelected="True" />
+                            <ComboBoxItem Content="25" />
+                            <ComboBoxItem Content="50" />
+                        </ComboBox>
+                        <Button
+                            x:Name="searchButton"
+                            Click="Button_Click"
+                            Content="Search"
+                            Style="{StaticResource BTN}" />
+                    </Grid>
+                </controls:DropShadowPanel>
+                <Button
+                    x:Name="GetAll"
+                    Grid.Row="1"
+                    HorizontalAlignment="Center"
+                    x:Load="False"
+                    Background="#e74c3c"
+                    Click="CpButton_Click"
+                    Content="Get All"
+                    Style="{StaticResource BWL}" />
+                <controls:AdaptiveGridView
+                    Name="lst"
+                    Grid.Row="2"
+                    ItemClick="lst1_ItemClick"
+                    Style="{StaticResource AGV}" />
+            </Grid>
+
+            <!--  Advance  -->
+            <Grid
+                x:Name="AdvGrid"
+                Grid.Row="1"
+                x:Load="False">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <RichTextBlock
+                    Margin="8"
+                    HorizontalAlignment="Center"
+                    Foreground="DimGray"
+                    TextAlignment="Center"
+                    TextWrapping="Wrap">
+                    <Paragraph>
+                        <Run Text="You can use this section to extract video urls from html pages, based on html attributes." />
+                        <LineBreak />
+                        <Run Text="Copy your html code here and specify attribute in the textbox blow and then click extract" />
+                    </Paragraph>
+                </RichTextBlock>
+
+                <controls:DropShadowPanel
+                    Grid.Row="1"
+                    Margin="36,8"
+                    HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Stretch"
+                    BlurRadius="8.0"
+                    OffsetX="0"
+                    OffsetY="1"
+                    ShadowOpacity="0.3"
+                    Color="Black">
+                    <StackPanel Padding="24" Background="White">
+                        <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Filter Option:" />
+                        <RadioButton
+                            Content="List of Urls - Line By Line"
+                            GroupName="FilterOption"
+                            IsChecked="True" />
+                        <RadioButton
+                            x:Name="htmlRadio"
+                            Content="From HTML"
+                            GroupName="FilterOption" />
+                        <StackPanel
+                            Margin="24,0"
+                            Padding="6"
+                            HorizontalAlignment="Left"
+                            BorderBrush="Gray"
+                            BorderThickness="0.5"
+                            CornerRadius="2"
+                            Orientation="Horizontal"
+                            Visibility="{Binding IsChecked, ElementName=htmlRadio}">
+                            <controls:HeaderedContentControl Header="Element Type">
+                                <TextBox x:Name="EleBox" PlaceholderText="a" />
+                            </controls:HeaderedContentControl>
+                            <controls:HeaderedContentControl Margin="16,0" Header="What Attribute to Grabe">
+                                <TextBox x:Name="FilterBox" PlaceholderText="href" />
+                            </controls:HeaderedContentControl>
+                        </StackPanel>
+
+                        <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Text:" />
+                        <TextBox
+                            x:Name="htmlTextBox"
+                            Grid.Row="1"
+                            Height="80"
+                            MinWidth="480"
+                            Margin="8"
+                            HorizontalAlignment="Left"
+                            AcceptsReturn="True"
+                            PlaceholderText="Place Your Text Here" />
+
+                        <Button
+                            HorizontalAlignment="Center"
+                            Background="{StaticResource MyRed}"
+                            Click="Button_Click_1"
+                            Content="Extract"
+                            Style="{StaticResource BWL}" />
+                    </StackPanel>
+                </controls:DropShadowPanel>
+
+                <StackPanel
+                    x:Name="Selecters"
+                    Grid.Row="2"
+                    Margin="12"
+                    HorizontalAlignment="Center"
+                    x:Load="False"
+                    Orientation="Horizontal">
+                    <Button
+                        Click="Button_Click_Se"
+                        Content="&#xE73D;"
+                        FontFamily="Segoe MDL2 Assets"
+                        Style="{StaticResource BWL}" />
+                    <Button
+                        Click="Button_Click_De"
+                        Content="&#xE739;"
+                        FontFamily="Segoe MDL2 Assets"
+                        Style="{StaticResource BWL}" />
+                    <Button
+                        Background="{StaticResource MyRed}"
+                        Click="Button_Click_2"
+                        Content="Get Selected Items"
+                        Style="{StaticResource BWL}" />
+                </StackPanel>
+
+                <controls:DropShadowPanel
+                    x:Name="LstParent"
+                    Grid.Row="3"
+                    Margin="36,8"
+                    Padding="16"
+                    HorizontalAlignment="Center"
+                    BlurRadius="8.0"
+                    OffsetX="0"
+                    OffsetY="1"
+                    ShadowOpacity="0.3"
+                    Visibility="Collapsed"
+                    Color="Black">
+                    <ListView
+                        x:Name="LstChk"
+                        MinWidth="300"
+                        Background="White"
+                        ItemsSource="{x:Bind ListCheck, Mode=TwoWay}" />
+                </controls:DropShadowPanel>
+            </Grid>
+        </Grid>
+    </ScrollViewer>
+</Page>
