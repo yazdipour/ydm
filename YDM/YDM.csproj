@@ -17,4 +17,7 @@
   <ItemGroup>
     <ProjectReference Include="..\YDM.Share\YDM.Share.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Converter\TimeConverter.cs" />
+  </ItemGroup>
 </Project>
