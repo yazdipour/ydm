@@ -1,7 +1,7 @@
 ﻿using System;
 namespace YDM.Share.Models
 {
-    class User
+    public class User
     {
         public int Id { get; set; } = 0;
         public string Name { get; set; }
