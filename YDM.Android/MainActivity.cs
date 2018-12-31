@@ -22,7 +22,14 @@ namespace YDM.Droid
 
             base.OnCreate(savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+
+            XF.Material.Droid.Material.Init(this, savedInstanceState);
+
             LoadApplication(new App());
+
+#if DEBUG
+            XAMLator.Server.PreviewServer.Run();
+#endif
         }
     }
 }

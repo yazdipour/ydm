@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:local="clr-namespace:YDM" 
+             x:Class="YDM.Views.MainPage"
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material.Forms" >
+    <Grid Padding="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <material:MaterialCard Grid.Row="0" CornerRadius="2" Elevation="1" 
+                               HeightRequest="80" HorizontalOptions="FillAndExpand">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Image />
+                <Label Text="0"/>
+            </Grid>
+        </material:MaterialCard>
+        <StackLayout Grid.Row="1" Orientation="Horizontal" Spacing="8">
+            <material:MaterialButton BackgroundColor="#EAEAEA" HorizontalOptions="Center"
+                                     Text="Search" TextColor="Black" VerticalOptions="Center" />  
+            <material:MaterialButton BackgroundColor="#EAEAEA" HorizontalOptions="Center"
+                                     Text="Playlist" TextColor="Black" VerticalOptions="Center" />  
+        </StackLayout>
+        <ListView Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                  ItemTapped="Handle_ItemTapped" />
+        <material:MaterialTextField Grid.Row="3" 
+                                    HelperText="https://www.youtube.com/watch?v=_pvCUgKWcas" 
+                                    ErrorText="URL is not valid" PlaceHolder="Youtube URL" InputType="Url" />
+    </Grid>
+</ContentPage>

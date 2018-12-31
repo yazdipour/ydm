@@ -29,6 +29,7 @@
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
     <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchExtraArgs>--enable-repl</MtouchExtraArgs>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -74,48 +75,6 @@
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon1024.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon180.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon167.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon152.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon120.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon87.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon80.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon76.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon60.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon58.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon40.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon29.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon20.png">
-      <Visible>false</Visible>
-    </ImageAsset>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -124,7 +83,10 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="3.2.0.871581" />
+    <PackageReference Include="Xamarin.Forms" Version="3.4.0.1008975" />
+    <PackageReference Include="XAMLator">
+      <Version>2018.11.20.3</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
@@ -132,5 +94,26 @@
       <Project>{D310BEA1-8372-4EBE-B391-3EE4CE3ED7EF}</Project>
       <Name>YDM</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\iphone-20x20%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\iphone-20x20%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\iphone-29x29%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\iphone-29x29%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\iphone-40x40%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\iphone-40x40%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\iphone-60x60%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\iphone-60x60%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ipad-20x20.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ipad-20x20%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ipad-29x29.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ipad-29x29%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ipad-40x40.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ipad-40x40%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ipad-76x76.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ipad-76x76%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ipad-83.5x83.5%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ios-marketing-1024x1024.png" />
   </ItemGroup>
 </Project>

@@ -11,11 +11,13 @@ namespace YDM.Share
 {
     public class ApiHandler
     {
-        public static Api Api = new Api("http://shahriar.in/app/ydm");
+        public Api Api;
 
-        public static ObservableCollection<DownloadedItems> downloadHistory = new ObservableCollection<DownloadedItems>();
+        public ObservableCollection<DownloadedItems> downloadHistory = new ObservableCollection<DownloadedItems>();
 
-        public static async Task<string> GetAllVideoLinkAsync(string quality = "high")
+        public ApiHandler(string baseUrl) => Api = new Api(baseUrl);
+
+        public async Task<string> GetAllVideoLinkAsync(string quality = "high")
         {
             var links = new List<string>();
             var history = downloadHistory.ToList();
@@ -31,7 +33,7 @@ namespace YDM.Share
             return string.Join(Environment.NewLine, links.ToArray());
         }
 
-        public static async Task<string> GetSizeFromUrl(string url)
+        public async Task<string> GetSizeFromUrl(string url)
         {
             try
             {

@@ -10,8 +10,8 @@ namespace YDM
         public App()
         {
             InitializeComponent();
-
-            MainPage = new MainPage();
+            XF.Material.Forms.Material.Init(this);
+            MainPage = new Views.MainPage();
         }
 
         protected override void OnStart()

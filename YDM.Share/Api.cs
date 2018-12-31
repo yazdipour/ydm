@@ -21,22 +21,31 @@ namespace YDM.Share
         private string PLAYLIST_URL(string listId)
             => $"{BASE_URL}/search/playList.php?q={listId}";
 
-        public async Task<DownloadedItems> GetVideoDownloadLink(List<DownloadedItems> downloadHistory, string videoUrl, string tag = null)
+        public async Task<(DownloadedItems, LinkItems[])> GetVideoDownloadLink(List<DownloadedItems> downloadHistory, string videoUrl, string tag = null)
         {
             int index = videoUrl.IndexOf("?v=", StringComparison.Ordinal);
             videoUrl = index == -1 ? videoUrl : videoUrl.Substring(index + 3);
             var existing = downloadHistory.Find(obj => obj.Id == videoUrl);
-            if (existing != null) return existing;
-            var respondJson = await Request(GET_VIDEO_URL(videoUrl, tag));
-            if (respondJson?.Length < 7) throw new Exception("Null Response");
-            var respondObject = JsonConvert.DeserializeAnonymousType(respondJson, new { ItemInfo = new DownloadedItems(), DownloadLinks = new LinkItems[0] });
-            foreach (var link in respondObject.DownloadLinks) link.str = $"{link.type} | {link.quality}";
-            var ItemInfo = respondObject.ItemInfo;
-            ItemInfo.Duration = ConvertDuration(ItemInfo.Duration);
-            downloadHistory.Add(ItemInfo);
+            if (existing != null) throw new Exception("Exists before");
+            var result = await GetVideoDownloadLink(videoUrl, tag);
+            downloadHistory.Add(result.Item1);
             await BlobCache.LocalMachine.InsertObject("MainList", downloadHistory);
-            await BlobCache.LocalMachine.InsertObject(ItemInfo.Id, respondObject.DownloadLinks);
-            return ItemInfo;
+            return result;
+        }
+
+        public async Task<(DownloadedItems, LinkItems[])> GetVideoDownloadLink(string videoUrl, string tag = null)
+        {
+            int index = videoUrl.IndexOf("?v=", StringComparison.Ordinal);
+            videoUrl = index == -1 ? videoUrl : videoUrl.Substring(index + 3);
+            var responseJson = await Request(GET_VIDEO_URL(videoUrl, tag));
+            if (responseJson?.Length < 7) throw new Exception("Null Response");
+            var responseObject = JsonConvert.DeserializeAnonymousType(responseJson, new { Info = new DownloadedItems(), Links = new LinkItems[0] });
+            //Working with Response
+            var result = (Info: responseObject.Info, Links: responseObject.Links);
+            foreach (var link in result.Links) link.str = $"{link.type} | {link.quality}";
+            result.Info.Duration = ConvertDuration(result.Info.Duration);
+            await BlobCache.LocalMachine.InsertObject(result.Info.Id, result.Links);
+            return result;
         }
 
         public async Task<DownloadedItems[]> Search(string query, int max)
