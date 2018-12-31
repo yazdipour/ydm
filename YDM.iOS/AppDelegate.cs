@@ -23,12 +23,14 @@ namespace YDM.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+            Rg.Plugins.Popup.Popup.Init();
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
+            KeyboardOverlap.Forms.Plugin.iOSUnified.KeyboardOverlapRenderer.Init();
             XF.Material.iOS.Material.Init();
-
             LoadApplication(new App());
-            //#if DEBUG
-            //            XAMLator.Server.PreviewServer.Run();
-            //#endif
+#if DEBUG
+            XAMLator.Server.PreviewServer.Run();
+#endif
             return base.FinishedLaunching(app, options);
         }
     }

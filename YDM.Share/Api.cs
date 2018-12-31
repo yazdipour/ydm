@@ -15,7 +15,7 @@ namespace YDM.Share
         public Api(string baseUrl) => this.BASE_URL = baseUrl;
 
         private string GET_VIDEO_URL(string videoId, string tag = null)
-            => $"{BASE_URL}/dl/getvideo.php?i={videoId}&format={tag}";
+            => $"{BASE_URL}/getvideo.php?i={videoId}&tag={tag}";
         private string SEARCH_URL(string query, int max)
             => $"{BASE_URL}/search/search.php?q={query}&maxResults={max}";
         private string PLAYLIST_URL(string listId)

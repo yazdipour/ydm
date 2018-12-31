@@ -11,7 +11,7 @@ namespace YDM
         {
             InitializeComponent();
             XF.Material.Forms.Material.Init(this);
-            MainPage = new Views.MainPage();
+            MainPage = new NavigationPage(new Views.MainPage());
         }
 
         protected override void OnStart()

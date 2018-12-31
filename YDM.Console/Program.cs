@@ -10,7 +10,7 @@ namespace YDM.Console
     {
         private static Share.ApiHandler apiHandler;
         private static string[] Args;
-        private const string DEFAULT_BASEURL = "http://shahriar.in/app/ydm";
+        private const string DEFAULT_BASEURL = "https://ydm.herokuapp.com";
 
         static void Main(string[] args)
         {
@@ -56,7 +56,7 @@ namespace YDM.Console
             string videoId = FindValueOfArg("get");
             WriteLine($"Gathering {videoId} ...");
             var result = await apiHandler.Api.GetVideoDownloadLink(videoId);
-            WriteLine(result.Item1);
+            WriteLine(result.Item1.Title);
             WriteLine(">>z");
         }
     }

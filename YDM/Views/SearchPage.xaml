@@ -1,5 +1,59 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="YDM.Views.SearchPage">
-    <ContentPage.Content>
-    </ContentPage.Content>
+<?xml version="1.0" encoding="UTF-8"?>  
+<ContentPage xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fft="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material.Forms" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="YDM.Views.SearchPage">
+    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" 
+                 VerticalOptions="FillAndExpand">
+        <Label x:Name="searchTitle" HorizontalOptions="Center" MaxLines="1"
+               Margin="8" FontAttributes="Bold" FontSize="24" Text="sss"/>
+        <ListView HorizontalOptions="FillAndExpand"
+                  VerticalOptions="FillAndExpand" SelectionMode="None"
+                  ItemTapped="ListView_ItemTapped">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <material:MaterialCard Grid.Row="0" CornerRadius="2" Elevation="4" 
+                               BackgroundColor="#444" Padding="0"
+                               HeightRequest="120" HorizontalOptions="FillAndExpand">
+                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                 <ff:CachedImage Aspect="AspectFill"
+                                       HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                                       Source="https://ydm.herokuapp.com/getimage.php?i=XM0xWpBYlNM"
+                                        DownsampleToViewSize="true">
+                                    <ff:CachedImage.Transformations>
+                                        <fft:BlurredTransformation Radius="4"/>
+                                    </ff:CachedImage.Transformations>
+                                </ff:CachedImage>
+                
+                                <StackLayout VerticalOptions="CenterAndExpand">
+                                    <Label Text="Black Mirror: Bandersnatch | Official Trailer [HD] | Netflix"
+                                           TextColor="White" FontSize="20" MaxLines="1" Margin="12,0"
+                                           HorizontalOptions="Center"/>
+                                    <Label Text="DOWNLOADS" TextColor="White" FontSize="Small"
+                                           HorizontalOptions="Center"/>
+                                </StackLayout>
+                           </Grid>
+                        </material:MaterialCard>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="End" Orientation="Horizontal">
+            <material:MaterialButton TextColor="Black"
+                                     Clicked="Copy_Clicked"
+                                     Margin="0,-5,0,10" Text="CP"
+                                     ButtonType="Outlined"
+                                     VerticalOptions="Fill" />  
+            <material:MaterialTextField x:Name="entry" TintColor="{StaticResource TheRed}"
+                                        ReturnType="Go" Placeholder="Youtube URL" HorizontalOptions="FillAndExpand"
+                                        ErrorText="URL is not valid" InputType="Url" />
+             <material:MaterialButton BackgroundColor="{StaticResource TheRed}"
+                                     HorizontalOptions="Center" 
+                                     Text="Go" 
+                                      Clicked="Get_Clicked"
+                                     Margin="0,-5,0,10" 
+                                     VerticalOptions="Fill" />  
+        </StackLayout>
+    </StackLayout>
 </ContentPage>
