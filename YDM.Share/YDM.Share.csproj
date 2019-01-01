@@ -11,4 +11,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Remove="Models\User.cs" />
+  </ItemGroup>
 </Project>

@@ -29,7 +29,7 @@ namespace YDM.iOS
             XF.Material.iOS.Material.Init();
             LoadApplication(new App());
 #if DEBUG
-            XAMLator.Server.PreviewServer.Run();
+            //XAMLator.Server.PreviewServer.Run();
 #endif
             return base.FinishedLaunching(app, options);
         }

@@ -3,7 +3,7 @@
              xmlns:fft="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material.Forms" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="YDM.Views.SearchPage">
     <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" 
-                 VerticalOptions="FillAndExpand">
+                 VerticalOptions="FillAndExpand" Padding="0,0,0,32">
         <Label x:Name="searchTitle" HorizontalOptions="Center" MaxLines="1"
                Margin="8" FontAttributes="Bold" FontSize="24" Text="sss"/>
         <ListView HorizontalOptions="FillAndExpand"

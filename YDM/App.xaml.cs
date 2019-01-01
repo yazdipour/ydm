@@ -10,7 +10,7 @@ namespace YDM
         public App()
         {
             InitializeComponent();
-            XF.Material.Forms.Material.Init(this);
+            XF.Material.Forms.Material.Init(this, "Material.Style");
             MainPage = new NavigationPage(new Views.MainPage());
         }
 

@@ -13,24 +13,38 @@ namespace YDM.Share
     {
         public Api Api;
 
-        public ObservableCollection<DownloadedItems> downloadHistory = new ObservableCollection<DownloadedItems>();
+        public ObservableCollection<DownloadedItems> DownloadHistory = new ObservableCollection<DownloadedItems>();
 
-        public ApiHandler(string baseUrl) => Api = new Api(baseUrl);
+        public ApiHandler(string baseUrl)
+        {
+            Akavache.Registrations.Start("YDM");
+            Api = new Api(baseUrl);
+        }
 
         public async Task<string> GetAllVideoLinkAsync(string quality = "high")
         {
             var links = new List<string>();
-            var history = downloadHistory.ToList();
+            var history = DownloadHistory.ToList();
             foreach (var dl in history)
             {
                 try
                 {
                     var list = await BlobCache.LocalMachine.GetObject<List<LinkItems>>(dl?.Id);
-                    links.Add(((quality != "high") ? list.Find(o => o.quality.Contains(quality)) : list[0])?.url);
+                    links.Add(((quality != "high") ? list.Find(o => o.Quality.Contains(quality)) : list[0])?.Url);
                 }
                 catch { }
             }
             return string.Join(Environment.NewLine, links.ToArray());
+        }
+
+        public async Task LoadVideoHistory()
+        {
+            try
+            {
+                var history = await BlobCache.LocalMachine.GetObject<DownloadedItems[]>("History");
+                foreach (var h in history) DownloadHistory.Add(h);
+            }
+            catch { }
         }
 
         public async Task<string> GetSizeFromUrl(string url)
