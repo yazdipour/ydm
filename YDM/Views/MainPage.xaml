@@ -9,8 +9,8 @@
     <Grid>
         <Grid.Padding>
             <OnPlatform x:TypeArguments="Thickness">
-                <On Platform="iOS" Value="18,36" />
-                <On Platform="Android" Value="6,36" />
+                <On Platform="iOS" Value="4,36,4,10" />
+                <On Platform="Android" Value="4" />
             </OnPlatform>
         </Grid.Padding>
         <Grid.RowDefinitions>
@@ -21,15 +21,18 @@
         </Grid.RowDefinitions>
   
         <material:MaterialCard Grid.Row="0" CornerRadius="2" Elevation="1" 
-                               BackgroundColor="#efefef" HeightRequest="80"
-                               HorizontalOptions="FillAndExpand">
+                               BackgroundColor="#efefef" HeightRequest="70"
+                               HorizontalOptions="FillAndExpand" Margin="8,0">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <Label Text="0" FontSize="88" VerticalOptions="End"/>
+                <Label Text="0"
+                       FontSize="88" 
+                       VerticalOptions="End"
+                       x:Name="countLabel"/>
                 <Label Text="DOWNLOADS" FontSize="Small" VerticalOptions="End" Grid.Column="1"/>
                 <Label x:Name="buildLabel" Grid.Column="2" FontAttributes="Bold" HorizontalTextAlignment="End"/>
             </Grid>
@@ -45,6 +48,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <material:MaterialButton Grid.Row="0" Grid.Column="0" 
+                                     Clicked="About_Clicked"
                                      Text="YDM" ButtonType="Outlined" TextColor="Black"/> 
             <material:MaterialButton Grid.Row="0" Grid.Column="1" 
                                      Clicked="Settings_Clicked"
@@ -58,48 +62,46 @@
         </Grid>
         
         <ListView x:Name="listView" Grid.Row="2" HorizontalOptions="FillAndExpand"
-                  VerticalOptions="FillAndExpand" SelectionMode="None"
-                  ItemTapped="ListView_ItemTapped">
+                  VerticalOptions="FillAndExpand" SelectionMode="None" SeparatorVisibility="None" 
+                  ItemTapped="ListView_ItemTapped" HasUnevenRows="true">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <material:MaterialCard Grid.Row="0" CornerRadius="2" Elevation="4" 
-                               BackgroundColor="#444" Padding="0" Margin="0,8"
-                               HeightRequest="120" HorizontalOptions="FillAndExpand">
-                            <Grid HorizontalOptions="FillAndExpand" 
-                                  VerticalOptions="FillAndExpand" HeightRequest="220">
-                                 <ff:CachedImage Aspect="AspectFill" Margin="0" 
-                                                 DownsampleToViewSize="true"
-                                                 HorizontalOptions="FillAndExpand"
-                                                 VerticalOptions="FillAndExpand"
+                            <Grid HorizontalOptions="FillAndExpand" BackgroundColor="#333" Margin="8">
+                                 <ff:CachedImage Aspect="AspectFill" Margin="0" DownsampleToViewSize="true" 
                                                  Source="{Binding Image}"/>
-                
-                                <StackLayout VerticalOptions="FillAndExpand" 
+                                <StackLayout VerticalOptions="CenterAndExpand" Padding="26"
                                              HorizontalOptions="FillAndExpand" BackgroundColor="#7f000000">
-                                    <Label Text="{Binding Title}" 
-                                           TextColor="White" FontSize="20" MaxLines="1" Margin="12,0"
+                                    <Label Text="{Binding Title}"
+                                           VerticalOptions="Center"
+                                           TextColor="White" FontSize="20" MaxLines="1" 
                                            HorizontalOptions="Center"/>
-                                    <Label Text="{Binding Duration}" TextColor="White" FontSize="Small"
-                                           HorizontalOptions="Center"/>
+                                    <Label Text="{Binding Duration}"
+                                           TextColor="White" FontSize="Small"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="Center" />
                                 </StackLayout>
                            </Grid>
-                        </material:MaterialCard>
+                        <ViewCell.ContextActions>
+                            <MenuItem Clicked="OnDelete" CommandParameter="{Binding .}"
+                               Text="Delete" IsDestructive="True" />
+                         </ViewCell.ContextActions>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <StackLayout HorizontalOptions="FillAndExpand" Grid.Row="3" Orientation="Horizontal">
+        <StackLayout HorizontalOptions="FillAndExpand" Grid.Row="3" Margin="-1,0"
+                     Orientation="Horizontal" VerticalOptions="End">
             <material:MaterialButton TextColor="Black"
                                      Clicked="Copy_Clicked"
                                      Margin="0,-5,0,10" Text="CP"
                                      ButtonType="Outlined"
                                      VerticalOptions="Fill" />  
             <material:MaterialTextField x:Name="entry" TintColor="{StaticResource TheRed}"
-                                        ReturnType="Go" Placeholder="Youtube URL" HorizontalOptions="FillAndExpand"
-                                        HelperText="https://www.youtube.com/watch?v=a99jrwFIiZc" 
-                                        ErrorText="URL is not valid" InputType="Url" />
-             <material:MaterialButton HorizontalOptions="Center" 
-                                     Text="Get" 
+                                        ReturnType="Go" Placeholder="Youtube URL"
+                                        HorizontalOptions="FillAndExpand"
+                                        ErrorText="Invalid URL" InputType="Url" />
+             <material:MaterialButton Text="GO" 
                                      Clicked="Get_Clicked"
                                      Margin="0,-5,0,10" 
                                      VerticalOptions="Fill" />  

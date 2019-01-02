@@ -28,9 +28,9 @@ namespace YDM.iOS
             KeyboardOverlap.Forms.Plugin.iOSUnified.KeyboardOverlapRenderer.Init();
             XF.Material.iOS.Material.Init();
             LoadApplication(new App());
-#if DEBUG
-            //XAMLator.Server.PreviewServer.Run();
-#endif
+            //#if DEBUG
+            //            XAMLator.Server.PreviewServer.Run();
+            //#endif
             return base.FinishedLaunching(app, options);
         }
     }

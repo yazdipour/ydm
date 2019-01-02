@@ -13,7 +13,7 @@ namespace YDM.Share
     {
         public Api Api;
 
-        public ObservableCollection<DownloadedItems> DownloadHistory = new ObservableCollection<DownloadedItems>();
+        public readonly ObservableCollection<DownloadedItems> DownloadHistory = new ObservableCollection<DownloadedItems>();
 
         public ApiHandler(string baseUrl)
         {
@@ -42,6 +42,7 @@ namespace YDM.Share
             try
             {
                 var history = await BlobCache.LocalMachine.GetObject<DownloadedItems[]>("History");
+                DownloadHistory.Clear();
                 foreach (var h in history) DownloadHistory.Add(h);
             }
             catch { }
@@ -59,6 +60,25 @@ namespace YDM.Share
                 return len.ToString("0.00") + " MB";
             }
             catch { return "!"; }
+        }
+
+        public async Task<Uri> GetRedirectedUri(string url)
+        {
+            try
+            {
+                System.Net.HttpWebRequest req = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(url);
+                req.Method = "HEAD";
+                req.ContinueTimeout = 1000;
+                var resp = await req.GetResponseAsync();
+                return resp.ResponseUri;
+            }
+            catch { return new Uri(url); }
+        }
+
+        public async void Remove(DownloadedItems item)
+        {
+            DownloadHistory.Remove(item);
+            await BlobCache.LocalMachine.InsertObject("History", DownloadHistory);
         }
     }
 }

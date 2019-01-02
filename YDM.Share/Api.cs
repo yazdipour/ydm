@@ -30,7 +30,7 @@ namespace YDM.Share
         {
             int index = videoUrl.IndexOf("?v=", StringComparison.Ordinal);
             videoUrl = index == -1 ? videoUrl : videoUrl.Substring(index + 3);
-            var result = await Get(GET_VIDEO_URL(videoUrl));
+            var result = await Request<YdmResponse>(GET_VIDEO_URL(videoUrl));
             foreach (var link in result.Links) link.Subtext = $"{link.Type} | {link.Quality}";
             result.Info.Duration = ConvertDuration(result.Info.Duration);
             await BlobCache.LocalMachine.InsertObject(result.Info.Id, result.Links);
@@ -43,40 +43,39 @@ namespace YDM.Share
         }
 
         public async Task<DownloadedItems[]> Search(string query, int max)
-            => JsonConvert.DeserializeObject<DownloadedItems[]>(await Request(SEARCH_URL(query, max)));
+            => await Request<DownloadedItems[]>(SEARCH_URL(query, max));
 
         public async Task<DownloadedItems[]> GetPlayListItems(string url)
         {
             int index = url.IndexOf("list=", StringComparison.Ordinal);
-            if (index == -1) throw new Exception();
-            url = url.Substring(index + 5);
-            return JsonConvert.DeserializeObject<DownloadedItems[]>(await Request(PLAYLIST_URL(url)));
+            if (index == -1) throw new Exception("Invalid Url");
+            return await Request<DownloadedItems[]>(PLAYLIST_URL(url.Substring(index + 5)));
         }
 
-        private async Task<string> Request(string url)
-        {
-            var json = await BlobCache.LocalMachine.DownloadUrl(url);
-            return System.Text.Encoding.UTF8.GetString(json);
-        }
-
-        private IObservable<YdmResponse> Get(string url)
-        {
-            return
-                Observable.FromAsync(() => new System.Net.Http.HttpClient().GetAsync(url))
-                          .SelectMany(
-                              async x =>
-                              {
-                                  x.EnsureSuccessStatusCode();
-                                  return await x.Content.ReadAsStringAsync();
-                              })
-                          .Select(content => JsonConvert.DeserializeObject<YdmResponse>(content));
-        }
-
+        private IObservable<T> Request<T>(string url)
+            => Observable.FromAsync(() => new System.Net.Http.HttpClient().GetAsync(url))
+                              .SelectMany(async x =>
+                                  {
+                                      x.EnsureSuccessStatusCode();
+                                      return await x.Content.ReadAsStringAsync();
+                                  }).Select(content => JsonConvert.DeserializeObject<T>(content));
 
         private string ConvertDuration(string time)
         {
             try { return string.Format("{0}:{1}", Convert.ToInt32(time) / 60, Convert.ToInt32(time) % 60); }
             catch { return "!"; }
+        }
+
+        public async Task<LinkItems[]> GetDownloadableLinks(string id)
+        {
+            try
+            {
+                return await BlobCache.LocalMachine.GetObject<LinkItems[]>(id);
+            }
+            catch
+            {
+                return (await Request<YdmResponse>(GET_VIDEO_URL(id)))?.Links;
+            }
         }
     }
 }

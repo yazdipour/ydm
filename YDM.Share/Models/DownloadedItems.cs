@@ -7,6 +7,15 @@
         public string Duration { get; set; }
         public string Views { get; set; }
         public string Channel { get; set; }
-        public string Image { get; set; }
+        private string image;
+        public string Image
+        {
+            get
+            {
+                return image ?? "https://ydm.herokuapp.com/getimage.php?i=" + Id;
+            }
+            set { image = value; }
+        }
+
     }
 }

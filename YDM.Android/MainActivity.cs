@@ -1,10 +1,7 @@
-﻿using System;
-
+﻿
 using Android.App;
 using Android.Content.PM;
-using Android.Runtime;
 using Android.Views;
-using Android.Widget;
 using Android.OS;
 
 namespace YDM.Droid
@@ -23,6 +20,7 @@ namespace YDM.Droid
             Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
 
             base.OnCreate(savedInstanceState);
+
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
             XF.Material.Droid.Material.Init(this, savedInstanceState);
@@ -30,9 +28,9 @@ namespace YDM.Droid
 
             LoadApplication(new App());
 
-#if DEBUG
-            XAMLator.Server.PreviewServer.Run();
-#endif
+            //#if DEBUG
+            //XAMLator.Server.PreviewServer.Run();
+            //#endif
         }
 
         public override void OnBackPressed()

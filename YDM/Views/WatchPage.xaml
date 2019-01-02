@@ -1,5 +1,38 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="YDM.Views.WatchPage">
-    <ContentPage.Content>
-    </ContentPage.Content>
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
+             xmlns:fft="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations" 
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material.Forms" 
+             xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="YDM.Views.WatchPage">
+    <Grid VerticalOptions="Fill" HorizontalOptions="Fill">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <WebView x:Name="webView" HorizontalOptions="Fill" VerticalOptions="Fill" BackgroundColor="Black"/>
+        <StackLayout HorizontalOptions="Center" Grid.Row="1">
+            <StackLayout.Resources>
+                <Style TargetType="Label">
+                    <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                </Style>
+            </StackLayout.Resources>
+            <Label x:Name="TitleLabel" FontSize="Large" FontAttributes="Bold"/>
+            <Label x:Name="DurationLabel" FontSize="Small"/>
+        </StackLayout>
+        <Grid Grid.Row="2" HorizontalOptions="Fill" Margin="12,32">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <material:MaterialButton Grid.Row="0" Grid.Column="0" Clicked="Handle_Clicked" Text="Open Source" />
+            <material:MaterialButton Grid.Row="0" Grid.Column="1" Clicked="Handle_Clicked" Text="Copy Source" ButtonType="Outlined" />
+            <material:MaterialButton Grid.Row="1" Grid.Column="0" Clicked="Handle_Clicked" Text="Download" />
+            <material:MaterialButton Grid.Row="1" Grid.Column="1" Clicked="Handle_Clicked" Text="Copy Download" ButtonType="Outlined" />
+        </Grid>
+    </Grid>
 </ContentPage>

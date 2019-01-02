@@ -105,12 +105,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\YDM\YDM.csproj">
-      <Project>{D310BEA1-8372-4EBE-B391-3EE4CE3ED7EF}</Project>
-      <Name>YDM</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\iphone-20x20%402x.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\iphone-20x20%403x.png" />
@@ -130,5 +124,11 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ipad-76x76%402x.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ipad-83.5x83.5%402x.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ios-marketing-1024x1024.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\YDM\YDM.csproj">
+      <Project>{D310BEA1-8372-4EBE-B391-3EE4CE3ED7EF}</Project>
+      <Name>YDM</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

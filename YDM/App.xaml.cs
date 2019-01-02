@@ -11,7 +11,7 @@ namespace YDM
         {
             InitializeComponent();
             XF.Material.Forms.Material.Init(this, "Material.Style");
-            MainPage = new NavigationPage(new Views.MainPage());
+            MainPage = new NavigationPage(new Views.MainPage()) { BarTextColor = Color.Red };
         }
 
         protected override void OnStart()
