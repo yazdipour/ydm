@@ -16,12 +16,14 @@
 
 * [ ] `Issue` There is no proper Video Streaming [Xamarin Forms]
 * [ ] `Issue` Video Downloading inside Application [Xamarin Forms]
-* [ ] `Issue` Codes are not writen in MVVM form, so clean it(I was Lazy)
+* [ ] `Issue` Codes are not writen in MVVM form, so clean it (I wrote sections when i was a kid)
 * [ ] `Feature` List Channel Videos [YDM.Share]
 * [ ] `Feature` Bookmark User Channels
 * [ ] Write Test
 * [ ] Improve Docs
 * [ ] Releasing an excutable version of Console Application
+* [ ] Developing for MacOS
+* [ ] Developing Client WebSite
 
 ## Screenshots
 
