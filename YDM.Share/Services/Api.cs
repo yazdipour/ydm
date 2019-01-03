@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Reactive.Linq;
 using Akavache;
 using Newtonsoft.Json;
 using YDM.Share.Models;
-using Newtonsoft.Json.Serialization;
 using System.Collections.ObjectModel;
 using System.Linq;
 
