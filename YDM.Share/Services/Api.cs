@@ -26,6 +26,14 @@ namespace YDM.Share
 
         public string GetDownloadLink(string videoId, string tag) => GET_VIDEO_URL(videoId, tag);
 
+        private IObservable<T> Request<T>(string url)
+            => Observable.FromAsync(() => new System.Net.Http.HttpClient().GetAsync(url))
+                              .SelectMany(async x =>
+                              {
+                                  x?.EnsureSuccessStatusCode();
+                                  return await x?.Content?.ReadAsStringAsync();
+                              }).Select(content => JsonConvert.DeserializeObject<T>(content));
+
         public async Task<YdmResponse> GetAvailableVideoLink(string videoUrl, ObservableCollection<DownloadedItems> downloadHistory = null)
         {
             int index = videoUrl.IndexOf("?v=", StringComparison.Ordinal);
@@ -51,14 +59,6 @@ namespace YDM.Share
             if (index == -1) throw new Exception("Invalid Url");
             return await Request<DownloadedItems[]>(PLAYLIST_URL(url.Substring(index + 5)));
         }
-
-        private IObservable<T> Request<T>(string url)
-            => Observable.FromAsync(() => new System.Net.Http.HttpClient().GetAsync(url))
-                              .SelectMany(async x =>
-                                  {
-                                      x.EnsureSuccessStatusCode();
-                                      return await x.Content.ReadAsStringAsync();
-                                  }).Select(content => JsonConvert.DeserializeObject<T>(content));
 
         private string ConvertDuration(string time)
         {

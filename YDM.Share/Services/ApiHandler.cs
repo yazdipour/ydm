@@ -6,20 +6,20 @@ using System.Reactive.Linq;
 using YDM.Share.Models;
 using System.Threading.Tasks;
 using System.Linq;
+using YDM.Share.Services;
 
 namespace YDM.Share
 {
     public class ApiHandler
     {
         public Api Api;
+        public BaseUrl BASE_URL = new BaseUrl("https://ydm.herokuapp.com");
+        public readonly ObservableCollection<DownloadedItems> DownloadHistory
+                    = new ObservableCollection<DownloadedItems>();
 
-        public readonly ObservableCollection<DownloadedItems> DownloadHistory = new ObservableCollection<DownloadedItems>();
+        public ApiHandler() => Registrations.Start("YDM");
 
-        public ApiHandler(string baseUrl)
-        {
-            Akavache.Registrations.Start("YDM");
-            Api = new Api(baseUrl);
-        }
+        public async Task InitApi() => Api = new Api(await BASE_URL.LoadBaseUrl());
 
         public async Task<string> GetAllVideoLinkAsync(string quality = "high")
         {
@@ -48,6 +48,7 @@ namespace YDM.Share
             catch { }
         }
 
+
         public async Task<string> GetSizeFromUrl(string url)
         {
             try
@@ -75,7 +76,7 @@ namespace YDM.Share
             catch { return new Uri(url); }
         }
 
-        public async void Remove(DownloadedItems item)
+        public async void RemoveHistoryItem(DownloadedItems item)
         {
             DownloadHistory.Remove(item);
             await BlobCache.LocalMachine.InsertObject("History", DownloadHistory);

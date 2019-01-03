@@ -14,4 +14,7 @@
   <ItemGroup>
     <Compile Remove="Models\User.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Services\" />
+  </ItemGroup>
 </Project>

@@ -1,63 +1,73 @@
 ﻿using static System.Console;
-using System.Linq;
-using System.Collections.Generic;
-using System;
 using System.Threading.Tasks;
+using YDM.Share;
 
 namespace YDM.Console
 {
     class Program
     {
-        private static Share.ApiHandler apiHandler;
+        private static ApiHandler apiHandler;
         private static string[] Args;
-        private const string DEFAULT_BASEURL = "https://ydm.herokuapp.com";
+
+        //private static string FindValueOfArg(string arg) => Args[Array.FindIndex(Args, (string _) => _ == arg) + 1];
 
         static void Main(string[] args)
         {
             Args = args;
-            var features = new Dictionary<string, Func<Task>>
-            {
-                { "search", GetVideo },
-                { "get", GetVideo },
-                { "list", GetVideo },
-            };
-            WriteLine("Welcome to YDM \n ydm base-" + string.Join('-', features.Keys));
-            apiHandler = new Share.ApiHandler(args.Contains("base") ? PrepareBaseUrl(FindValueOfArg("base")) : DEFAULT_BASEURL);
+            var features = new[] { "get", "search", "list", "setbase" };
+            WriteLine("Welcome to Youtube Download Manager");
+            WriteLine($">> ydm {features[0]} [VIDEO_URL or VIDEO_ID]");
+            WriteLine($">> ydm {features[1]} [SEARCH_QUERY]");
+            WriteLine($">> ydm {features[2]} [LIST_URL]");
+            WriteLine($">> ydm {features[3]} [SERVER_URL]");
+            WriteLine("\n");
             HandleFeatures(features);
+            ReadKey();
         }
 
-        private async static void HandleFeatures(Dictionary<string, Func<Task>> features)
+        private async static void HandleFeatures(string[] features)
         {
-            foreach (var feature in features)
-                if (Args.Contains(feature.Key))
-                {
-                    WriteLine(">>a");
-                    await feature.Value();
-                    WriteLine("a<<");
-                    break;
-                }
+            apiHandler = new ApiHandler();
+            await apiHandler.InitApi();
+            if (features[0] == Args[0]) await GetVideo();
+            else if (features[1] == Args[0]) await DoSearch();
+            else if (features[2] == Args[0]) await GetList();
+            else if (features[3] == Args[0]) await SetBase();
+            WriteLine("\n[ENTER ANY KEY]");
         }
 
-        private static string PrepareBaseUrl(string baseUrl)
+        private async static Task DoSearch()
         {
-            if (baseUrl.Length < 3) return DEFAULT_BASEURL;
-            if (!baseUrl.Contains("http")) baseUrl += "http://";
-            return baseUrl;
+            WriteLine($"VideoId\t\tTitle");
+            var items = await apiHandler.Api?.Search(Args[1], 10);
+            foreach (var item in items) WriteLine($"{item.Id}\t{item.Title}");
         }
 
-        static string FindValueOfArg(string arg)
+        private async static Task GetList()
         {
-            var index = Array.FindIndex(Args, (string _) => _ == arg);
-            return Args[index + 1];
+            var items = await apiHandler.Api.GetPlayListItems(Args[1]);
+            WriteLine("List: " + Args[1]);
+            WriteLine($"\nVideoId\t\tTitle");
+            foreach (var item in items)
+                WriteLine($"{item.Id}\t{item.Title}");
+        }
+
+        private async static Task SetBase()
+        {
+            var newUrl = Args[1] ?? "https://ydm.herokuapp.com";
+            apiHandler.BASE_URL.SetBaseUrl(newUrl);
+            await apiHandler.BASE_URL.LoadBaseUrl();
+            WriteLine("BaseUrl is set to: " + newUrl);
         }
 
         async static Task GetVideo()
         {
-            string videoId = FindValueOfArg("get");
-            WriteLine($"Gathering {videoId} ...");
-            var result = await apiHandler.Api.GetVideoDownloadLink(videoId);
-            WriteLine(result.Item1.Title);
-            WriteLine(">>z");
+            string videoId = Args[1];
+            var result = await apiHandler.Api.GetAvailableVideoLink(videoId);
+            WriteLine($"Id:{result.Info.Id}\tTitle:{result.Info.Title}\n\n");
+            WriteLine($"Quality\t\tURL");
+            foreach (var link in result.Links)
+                WriteLine($"{link.Quality}\t\t{apiHandler.Api.GetDownloadLink(result.Info.Id, link.Tag)}");
         }
     }
 }
