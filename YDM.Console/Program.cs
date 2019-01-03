@@ -1,15 +1,12 @@
 ﻿using static System.Console;
 using System.Threading.Tasks;
 using YDM.Share;
-using System.Linq;
-using System.Collections.Generic;
-using System;
 
 namespace YDM.Console
 {
     class Program
     {
-        private static ApiHandler apiHandler = new ApiHandler();
+        private static ApiHandler apiHandler;
         private static string[] Args;
 
         //private static string FindValueOfArg(string arg) => Args[Array.FindIndex(Args, (string _) => _ == arg) + 1];
@@ -30,6 +27,7 @@ namespace YDM.Console
 
         private async static void HandleFeatures(string[] features)
         {
+            apiHandler = new ApiHandler();
             await apiHandler.InitApi();
             if (features[0] == Args[0]) await GetVideo();
             else if (features[1] == Args[0]) await DoSearch();
