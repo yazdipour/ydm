@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using XF.Material.Forms.UI.Dialogs;
@@ -11,26 +10,24 @@ namespace YDM.Views
 {
     public partial class MainPage : ContentPage
     {
-        private string BASE_URL = "";
         ApiHandler apiHandler;
         public MainPage()
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
-            buildLabel.Text = $"YDM\n{AppInfo.VersionString}";
-            BASE_URL = Preferences.Get("baseurl", "https://ydm.herokuapp.com");
-            apiHandler = new ApiHandler(BASE_URL);
         }
 
         protected override async void OnAppearing()
         {
             base.OnAppearing();
+            apiHandler = new ApiHandler();
             if (apiHandler.DownloadHistory?.Count == 0)
             {
                 await apiHandler.LoadVideoHistory();
                 listView.ItemsSource = apiHandler.DownloadHistory;
             }
             countLabel.Text = apiHandler.DownloadHistory.Count.ToString();
+            buildLabel.Text = $"YDM\n{AppInfo.VersionString}";
         }
 
         async void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
@@ -44,8 +41,12 @@ namespace YDM.Views
             var input = await MaterialDialog.Instance.InputAsync(
                 "Settings",
                 "Set server address:",
-                BASE_URL);
-            if (input?.Length > 5) Preferences.Set("baseurl", input);
+                apiHandler.BASE_URL.ToString());
+            if (input?.Length > 5)
+            {
+                apiHandler.BASE_URL.SetBaseUrl(input);
+                await apiHandler.InitApi();
+            }
         }
 
         async void About_Clicked(object sender, EventArgs e)
@@ -55,8 +56,7 @@ namespace YDM.Views
                   message: "YDM is an Open source Youtube Client-Server Application.\n\n" +
                            "Dev: Shahriar Yazdipour\n\n" +
                            "Source: github.com/yazdipour/YDM",
-                  acknowledgementText: "Aha!"
-                  );
+                  acknowledgementText: "Aha!");
         }
 
         async void Copy_Clicked(object sender, System.EventArgs e)
@@ -94,7 +94,7 @@ namespace YDM.Views
             if (sender is MenuItem menu)
                 if (menu.CommandParameter is DownloadedItems item)
                 {
-                    apiHandler.Remove(item);
+                    apiHandler.RemoveHistoryItem(item);
                     countLabel.Text = apiHandler.DownloadHistory.Count.ToString();
                 }
         }

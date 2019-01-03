@@ -28,7 +28,12 @@
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AndroidLinkMode>None</AndroidLinkMode>
+    <AndroidKeyStore>True</AndroidKeyStore>
+    <AndroidSigningKeyStore>/Users/shahriar/Library/Developer/Xamarin/Keystore/key1/key1.keystore</AndroidSigningKeyStore>
+    <AndroidSigningStorePass>heysheryo</AndroidSigningStorePass>
+    <AndroidSigningKeyAlias>key1</AndroidSigningKeyAlias>
+    <AndroidSigningKeyPass>heysheryo</AndroidSigningKeyPass>
+<AndroidLinkMode>None</AndroidLinkMode>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -39,6 +44,12 @@
     <WarningLevel>4</WarningLevel>
     <AndroidManagedSymbols>true</AndroidManagedSymbols>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    <AndroidSupportedAbis>armeabi-v7a;arm64-v8a;x86;x86_64</AndroidSupportedAbis>
+    <AndroidKeyStore>True</AndroidKeyStore>
+    <AndroidSigningKeyStore>/Users/shahriar/Library/Developer/Xamarin/Keystore/key1/key1.keystore</AndroidSigningKeyStore>
+    <AndroidSigningStorePass>heysheryo</AndroidSigningStorePass>
+    <AndroidSigningKeyAlias>key1</AndroidSigningKeyAlias>
+    <AndroidSigningKeyPass>heysheryo</AndroidSigningKeyPass>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
