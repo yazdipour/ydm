@@ -10,7 +10,7 @@ namespace YDM.Views
 {
     public partial class MainPage : ContentPage
     {
-        ApiHandler apiHandler;
+        ApiHandler apiHandler = new ApiHandler();
         public MainPage()
         {
             InitializeComponent();
@@ -20,7 +20,7 @@ namespace YDM.Views
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            apiHandler = new ApiHandler();
+            await apiHandler.InitApi();
             if (apiHandler.DownloadHistory?.Count == 0)
             {
                 await apiHandler.LoadVideoHistory();
