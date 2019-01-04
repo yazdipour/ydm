@@ -28,6 +28,7 @@ namespace YDM.Console
         private async static void HandleFeatures(string[] features)
         {
             await apiHandler.InitApi();
+            if (Args.Length == 0) return;
             if (features[0] == Args[0]) await GetVideo();
             else if (features[1] == Args[0]) await DoSearch();
             else if (features[2] == Args[0]) await GetList();
