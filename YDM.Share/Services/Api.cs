@@ -32,11 +32,11 @@ namespace YDM.Share
                                   return await x?.Content?.ReadAsStringAsync();
                               }).Select(content => JsonConvert.DeserializeObject<T>(content));
 
-        public async Task<YdmResponse> GetAvailableVideoLink(string videoUrl, ObservableCollection<DownloadedItems> downloadHistory = null)
+        public async Task<VideoResponse> GetAvailableVideoLink(string videoUrl, ObservableCollection<VideoItem> downloadHistory = null)
         {
             int index = videoUrl.IndexOf("?v=", StringComparison.Ordinal);
             videoUrl = index == -1 ? videoUrl : videoUrl.Substring(index + 3);
-            var result = await Request<YdmResponse>(GET_VIDEO_URL(videoUrl));
+            var result = await Request<VideoResponse>(GET_VIDEO_URL(videoUrl));
             foreach (var link in result.Links) link.Subtext = $"{link.Type} | {link.Quality}";
             result.Info.Duration = ConvertDuration(result.Info.Duration);
             await BlobCache.LocalMachine.InsertObject(result.Info.Id, result.Links);
@@ -48,14 +48,15 @@ namespace YDM.Share
             return result;
         }
 
-        public async Task<DownloadedItems[]> Search(string query, int max)
-            => await Request<DownloadedItems[]>(SEARCH_URL(query, max));
+        public async Task<VideoItem[]> Search(string query, int max)
+            => await Request<VideoItem[]>(SEARCH_URL(query, max));
 
-        public async Task<DownloadedItems[]> GetPlayListItems(string url)
+        public async Task<VideoItem[]> GetPlayListItems(string url)
         {
+            if (url?.Trim()?.Length == 0) throw new Exception("Invalid Url");
             int index = url.IndexOf("list=", StringComparison.Ordinal);
-            if (index == -1) throw new Exception("Invalid Url");
-            return await Request<DownloadedItems[]>(PLAYLIST_URL(url.Substring(index + 5)));
+            if (index != -1) url = url.Substring(index + 5);
+            return await Request<VideoItem[]>(PLAYLIST_URL(url));
         }
 
         private string ConvertDuration(string time)
@@ -64,15 +65,15 @@ namespace YDM.Share
             catch { return "!"; }
         }
 
-        public async Task<LinkItems[]> GetDownloadableLinks(string id)
+        public async Task<DownloadLink[]> GetDownloadableLinks(string id)
         {
             try
             {
-                return await BlobCache.LocalMachine.GetObject<LinkItems[]>(id);
+                return await BlobCache.LocalMachine.GetObject<DownloadLink[]>(id);
             }
             catch
             {
-                return (await Request<YdmResponse>(GET_VIDEO_URL(id)))?.Links;
+                return (await Request<VideoResponse>(GET_VIDEO_URL(id)))?.Links;
             }
         }
     }

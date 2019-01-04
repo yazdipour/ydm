@@ -1,6 +1,6 @@
 ﻿namespace YDM.Share.Models
 {
-    public class DownloadedItems
+    public class VideoItem
     {
         public string Id { get; set; }
         public string Title { get; set; }

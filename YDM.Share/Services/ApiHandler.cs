@@ -14,8 +14,8 @@ namespace YDM.Share
     {
         public Api Api;
         public BaseUrl BASE_URL = new BaseUrl("https://ydm.herokuapp.com");
-        public readonly ObservableCollection<DownloadedItems> DownloadHistory
-                    = new ObservableCollection<DownloadedItems>();
+        public readonly ObservableCollection<VideoItem> DownloadHistory
+                    = new ObservableCollection<VideoItem>();
 
         public ApiHandler() => Registrations.Start("YDM");
 
@@ -29,7 +29,7 @@ namespace YDM.Share
             {
                 try
                 {
-                    var list = await BlobCache.LocalMachine.GetObject<List<LinkItems>>(dl?.Id);
+                    var list = await BlobCache.LocalMachine.GetObject<List<DownloadLink>>(dl?.Id);
                     links.Add(((quality != "high") ? list.Find(o => o.Quality.Contains(quality)) : list[0])?.Url);
                 }
                 catch { }
@@ -41,7 +41,7 @@ namespace YDM.Share
         {
             try
             {
-                var history = await BlobCache.LocalMachine.GetObject<DownloadedItems[]>("History");
+                var history = await BlobCache.LocalMachine.GetObject<VideoItem[]>("History");
                 DownloadHistory.Clear();
                 foreach (var h in history) DownloadHistory.Add(h);
             }
@@ -76,7 +76,7 @@ namespace YDM.Share
             catch { return new Uri(url); }
         }
 
-        public async void RemoveHistoryItem(DownloadedItems item)
+        public async void RemoveHistoryItem(VideoItem item)
         {
             DownloadHistory.Remove(item);
             await BlobCache.LocalMachine.InsertObject("History", DownloadHistory);

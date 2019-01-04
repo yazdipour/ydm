@@ -2,7 +2,7 @@
 
 namespace YDM.Share.Models
 {
-    public class LinkItems
+    public class DownloadLink
     {
         [JsonProperty("str")]
         public string Subtext { get; set; }

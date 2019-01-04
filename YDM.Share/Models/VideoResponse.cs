@@ -3,11 +3,11 @@ using YDM.Share.Models;
 
 namespace YDM.Share
 {
-    public class YdmResponse
+    public class VideoResponse
     {
         [JsonProperty("info")]
-        public DownloadedItems Info;
+        public VideoItem Info;
         [JsonProperty("links")]
-        public LinkItems[] Links;
+        public DownloadLink[] Links;
     }
 }
