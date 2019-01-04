@@ -115,7 +115,6 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\iphone-60x60%402x.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\iphone-60x60%403x.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ipad-20x20.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ipad-20x20%402x.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ipad-29x29.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ipad-29x29%402x.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ipad-40x40.png" />
