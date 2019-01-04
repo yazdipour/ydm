@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:local="clr-namespace:YDM" 
-             x:Class="YDM.Views.MainPage"
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:YDM.Views" 
+             x:Class="YDM.Views.MainPage" 
              xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
-             xmlns:fft="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
-             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material.Forms" >
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material.Forms">
     <Grid>
         <Grid.Padding>
             <OnPlatform x:TypeArguments="Thickness">
@@ -14,97 +13,53 @@
             </OnPlatform>
         </Grid.Padding>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-  
-        <material:MaterialCard Grid.Row="0" CornerRadius="2" Elevation="1" 
-                               BackgroundColor="#efefef" HeightRequest="70"
-                               HorizontalOptions="FillAndExpand" Margin="8,0">
+        <material:MaterialCard Grid.Row="0" CornerRadius="2" Elevation="1" BackgroundColor="#efefef" HeightRequest="70" HorizontalOptions="FillAndExpand" Margin="8,0">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <Label Text="0"
-                       FontSize="88" 
-                       VerticalOptions="End"
-                       x:Name="countLabel"/>
-                <Label Text="DOWNLOADS" FontSize="Small" VerticalOptions="End" Grid.Column="1"/>
-                <Label x:Name="buildLabel" Grid.Column="2" FontAttributes="Bold" HorizontalTextAlignment="End"/>
+                <Label Text="{Binding DownloadHistory.Count}" FontSize="88" VerticalOptions="End" />
+                <Label Text="DOWNLOADS" FontSize="Small" VerticalOptions="End" Grid.Column="1" />
+                <Label Text="{Binding VersionLabel}" Grid.Column="2" FontAttributes="Bold" HorizontalTextAlignment="End" />
             </Grid>
         </material:MaterialCard>
-        
         <Grid Grid.Row="1" HorizontalOptions="FillAndExpand">
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <material:MaterialButton Grid.Row="0" Grid.Column="0" 
-                                     Clicked="About_Clicked"
-                                     Text="YDM" ButtonType="Outlined" TextColor="Black"/> 
-            <material:MaterialButton Grid.Row="0" Grid.Column="1" 
-                                     Clicked="Settings_Clicked"
-                                     Text="Settings" BackgroundColor="#333" />
-            <material:MaterialButton Grid.Row="1" Grid.Column="0" 
-                                     Clicked="Search_Clicked"
-                                     Text="Search"/> 
-            <material:MaterialButton Grid.Row="1" Grid.Column="1" 
-                                     Clicked="Playlist_Clicked"
-                                     Text="Playlist"/> 
+            <material:MaterialButton Grid.Row="0" Grid.Column="0" Clicked="About_Clicked" Text="YDM" ButtonType="Outlined" TextColor="Black" />
+            <material:MaterialButton Grid.Row="0" Grid.Column="1" Clicked="Settings_Clicked" Text="Settings" BackgroundColor="#333" />
+            <material:MaterialButton Grid.Row="1" Grid.Column="0" Clicked="Search_Clicked" Text="Search" />
+            <material:MaterialButton Grid.Row="1" Grid.Column="1" Clicked="Playlist_Clicked" Text="Playlist" />
         </Grid>
-        
-        <ListView x:Name="listView" Grid.Row="2" HorizontalOptions="FillAndExpand"
-                  VerticalOptions="FillAndExpand" SelectionMode="None" SeparatorVisibility="None" 
-                  ItemTapped="ListView_ItemTapped" HasUnevenRows="true">
+        <ListView ItemsSource="{Binding DownloadHistory}" Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" SelectionMode="None" SeparatorVisibility="None" ItemTapped="ListView_ItemTapped" HasUnevenRows="true">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                            <Grid HorizontalOptions="FillAndExpand" BackgroundColor="#333" Margin="8">
-                                 <ff:CachedImage Aspect="AspectFill" Margin="0" DownsampleToViewSize="true" 
-                                                 Source="{Binding Image}"/>
-                                <StackLayout VerticalOptions="CenterAndExpand" Padding="26"
-                                             HorizontalOptions="FillAndExpand" BackgroundColor="#7f000000">
-                                    <Label Text="{Binding Title}"
-                                           VerticalOptions="Center"
-                                           TextColor="White" FontSize="20" MaxLines="1" 
-                                           HorizontalOptions="Center"/>
-                                    <Label Text="{Binding Duration}"
-                                           TextColor="White" FontSize="Small"
-                                           VerticalOptions="Center"
-                                           HorizontalOptions="Center" />
-                                </StackLayout>
-                           </Grid>
+                        <local:ListViewItemControl/>
                         <ViewCell.ContextActions>
-                            <MenuItem Clicked="OnDelete" CommandParameter="{Binding .}"
-                               Text="Delete" IsDestructive="True" />
-                         </ViewCell.ContextActions>
+                            <MenuItem Clicked="OnDelete" CommandParameter="{Binding .}" Text="Delete" IsDestructive="True" />
+                        </ViewCell.ContextActions>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <StackLayout HorizontalOptions="FillAndExpand" Grid.Row="3" Margin="-1,0"
-                     Orientation="Horizontal" VerticalOptions="End">
-            <material:MaterialButton TextColor="Black"
-                                     Clicked="Copy_Clicked"
-                                     Margin="0,-5,0,10" Text="CP"
-                                     ButtonType="Outlined"
-                                     VerticalOptions="Fill" />  
-            <material:MaterialTextField x:Name="entry" TintColor="{StaticResource TheRed}"
-                                        ReturnType="Go" Placeholder="Youtube URL"
-                                        HorizontalOptions="FillAndExpand"
-                                        ErrorText="Invalid URL" InputType="Url" />
-             <material:MaterialButton Text="GO" 
-                                     Clicked="Get_Clicked"
-                                     Margin="0,-5,0,10" 
-                                     VerticalOptions="Fill" />  
+        <StackLayout HorizontalOptions="FillAndExpand" Grid.Row="3" Margin="-1,0" Orientation="Horizontal" VerticalOptions="End">
+            <material:MaterialButton TextColor="Black" Clicked="Copy_Clicked" Margin="0,-5,0,10" Text="CP" ButtonType="Outlined" VerticalOptions="Fill" />
+            <material:MaterialTextField x:Name="entry" TintColor="{StaticResource TheRed}" ReturnType="Go" Placeholder="Youtube URL" HorizontalOptions="FillAndExpand" ErrorText="Invalid URL" InputType="Url" />
+            <material:MaterialButton Text="GO" Clicked="Get_Clicked" Margin="0,-5,0,10" VerticalOptions="Fill" />
         </StackLayout>
     </Grid>
 </ContentPage>

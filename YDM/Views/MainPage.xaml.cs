@@ -2,65 +2,42 @@
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using XF.Material.Forms.UI.Dialogs;
-using YDM.Share;
 using System.Diagnostics;
 using YDM.Share.Models;
+using YDM.ViewModels;
 
 namespace YDM.Views
 {
     public partial class MainPage : ContentPage
     {
-        ApiHandler apiHandler = new ApiHandler();
+        private MainPageViewModel viewModel;
+
         public MainPage()
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
-        }
-
-        protected override async void OnAppearing()
-        {
-            base.OnAppearing();
-            await apiHandler.InitApi();
-            if (apiHandler.DownloadHistory?.Count == 0)
-            {
-                await apiHandler.LoadVideoHistory();
-                listView.ItemsSource = apiHandler.DownloadHistory;
-            }
-            countLabel.Text = apiHandler.DownloadHistory.Count.ToString();
-            buildLabel.Text = $"YDM\n{AppInfo.VersionString}";
+            BindingContext = viewModel = new MainPageViewModel();
         }
 
         async void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            if (e.Item is DownloadedItems item)
-                await Navigation.PushAsync(new WatchPage(Title, item, apiHandler));
+            if (e.Item is VideoItem item)
+                await Navigation.PushAsync(new WatchPage(Title, item, viewModel.apiHandler));
         }
 
         async void Settings_Clicked(object sender, EventArgs e)
         {
-            var input = await MaterialDialog.Instance.InputAsync(
-                "Settings",
-                "Set server address:",
-                apiHandler.BASE_URL.ToString());
-            if (input?.Length > 5)
-            {
-                apiHandler.BASE_URL.SetBaseUrl(input);
-                await apiHandler.InitApi();
-            }
+            var input = await MaterialDialog.Instance.InputAsync("Settings", "Set server address:", viewModel.apiHandler.BASE_URL.ToString());
+            if (input?.Length < 5) return;
+            viewModel.apiHandler.BASE_URL.SetBaseUrl(input);
+            await viewModel.apiHandler.InitApi();
         }
 
         async void About_Clicked(object sender, EventArgs e)
-        {
-            await MaterialDialog.Instance.AlertAsync(
-                  title: "About YDM",
+         => await MaterialDialog.Instance.AlertAsync(
+                  title: "About YDM", acknowledgementText: "Aha!",
                   message: "YDM is an Open source Youtube Client-Server Application.\n\n" +
-                           "Dev: Shahriar Yazdipour\n\n" +
-                           "Source: github.com/yazdipour/YDM",
-                  acknowledgementText: "Aha!");
-        }
-
-        async void Copy_Clicked(object sender, System.EventArgs e)
-            => entry.Text = await Clipboard.GetTextAsync();
+                           "Dev: Shahriar Yazdipour\n\nSource: github.com/yazdipour/YDM");
 
         async void Get_Clicked(object sender, System.EventArgs e)
         {
@@ -71,11 +48,12 @@ namespace YDM.Views
             {
                 var videoUrl = entry.Text.Trim();
                 if (videoUrl.Length < "_JNeiGbAgL4".Length) throw new Exception("Video Url is invalid");
-                await MaterialDialog.Instance.SnackbarAsync(message: "Please Wait...", msDuration: 2000);
-                var result = await apiHandler.Api.GetAvailableVideoLink(videoUrl, apiHandler.DownloadHistory);
-                var msg = (result.Info.Title.Length > 20) ? result.Info.Title.Substring(0, 20) + "..." : result.Info.Title;
-                await MaterialDialog.Instance.SnackbarAsync(message: "Added: " + msg, actionButtonText: "Got It", msDuration: 3000);
-                countLabel.Text = apiHandler.DownloadHistory.Count.ToString();
+                using (await MaterialDialog.Instance.LoadingDialogAsync(message: "Please Wait..."))
+                {
+                    var result = await viewModel.apiHandler.Api.GetAvailableVideoLink(videoUrl, viewModel.apiHandler.DownloadHistory);
+                    var msg = (result.Info.Title.Length > 20) ? result.Info.Title.Substring(0, 20) + "..." : result.Info.Title;
+                    await MaterialDialog.Instance.SnackbarAsync(message: "Added: " + msg, actionButtonText: "Got It", msDuration: 3000);
+                }
             }
             catch (Exception ex)
             {
@@ -91,16 +69,16 @@ namespace YDM.Views
 
         void OnDelete(object sender, System.EventArgs e)
         {
-            if (sender is MenuItem menu)
-                if (menu.CommandParameter is DownloadedItems item)
-                {
-                    apiHandler.RemoveHistoryItem(item);
-                    countLabel.Text = apiHandler.DownloadHistory.Count.ToString();
-                }
+            if (sender is MenuItem menu && menu.CommandParameter is VideoItem item)
+                viewModel.apiHandler.RemoveHistoryItem(item);
         }
 
-        async void Search_Clicked(object sender, System.EventArgs e) => await Navigation.PushAsync(new SearchPage("Search", apiHandler));
+        #region Button Clicked
+        async void Copy_Clicked(object sender, System.EventArgs e) => entry.Text = await Clipboard.GetTextAsync();
 
-        async void Playlist_Clicked(object sender, System.EventArgs e) => await Navigation.PushAsync(new SearchPage("PlayList", apiHandler));
+        async void Search_Clicked(object sender, System.EventArgs e) => await Navigation.PushAsync(new SearchPage("Search", viewModel.apiHandler));
+
+        async void Playlist_Clicked(object sender, System.EventArgs e) => await Navigation.PushAsync(new SearchPage("PlayList", viewModel.apiHandler));
+        #endregion
     }
 }

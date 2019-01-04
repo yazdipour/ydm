@@ -16,7 +16,7 @@
 
 * [ ] `Issue` There is no proper Video Streaming [Xamarin Forms]
 * [ ] `Issue` Video Downloading inside Application [Xamarin Forms]
-* [ ] `Issue` Codes are not writen in MVVM form, so clean it (I wrote sections when i was a kid)
+* [x] `Issue` Codes are not writen in MVVM form, so clean it
 * [ ] `Feature` List Channel Videos [YDM.Share]
 * [ ] `Feature` Bookmark User Channels
 * [ ] Write Test
@@ -24,6 +24,8 @@
 * [ ] Releasing an excutable version of Console Application
 * [ ] Developing for MacOS
 * [ ] Developing Client WebSite
+* [ ] `BUG` I guess Server can't rewrite Cache (Maybe Remove Cache Feature!)
+* [ ] Refactor Old UWP Codes
 
 ## Screenshots
 

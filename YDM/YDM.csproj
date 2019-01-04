@@ -23,11 +23,11 @@
     <ProjectReference Include="..\YDM.Share\YDM.Share.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Remove="Converter\TimeConverter.cs" />
     <Compile Remove="Views\MediaFormsPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\" />
+    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Views\MainPage.xaml.cs">

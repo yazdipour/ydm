@@ -13,11 +13,11 @@ namespace YDM.Views
     {
         private readonly ApiHandler apiHandler;
         private readonly string parentPage;
-        private readonly DownloadedItems item;
+        private readonly VideoItem item;
         private string SourceUrl => $"https://www.youtube.com/watch?v={item?.Id}";
-        private LinkItems[] linkItems;
+        private DownloadLink[] linkItems;
 
-        public WatchPage(string parent, DownloadedItems item, ApiHandler api)
+        public WatchPage(string parent, VideoItem item, ApiHandler api)
         {
             InitializeComponent();
             BindingContext = this;
@@ -65,7 +65,7 @@ namespace YDM.Views
                 else if (content.Contains("download"))
                 {
                     var result = await MaterialDialog.Instance.SelectActionAsync(title: "Select Video Quality",
-                        actions: linkItems?.Select((LinkItems arg) => arg?.Subtext).ToArray());
+                        actions: linkItems?.Select((DownloadLink arg) => arg?.Subtext).ToArray());
                     if (content.Contains("copy"))
                     {
                         await Xamarin.Essentials.Clipboard.SetTextAsync(apiHandler.Api.GetDownloadLink(item?.Id, result.ToString()));
