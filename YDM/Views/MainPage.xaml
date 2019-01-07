@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:YDM.Views" 
-             x:Class="YDM.Views.MainPage" 
-             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
-             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material.Forms">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:YDM.Views" x:Class="YDM.Views.MainPage" xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material.Forms">
     <Grid>
         <Grid.Padding>
             <OnPlatform x:TypeArguments="Thickness">
@@ -18,14 +13,15 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <material:MaterialCard Grid.Row="0" CornerRadius="2" Elevation="1" BackgroundColor="#efefef" HeightRequest="70" HorizontalOptions="FillAndExpand" Margin="8,0">
+        <material:MaterialCard Grid.Row="0" CornerRadius="2" Elevation="4" BackgroundColor="#efefef" Padding="12" 
+                               MinimumHeightRequest="70" HorizontalOptions="FillAndExpand" Margin="8,2">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <Label Text="{Binding DownloadHistory.Count}" FontSize="88" VerticalOptions="End" />
+                <Label Text="{Binding DownloadHistory.Count}" FontSize="78" VerticalOptions="End" HeightRequest="82"/>
                 <Label Text="DOWNLOADS" FontSize="Small" VerticalOptions="End" Grid.Column="1" />
                 <Label Text="{Binding VersionLabel}" Grid.Column="2" FontAttributes="Bold" HorizontalTextAlignment="End" />
             </Grid>
@@ -48,7 +44,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <local:ListViewItemControl/>
+                        <local:ListViewItemControl />
                         <ViewCell.ContextActions>
                             <MenuItem Clicked="OnDelete" CommandParameter="{Binding .}" Text="Delete" IsDestructive="True" />
                         </ViewCell.ContextActions>

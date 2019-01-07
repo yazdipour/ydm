@@ -30,7 +30,6 @@ namespace YDM.Droid
             //#endif
         }
 
-        public override void OnBackPressed()
-        => XF.Material.Droid.Material.HandleBackButton(base.OnBackPressed);
+        public override void OnBackPressed() => XF.Material.Droid.Material.HandleBackButton(base.OnBackPressed);
     }
 }
