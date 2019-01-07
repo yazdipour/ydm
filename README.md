@@ -7,7 +7,7 @@
 | Platform   | Technology    | Build (dev branch) | Published
 |------------|---------------|-------|------|
 | [Server](https://github.com/yazdipour/ydm-server) | PHP | ![heroku](https://img.shields.io/badge/build-succeed-blue.svg) | ydm.herokuapp.com
-| WebApp | - | - | -
+| WebApp | VueJS | - | -
 | ConsoleApp | C# (.NetCore) | - | [Get for win-osx-linux](https://github.com/yazdipour/YDM/releases)
 | UWP        | C# (Native)   | [![Build status](https://build.appcenter.ms/v0.1/apps/a8d27600-4399-4bd7-ad04-d1921096b710/branches/dev/badge)](https://appcenter.ms) | [Get from MS-Store](https://www.microsoft.com/en-us/p/ydm/9pltn8lxg7m4?rtc=1)
 | Android    | C# (XamarinForms)   | [![Build status](https://build.appcenter.ms/v0.1/apps/04b96dc5-679f-4a07-89e1-bedb936590b2/branches/dev/badge)](https://appcenter.ms) | [Get TestAPK (Appcenter)](https://install.appcenter.ms/users/yazdipour/apps/ydm.android/distribution_groups/testers)
@@ -25,21 +25,21 @@
 * [ ] Releasing an excutable version of Console Application
 * [ ] Developing for MacOS
 * [ ] Developing Client WebSite
-* [ ] `BUG` I guess Server can't rewrite Cache (Maybe Remove Cache Feature!)
+* [x] `BUG` I guess Server can't rewrite Cache (Maybe Remove Cache Feature!)
 * [ ] Refactor Old UWP Codes
 
 ## Screenshots
 
-iOS
+### iOS
 
 ![ios](Assets/Screenshots/ios.png)
 ![ios](Assets/Screenshots/ios2.png)
 
-UWP
+### UWP
 
 ![uwp](Assets/Screenshots/uwp.png)
 
-Console
+### Console
 
 ![Console](Assets/Screenshots/Console.png)
 
