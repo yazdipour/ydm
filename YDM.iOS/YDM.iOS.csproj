@@ -83,7 +83,7 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="3.4.0.1008975" />
+    <PackageReference Include="Xamarin.Forms" Version="3.4.0.1009999" />
     <PackageReference Include="XAMLator">
       <Version>2018.11.20.3</Version>
     </PackageReference>
@@ -129,5 +129,8 @@
       <Project>{D310BEA1-8372-4EBE-B391-3EE4CE3ED7EF}</Project>
       <Name>YDM</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\screenshot.png" />
   </ItemGroup>
 </Project>

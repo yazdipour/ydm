@@ -39,6 +39,10 @@ UWP
 
 ![uwp](Assets/Screenshots/uwp.png)
 
+Console
+
+![Console](Assets/Screenshots/Console.png)
+
 ### Developer Note
 
 > I don't have much experience in Xamarin and developing Shared project. I would be happy to see your PR and Issues.
