@@ -1,13 +1,13 @@
-﻿using YDM.Share;
-using System.ComponentModel;
+﻿using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using YDM.Share.Models;
 
-namespace YDM.ViewModels
+namespace YDM.Share
 {
-    internal class MainPageViewModel : INotifyPropertyChanged
+    public class MainPageViewModel : INotifyPropertyChanged
     {
-        public string VersionLabel { get; } = $"YDM\n{Xamarin.Essentials.AppInfo.VersionString}";
+        public string VersionLabel { get; set; }
         public ApiHandler apiHandler = new ApiHandler();
         public ObservableCollection<VideoItem> DownloadHistory => apiHandler.DownloadHistory;
 
