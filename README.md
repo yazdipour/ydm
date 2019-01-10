@@ -17,7 +17,6 @@
 
 * [ ] `Issue` There is no proper Video Streaming [Xamarin Forms]
 * [ ] `Issue` Video Downloading inside Application [Xamarin Forms]
-* [x] `Issue` Codes are not writen in MVVM form, so clean it
 * [ ] `Feature` List Channel Videos [YDM.Share]
 * [ ] `Feature` Bookmark User Channels
 * [ ] Write Test
@@ -25,24 +24,14 @@
 * [ ] Releasing an excutable version of Console Application
 * [ ] Developing for MacOS
 * [ ] Developing Client WebSite
-* [x] `BUG` I guess Server can't rewrite Cache (Maybe Remove Cache Feature!)
 * [ ] Refactor Old UWP Codes
 
 ## Screenshots
 
-### iOS
-
-![ios](Assets/Screenshots/ios.png)
-![ios](Assets/Screenshots/ios2.png)
-
-### UWP
-
-![uwp](Assets/Screenshots/uwp.png)
-
-### Console
-
-![Console](Assets/Screenshots/Console.png)
+| iOS | Android | UWP | Console |
+| --- | --- | --- | --- |
+| ![ios](Assets/Screenshots/ios.png) | ![android](Assets/Screenshots/android.png) | ![uwp](Assets/Screenshots/uwp.png) | ![Console](Assets/Screenshots/Console.png) |
 
 ### Developer Note
 
-> I don't have much experience in Xamarin and developing Shared project. I would be happy to see your PR and Issues.
+> I don't have much experience in most of the technologies I used in this project. I would be happy to see your Feedbacks and PRs.
