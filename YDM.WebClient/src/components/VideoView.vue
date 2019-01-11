@@ -3,7 +3,7 @@
   <v-card class="white--text">
     <v-layout>
       <v-flex>
-        <v-img :src="video.Image" height="125"/>
+        <v-img :src="video.Image"/>
       </v-flex>
       <v-flex xs7>
         <v-container>
@@ -28,7 +28,7 @@
 export default {
   props:{
     video:Object,
-    links:[]
+    links:Object
   },
   methods: {
     openUrl(item){

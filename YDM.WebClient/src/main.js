@@ -2,6 +2,10 @@ import Vue from 'vue'
 import './plugins/vuetify'
 import App from './App.vue'
 
+import VueResource from 'vue-resource';
+Vue.use(VueResource);
+Vue.http.headers.common['Access-Control-Allow-Origin'] = '*'
+
 Vue.config.productionTip = false
 
 new Vue({
