@@ -4,7 +4,7 @@ using Xamarin.Forms;
 using XF.Material.Forms.UI.Dialogs;
 using System.Diagnostics;
 using YDM.Share.Models;
-using YDM.ViewModels;
+using YDM.Share;
 
 namespace YDM.Views
 {
@@ -16,7 +16,11 @@ namespace YDM.Views
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
-            BindingContext = viewModel = new MainPageViewModel();
+            viewModel = new MainPageViewModel
+            {
+                VersionLabel = $"YDM\n{AppInfo.VersionString}"
+            };
+            BindingContext = viewModel;
         }
 
         async void ListView_ItemTapped(object sender, ItemTappedEventArgs e)

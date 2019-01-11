@@ -52,7 +52,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <StackLayout HorizontalOptions="FillAndExpand" Grid.Row="3" Margin="-1,0" Orientation="Horizontal" VerticalOptions="End">
+        <StackLayout HorizontalOptions="Fill" Grid.Row="3" Margin="-1,0" Orientation="Horizontal" VerticalOptions="End">
             <material:MaterialButton TextColor="Black" Clicked="Copy_Clicked" Margin="0,-5,0,10" Text="CP" ButtonType="Outlined" VerticalOptions="Fill" />
             <material:MaterialTextField x:Name="entry" TintColor="{StaticResource TheRed}" ReturnType="Go" Placeholder="Youtube URL" HorizontalOptions="FillAndExpand" ErrorText="Invalid URL" InputType="Url" />
             <material:MaterialButton Text="GO" Clicked="Get_Clicked" Margin="0,-5,0,10" VerticalOptions="Fill" />
