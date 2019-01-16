@@ -41,8 +41,8 @@ import VideoView from './components/VideoView'
 
 export default {
     data: ()=>({
-        baseurl:"http://localhost:8000",
-        //baseurl:"https://ydm.herokuapp.com",
+        // baseurl:"http://localhost:8000",
+        baseurl:"https://ydm.herokuapp.com",
         inputData:"",
         videos:'',
         links:'',
