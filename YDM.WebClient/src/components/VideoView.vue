@@ -44,9 +44,7 @@ export default {
       window.open(item.url, '_blank');
     },
     openReusableUrl(item){
-      var url=window.location.href;
-      if(url.includes('/')) url = url.substring(0,url.lastIndexOf('/'));
-      window.open(url+'/getvideo.php?i='+item.Id, '_blank');
+      window.open('http://ydm.herokuapp.com/getvideo.php?i='+this.video.Id+'&tag='+item.tag, '_blank');
     },
     convertDuration(inSecond){
       if(inSecond<60) return inSecond;
